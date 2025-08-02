@@ -7,12 +7,13 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f9f9f9;
       color: #333;
     }
 
     header {
+      position: relative;
       background-image: url('swing-trading-patterns.jpg');
       background-size: cover;
       background-position: center;
@@ -21,9 +22,29 @@
       align-items: center;
       justify-content: center;
       color: white;
-      text-shadow: 1px 1px 4px #000;
-      text-align: center;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
       padding: 0 20px;
+      text-align: center;
+    }
+
+    header .logo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      max-height: 80px;
+      width: auto;
+      border-radius: 8px;
+      object-fit: contain;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      background-color: white;
+      padding: 4px;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin: 0;
+      line-height: 1.2;
+      font-weight: 700;
     }
 
     nav {
@@ -37,6 +58,7 @@
       text-decoration: none;
       margin: 0 15px;
       font-weight: bold;
+      font-size: 16px;
     }
 
     nav a:hover {
@@ -61,6 +83,8 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       font-family: inherit;
+      font-size: 16px;
+      resize: vertical;
     }
 
     button {
@@ -69,6 +93,12 @@
       border: none;
       font-weight: bold;
       cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e6c200;
     }
 
     footer {
@@ -81,8 +111,15 @@
 
     @media (max-width: 600px) {
       header {
-        height: auto;
-        padding: 40px 10px;
+        height: 180px;
+        padding: 20px 10px;
+      }
+
+      header .logo {
+        max-height: 50px;
+        top: 10px;
+        right: 10px;
+        padding: 2px;
       }
 
       header h1 {
@@ -97,12 +134,17 @@
       main {
         padding: 20px 10px;
       }
+
+      form {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
+    <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo" />
     <h1>اتصل بنا</h1>
   </header>
 
