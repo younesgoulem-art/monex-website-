@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>اتصل بنا | أكاديمية مونكس</title>
   <style>
     body {
@@ -15,12 +16,14 @@
       background-image: url('swing-trading-patterns.jpg');
       background-size: cover;
       background-position: center;
-      height: 300px;
+      height: 250px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       text-shadow: 1px 1px 4px #000;
+      text-align: center;
+      padding: 0 20px;
     }
 
     nav {
@@ -32,7 +35,7 @@
     nav a {
       color: #222;
       text-decoration: none;
-      margin: 0 20px;
+      margin: 0 15px;
       font-weight: bold;
     }
 
@@ -41,7 +44,7 @@
     }
 
     main {
-      padding: 40px 20px;
+      padding: 30px 20px;
       text-align: center;
     }
 
@@ -75,9 +78,30 @@
       padding: 15px;
       margin-top: 40px;
     }
+
+    @media (max-width: 600px) {
+      header {
+        height: auto;
+        padding: 40px 10px;
+      }
+
+      header h1 {
+        font-size: 22px;
+      }
+
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+
+      main {
+        padding: 20px 10px;
+      }
+    }
   </style>
 </head>
 <body>
+
   <header>
     <h1>اتصل بنا</h1>
   </header>
@@ -92,7 +116,7 @@
     <form action="https://formspree.io/f/yourformid" method="POST">
       <input type="text" name="name" placeholder="اسمك الكامل" required>
       <input type="email" name="_replyto" placeholder="بريدك الإلكتروني" required>
-      <textarea name="message" rows="5" placeholder="رسالتك" required></textarea>
+      <textarea name="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
       <button type="submit">إرسال</button>
     </form>
   </main>
@@ -100,6 +124,8 @@
   <footer>
     جميع الحقوق محفوظة © 2025 - Monex Academy
   </footer>
+
 </body>
 </html>
+
 
