@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>اتصل بنا | أكاديمية مونكس</title>
   <style>
     body {
@@ -27,6 +27,7 @@
       text-align: center;
     }
 
+    /* اللوقو فوق اليمين */
     header .logo {
       position: absolute;
       top: 20px;
@@ -34,17 +35,17 @@
       max-height: 80px;
       width: auto;
       border-radius: 8px;
-      object-fit: contain;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
       background-color: white;
       padding: 4px;
+      object-fit: contain;
     }
 
     header h1 {
       font-size: 32px;
       margin: 0;
-      line-height: 1.2;
       font-weight: 700;
+      line-height: 1.2;
     }
 
     nav {
@@ -79,26 +80,39 @@
     }
 
     input, textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      padding: 12px 15px;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
       font-family: inherit;
       font-size: 16px;
       resize: vertical;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #FFD700;
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.7);
+      outline: none;
     }
 
     button {
-      padding: 10px;
+      padding: 12px;
       background-color: #FFD700;
       border: none;
       font-weight: bold;
       cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
+      font-size: 18px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     button:hover {
       background-color: #e6c200;
+      transform: scale(1.05);
+    }
+
+    button:active {
+      transform: scale(0.98);
     }
 
     footer {
@@ -156,8 +170,8 @@
 
   <main>
     <form action="https://formspree.io/f/yourformid" method="POST">
-      <input type="text" name="name" placeholder="اسمك الكامل" required>
-      <input type="email" name="_replyto" placeholder="بريدك الإلكتروني" required>
+      <input type="text" name="name" placeholder="اسمك الكامل" required />
+      <input type="email" name="_replyto" placeholder="بريدك الإلكتروني" required />
       <textarea name="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
       <button type="submit">إرسال</button>
     </form>
@@ -169,5 +183,6 @@
 
 </body>
 </html>
+
 
 
