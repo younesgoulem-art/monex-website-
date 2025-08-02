@@ -1,139 +1,176 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>الرئيسية | أكاديمية مونكس</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>الرئيسية | أكاديمية مونكس</title>
+<style>
+  /* Reset */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff;
+    color: #222;
+  }
+  /* Navbar */
+  nav {
+    background-color: #232F3E; /* لون شبيه بأمازون */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    color: white;
+  }
+  nav .logo {
+    height: 50px;
+    cursor: pointer;
+  }
+  nav .nav-links {
+    display: flex;
+    gap: 25px;
+  }
+  nav .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  nav .nav-links a:hover {
+    background-color: #37475a;
+  }
 
-    header {
-      position: relative;
-      background-image: url('swing-trading-patterns.jpg');
-      background-size: cover;
-      background-position: center;
-      height: 250px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+  /* Hero Section */
+  header.hero {
+    background-image: url('swing-trading-patterns.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 40px;
+    color: white;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+  }
+  header.hero h1 {
+    font-size: 48px;
+    margin: 0 0 15px 0;
+  }
+  header.hero p {
+    font-size: 22px;
+    max-width: 600px;
+    margin-bottom: 25px;
+  }
+  header.hero .btn-primary {
+    background-color: #FFD700;
+    color: #222;
+    padding: 14px 28px;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255,215,0,0.5);
+  }
+  header.hero .btn-primary:hover {
+    background-color: #e6c200;
+  }
+
+  /* Main content */
+  main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  main section {
+    margin-bottom: 50px;
+  }
+  main section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #232F3E;
+  }
+  main section p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  footer {
+    background-color: #232F3E;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 14px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    header.hero {
+      height: 300px;
       padding: 0 20px;
+      align-items: center;
       text-align: center;
     }
-
-    header .logo {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      max-height: 80px;
-      width: auto;
-      border-radius: 8px;
-      object-fit: contain;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-      background-color: white;
-      padding: 4px;
-    }
-
-    header h1 {
+    header.hero h1 {
       font-size: 32px;
-      margin: 0;
-      line-height: 1.2;
-      font-weight: 700;
-      max-width: 600px;
     }
-
-    nav {
-      background-color: #FFD700;
-      padding: 12px 0;
-      text-align: center;
-    }
-
-    nav a {
-      color: #222;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
+    header.hero p {
       font-size: 16px;
+      max-width: 100%;
     }
-
-    nav a:hover {
-      text-decoration: underline;
+    nav {
+      flex-direction: column;
+      gap: 10px;
     }
-
-    main {
-      padding: 30px 20px;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 18px;
-      line-height: 1.6;
+    nav .nav-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
     }
-
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        height: 180px;
-        padding: 20px 10px;
-      }
-
-      header .logo {
-        max-height: 50px;
-        top: 10px;
-        right: 10px;
-        padding: 2px;
-      }
-
-      header h1 {
-        font-size: 22px;
-        max-width: 90%;
-      }
-
-      nav a {
-        display: block;
-        margin: 10px 0;
-      }
-
-      main {
-        padding: 20px 10px;
-        font-size: 16px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo" />
-    <h1>مرحبًا بكم في أكاديمية مونكس</h1>
-  </header>
-
-  <nav>
+<nav>
+  <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo" />
+  <div class="nav-links">
     <a href="index.html">الرئيسية</a>
     <a href="about.html">حولنا</a>
     <a href="contact.html">اتصل بنا</a>
-  </nav>
+  </div>
+</nav>
 
-  <main>
-    <p>نقدم لكم أفضل الدورات التعليمية في مجالات متعددة تهدف إلى تطوير مهاراتكم وتعزيز فرص نجاحكم في عالم التداول والاستثمار. نسعى لتوفير محتوى تعليمي متميز يساعدكم على اتخاذ قرارات مالية سليمة وتحقيق طموحاتكم بثقة واحترافية.</p>
-  </main>
+<header class="hero">
+  <h1>مرحبًا بكم في أكاديمية مونكس</h1>
+  <p>أفضل الدورات التعليمية لتنمية مهاراتك وتحقيق طموحاتك المالية بثقة واحترافية.</p>
+  <button class="btn-primary" onclick="location.href='courses.html'">تصفح الدورات</button>
+</header>
 
-  <footer>
-    جميع الحقوق محفوظة © 2025 - Monex Academy
-  </footer>
+<main>
+  <section>
+    <h2>لماذا تختار أكاديمية مونكس؟</h2>
+    <p>نقدم محتوى تعليمي عالي الجودة، مدعوم بخبراء في مجال التداول والاستثمار، مع دعم مستمر وخطة تعليمية واضحة تناسب جميع المستويات.</p>
+  </section>
+  <section>
+    <h2>دوراتنا المميزة</h2>
+    <p>تعلّم استراتيجيات التداول المتقدمة، إدارة المخاطر، التحليل الفني والأساسي، وأكثر من ذلك، من خلال دورات عملية تفاعلية.</p>
+  </section>
+</main>
+
+<footer>
+  جميع الحقوق محفوظة © 2025 - Monex Academy
+</footer>
 
 </body>
 </html>
+
