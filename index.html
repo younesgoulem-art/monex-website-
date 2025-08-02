@@ -17,12 +17,14 @@
   }
   /* Navbar */
   nav {
-    background-color: #232F3E; /* لون شبيه بأمازون */
+    background-color: #232F3E;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
     color: white;
+    flex-wrap: wrap;
+    gap: 10px;
   }
   nav .logo {
     height: 50px;
@@ -31,6 +33,7 @@
   nav .nav-links {
     display: flex;
     gap: 25px;
+    align-items: center;
   }
   nav .nav-links a {
     color: white;
@@ -43,6 +46,55 @@
   }
   nav .nav-links a:hover {
     background-color: #37475a;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropbtn {
+    background: #FFD700;
+    color: #222;
+    padding: 6px 14px;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: filter .2s;
+  }
+  .dropbtn:hover {
+    filter: brightness(1.1);
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1f2a44;
+    min-width: 180px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    border-radius: 6px;
+    z-index: 10;
+    margin-top: 6px;
+    right: 0;
+    padding: 6px 0;
+  }
+  .dropdown-content a {
+    color: white;
+    padding: 10px 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    transition: background .2s;
+  }
+  .dropdown-content a:hover {
+    background: rgba(255,255,255,0.08);
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
   }
 
   /* Hero Section */
@@ -67,21 +119,6 @@
     font-size: 22px;
     max-width: 600px;
     margin-bottom: 25px;
-  }
-  header.hero .btn-primary {
-    background-color: #FFD700;
-    color: #222;
-    padding: 14px 28px;
-    font-weight: bold;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 8px rgba(255,215,0,0.5);
-  }
-  header.hero .btn-primary:hover {
-    background-color: #e6c200;
   }
 
   /* Main content */
@@ -137,6 +174,13 @@
       gap: 15px;
     }
   }
+  /* Icon sizing */
+  .icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+  }
 </style>
 </head>
 <body>
@@ -147,13 +191,38 @@
     <a href="index.html">الرئيسية</a>
     <a href="about.html">حولنا</a>
     <a href="contact.html">اتصل بنا</a>
+    <div class="dropdown">
+      <button class="dropbtn">خدماتنا ▾</button>
+      <div class="dropdown-content">
+        <a href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.33 3.608 1.305.975.975 1.243 2.242 1.305 3.608.058 1.266.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.33 2.633-1.305 3.608-.975.975-2.242 1.243-3.608 1.305-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.33-3.608-1.305-.975-.975-1.243-2.242-1.305-3.608C2.175 15.647 2.163 15.268 2.163 12s.012-3.584.07-4.85c.062-1.366.33-2.633 1.305-3.608.975-.975 2.242-1.243 3.608-1.305C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.736 0 8.332.013 7.052.072 5.78.131 4.602.438 3.6 1.44 2.598 2.442 2.291 3.62 2.232 4.892 2.173 6.172 2.16 6.576 2.16 12c0 5.424.013 5.828.072 7.108.059 1.272.366 2.45 1.368 3.452 1.002 1.002 2.18 1.309 3.452 1.368 1.28.059 1.684.072 7.108.072s5.828-.013 7.108-.072c1.272-.059 2.45-.366 3.452-1.368 1.002-1.002 1.309-2.18 1.368-3.452.059-1.28.072-1.684.072-7.108s-.013-5.828-.072-7.108c-.059-1.272-.366-2.45-1.368-3.452C19.55.438 18.372.131 17.1.072 15.82.013 15.416 0 12 0z"/>
+            <circle cx="12" cy="12" r="3.6"/>
+            <circle cx="18.406" cy="5.594" r="1.44"/>
+          </svg>
+          إنستغرام
+        </a>
+      </div>
+    </div>
   </div>
 </nav>
 
 <header class="hero">
   <h1>مرحبًا بكم في أكاديمية مونكس</h1>
   <p>أفضل الدورات التعليمية لتنمية مهاراتك وتحقيق طموحاتك المالية بثقة واحترافية.</p>
-  <button class="btn-primary" onclick="location.href='courses.html'">تصفح الدورات</button>
+  <div class="dropdown" style="margin-top:10px;">
+    <button class="dropbtn">خدماتنا ▾</button>
+    <div class="dropdown-content">
+      <a href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.33 3.608 1.305.975.975 1.243 2.242 1.305 3.608.058 1.266.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.33 2.633-1.305 3.608-.975.975-2.242 1.243-3.608 1.305-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.33-3.608-1.305-.975-.975-1.243-2.242-1.305-3.608C2.175 15.647 2.163 15.268 2.163 12s.012-3.584.07-4.85c.062-1.366.33-2.633 1.305-3.608.975-.975 2.242-1.243 3.608-1.305C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.736 0 8.332.013 7.052.072 5.78.131 4.602.438 3.6 1.44 2.598 2.442 2.291 3.62 2.232 4.892 2.173 6.172 2.16 6.576 2.16 12c0 5.424.013 5.828.072 7.108.059 1.272.366 2.45 1.368 3.452 1.002 1.002 2.18 1.309 3.452 1.368 1.28.059 1.684.072 7.108.072s5.828-.013 7.108-.072c1.272-.059 2.45-.366 3.452-1.368 1.002-1.002 1.309-2.18 1.368-3.452.059-1.28.072-1.684.072-7.108s-.013-5.828-.072-7.108c-.059-1.272-.366-2.45-1.368-3.452C19.55.438 18.372.131 17.1.072 15.82.013 15.416 0 12 0z"/>
+          <circle cx="12" cy="12" r="3.6"/>
+          <circle cx="18.406" cy="5.594" r="1.44"/>
+        </svg>
+        إنستغرام
+      </a>
+    </div>
+  </div>
 </header>
 
 <main>
@@ -173,4 +242,3 @@
 
 </body>
 </html>
-
