@@ -31,3 +31,18 @@ footer {
   width: 100%;
   bottom: 0;
 }
+nav {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #007BFF;
+  margin: 0 10px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
