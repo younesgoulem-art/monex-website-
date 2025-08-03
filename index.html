@@ -3,417 +3,380 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>الرئيسية | أكاديمية مونكس</title>
-  <meta name="description" content="أكاديمية مونكس: دورات تعليمية احترافية في التداول والاستثمار. تعلم التحليل الفني، إدارة المخاطر، واستراتيجيات متقدمة بثقة." />
-  <meta name="keywords" content="تداول, استثمار, أكاديمية, تحليل فني, إدارة مخاطر, دورات تعليمية" />
+  <title>أكاديمية مونكس | تعلم التداول والاستثمار باحتراف</title>
+
+  <!-- SEO & Social -->
+  <meta name="description" content="أكاديمية مونكس: دورات احترافية في التداول والاستثمار. تعلم التحليل الفني، إدارة المخاطر، واستراتيجيات متقدمة بثقة." />
+  <meta name="keywords" content="تداول, استثمار, أكاديمية, تحليل فني, إدارة مخاطر, دورات, تعليم مالي" />
+  <link rel="canonical" href="https://yourdomain.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="أكاديمية مونكس - تعلم التداول والاستثمار باحتراف" />
+  <meta property="og:description" content="دورات تعليمية متقدمة في التداول، إدارة المخاطر، والتحليل المالي من خبراء." />
+  <meta property="og:image" content="https://yourdomain.com/og-image.jpg" />
+  <meta property="og:url" content="https://yourdomain.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="أكاديمية مونكس - تعلم التداول والاستثمار باحتراف" />
+  <meta name="twitter:description" content="دورات تعليمية متقدمة في التداول، إدارة المخاطر، والتحليل المالي من خبراء." />
+  <meta name="twitter:image" content="https://yourdomain.com/og-image.jpg" />
+
+  <!-- Favicon -->
   <link rel="icon" href="favicon.ico" />
+
+  <!-- Fonts preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Styles (يمكن نقله لاحقاً إلى style.css) -->
   <style>
-    /* ====== Reset & Base ====== */
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fff;
-      color: #222;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
+    :root {
+      --bg:#ffffff;
+      --card:#f5f7fa;
+      --text:#1f2a44;
+      --muted:#555;
+      --primary:#FFD700;
+      --radius:10px;
+      --shadow:0 20px 50px -10px rgba(35,47,62,0.15);
+      --transition:.35s cubic-bezier(.4,.2,.2,1);
     }
-    a { text-decoration: none; }
-    img { display: block; max-width: 100%; height: auto; }
+    [data-theme="dark"] {
+      --bg:#0f172a;
+      --card:#1f2a44;
+      --text:#e3e9ff;
+      --muted:rgba(227,233,255,.75);
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background:var(--bg);
+      color: var(--text);
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+      transition: background var(--transition), color var(--transition);
+      scroll-behavior:smooth;
+    }
+    a{color:inherit; text-decoration:none;}
+    img{display:block; max-width:100%; height:auto; border-radius:6px;}
+    button{cursor:pointer; font-family:inherit; border:none; background:none;}
 
-    /* ====== Navbar ====== */
-    nav {
-      background-color: #232F3E;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      color: white;
-      flex-wrap: wrap;
-      gap: 10px;
-      position: relative;
-      z-index: 20;
-    }
-    .logo {
-      height: 50px;
-      cursor: pointer;
-    }
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      flex: 1;
-      justify-content: flex-end;
-    }
-    .nav-links a {
-      color: white;
-      font-weight: 600;
-      font-size: 16px;
-      padding: 8px 14px;
-      border-radius: 4px;
-      position: relative;
-      transition: background-color 0.25s ease, filter .2s;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus {
-      background-color: #37475a;
-      outline: none;
-    }
-    .nav-links a.active {
-      background-color: #FFD700;
-      color: #222;
-    }
-    .dropdown {
-      position: relative;
-    }
-    .dropbtn {
-      background: #FFD700;
-      color: #222;
-      padding: 6px 14px;
-      font-weight: 600;
-      font-size: 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: filter .2s;
-    }
-    .dropbtn:hover,
-    .dropbtn:focus {
-      filter: brightness(1.1);
-      outline: none;
-    }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #1f2a44;
-      min-width: 200px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-      border-radius: 8px;
-      z-index: 30;
-      margin-top: 8px;
-      right: 0;
-      padding: 8px 0;
-    }
-    .dropdown-content a {
-      color: white;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      transition: background .2s;
-    }
-    .dropdown-content a:hover,
-    .dropdown-content a:focus {
-      background: rgba(255,255,255,0.08);
-      outline: none;
-    }
-    .dropdown:focus-within .dropdown-content,
-    .dropdown:hover .dropdown-content {
-      display: block;
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important; transition:none !important;}
     }
 
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      width: 30px;
-      cursor: pointer;
+    /* Utility */
+    .container{max-width:1150px; margin:0 auto; padding:0 20px;}
+    .flex{display:flex; gap:16px;}
+    .center{display:flex; align-items:center; justify-content:center;}
+    .section{padding:80px 0; position:relative;}
+    .rounded{border-radius:var(--radius);}
+    .shadow{box-shadow: var(--shadow);}
+    .btn{padding:14px 26px; border-radius:8px; font-weight:700; display:inline-flex; align-items:center; gap:8px; transition:var(--transition);}
+    .btn-primary{background:var(--primary); color:#222; position:relative;}
+    .btn-primary:hover{filter:brightness(1.08);}
+    .badge{background:#eef2f7; padding:6px 14px; border-radius:999px; font-size:12px; display:inline-block; margin-bottom:6px;}
+    .text-muted{color: var(--muted);}
+
+    /* Navbar */
+    nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(35,47,62,.95);
+      backdrop-filter:blur(8px);
+      padding:10px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
     }
-    .hamburger span {
-      height: 3px;
-      background: white;
-      border-radius: 2px;
-      transition: all .3s ease;
+    .logo{height:48px; flex-shrink:0;}
+    .nav-links{display:flex; gap:18px; align-items:center; flex-wrap:wrap;}
+    .nav-links a{
+      padding:8px 14px;
+      border-radius:6px;
+      font-size:15px;
+      font-weight:600;
+      position:relative;
+      transition:var(--transition);
     }
-    .nav-mobile {
-      display: none;
-      width: 100%;
-      background-color: #232F3E;
-      padding: 10px 0;
-    }
-    .nav-mobile a {
-      display: block;
-      padding: 12px 20px;
-      font-size: 16px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    .nav-mobile .dropdown-mobile {
-      padding: 0;
-    }
-    .dropdown-mobile > button {
-      width: 100%;
-      background: #FFD700;
-      border: none;
-      padding: 10px 16px;
-      font-weight: 600;
-      cursor: pointer;
-      border-radius: 4px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .dropdown-mobile-content {
-      display: none;
-      background: #1f2a44;
-      border-radius: 6px;
-      margin-top: 6px;
-      overflow: hidden;
-    }
-    .dropdown-mobile-content a {
-      padding: 10px 16px;
-      font-size: 14px;
-      display: block;
+    .nav-links a.active,
+    .nav-links a:hover{background:rgba(255,255,255,.08);}
+    .cta-group{display:flex; gap:12px; align-items:center;}
+    .theme-toggle{
+      background:rgba(255,255,255,.08);
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:12px;
+      display:flex;
+      gap:6px;
+      align-items:center;
+      color:white;
+      border:1px solid rgba(255,255,255,.2);
     }
 
-    /* ====== Hero ====== */
-    header.hero {
-      position: relative;
-      background-image: url('swing-trading-patterns.jpg');
-      background-size: cover;
-      background-position: center;
-      height: 420px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 50px;
-      color: white;
-      text-shadow: 1px 1px 8px rgba(0,0,0,0.8);
-      overflow: hidden;
+    /* Hamburger mobile */
+    .hamburger{
+      display:none;
+      flex-direction:column;
+      gap:4px;
+      width:28px;
+      cursor:pointer;
     }
-    header.hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(35,47,62,.65) 0%, rgba(35,47,62,.45) 60%); /* overlay */
-      backdrop-filter: brightness(1);
-      z-index: 0;
+    .hamburger span{
+      height:3px;
+      border-radius:3px;
+      background:#fff;
+      transition:all .3s ease;
     }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    .hamburger.active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+    .hamburger.active span:nth-child(2){opacity:0;}
+    .hamburger.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+    .mobile-menu{
+      position:absolute;
+      inset:0;
+      background:rgba(35,47,62,.97);
+      padding:100px 20px 40px;
+      display:none;
+      flex-direction:column;
+      gap:18px;
+      z-index:90;
     }
-    header.hero h1 {
-      font-size: 48px;
-      margin: 0;
-      line-height: 1.1;
-      animation: fadeInUp .9s ease both;
-    }
-    header.hero p {
-      font-size: 22px;
-      margin: 0;
-      max-width: 100%;
-      animation: fadeInUp .9s ease both;
-      animation-delay: .2s;
-    }
-    .btn-primary {
-      background-color: #FFD700;
-      color: #222;
-      padding: 14px 28px;
-      font-weight: bold;
-      font-size: 18px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform .2s;
-      box-shadow: 0 6px 20px rgba(255,215,0,0.5);
-      display: inline-block;
-      margin-top: 10px;
-      width: fit-content;
-      animation: popIn .8s ease both;
-      animation-delay: .4s;
-    }
-    .btn-primary:hover,
-    .btn-primary:focus {
-      background-color: #e6c200;
-      transform: translateY(-1px);
-      outline: none;
+    .mobile-menu a{
+      color:white;
+      font-size:18px;
+      font-weight:600;
+      padding:12px;
+      border-radius:6px;
+      background:rgba(255,255,255,0.05);
     }
 
-    /* ====== Main ====== */
-    main {
-      max-width: 1150px;
-      margin: 50px auto;
-      padding: 0 20px;
+    /* Hero */
+    .hero{
+      position:relative;
+      padding:120px 0 100px;
+      overflow:hidden;
+      background: linear-gradient(135deg, rgba(35,47,62,.85) 0%, rgba(35,47,62,.65) 60%), url('swing-trading-patterns.webp') center/cover no-repeat;
+      color:white;
     }
-    section {
-      margin-bottom: 60px;
+    .hero::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.2);
+      pointer-events:none;
     }
-    section h2 {
-      font-size: 32px;
-      margin-bottom: 16px;
-      color: #232F3E;
-      position: relative;
+    .hero-inner{position:relative; display:flex; gap:40px; align-items:center; flex-wrap:wrap;}
+    .hero-text{flex:1; min-width:280px;}
+    .hero-text h1{
+      font-size:2.8rem;
+      margin:0 0 12px;
+      line-height:1.1;
     }
-    section h2::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 60px;
-      height: 4px;
-      background: #FFD700;
-      border-radius: 2px;
+    .hero-text p{
+      font-size:1.1rem;
+      margin:0 0 18px;
     }
-    section p {
-      font-size: 18px;
-      line-height: 1.7;
-      margin: 0;
+    .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:6px;}
+    .hero-image{
+      flex:1;
+      min-width:250px;
+      position:relative;
     }
-
-    /* ====== Footer ====== */
-    footer {
-      background-color: #232F3E;
-      color: white;
-      text-align: center;
-      padding: 25px 15px;
-      font-size: 14px;
-    }
-
-    /* ====== Responsive ====== */
-    @media (max-width: 1024px) {
-      header.hero {
-        padding: 0 30px;
-      }
-      header.hero h1 { font-size: 40px; }
-      header.hero p { font-size: 18px; }
-    }
-    @media (max-width: 850px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .nav-mobile { display: none; } /* toggled via JS */
-      header.hero {
-        height: 360px;
-        padding: 0 20px;
-        align-items: flex-start;
-      }
-      header.hero h1 { font-size: 32px; }
-      header.hero p { font-size: 16px; }
-    }
-    @media (max-width: 600px) {
-      header.hero {
-        height: 320px;
-        padding: 0 18px;
-        align-items: center;
-        text-align: center;
-      }
-      .hero-content { align-items: center; }
+    .hero-image img{
+      border-radius:14px;
+      max-width:500px;
+      width:100%;
+      object-fit:cover;
+      filter:drop-shadow(0 30px 50px rgba(0,0,0,0.35));
     }
 
-    /* ====== Animations ====== */
-    @keyframes fadeInUp {
-      from { opacity:0; transform: translateY(12px); }
-      to { opacity:1; transform: translateY(0); }
+    /* Features */
+    .features{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:28px;
+      margin-top:20px;
     }
-    @keyframes popIn {
-      from { opacity:0; transform: scale(.95); }
-      to { opacity:1; transform: scale(1); }
+    .feature-card{
+      background:var(--card);
+      padding:24px;
+      border-radius:12px;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:260px;
+      box-shadow: var(--shadow);
     }
-  </style>
-</head>
-<body>
+    .feature-icon{
+      width:48px;
+      height:48px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(255,215,0,.15);
+      border-radius:50%;
+      font-size:24px;
+    }
+    .feature-card h3{margin:0; font-size:20px;}
+    .feature-card p{margin:0; font-size:15px; flex:1;}
 
-  <!-- Navbar -->
-  <nav aria-label="القائمة الرئيسية">
-    <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo" aria-label="لوغو أكاديمية مونكس" />
-    <div class="hamburger" aria-label="فتح القائمة" aria-expanded="false" role="button" tabindex="0" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="nav-links" role="menubar">
-      <a href="index.html" class="active" aria-current="page">الرئيسية</a>
-      <a href="about.html">حولنا</a>
-      <a href="contact.html">اتصل بنا</a>
-      <div class="dropdown">
-        <button class="dropbtn" aria-haspopup="true" aria-expanded="false">خدماتنا ▾</button>
-        <div class="dropdown-content" role="menu" aria-label="روابط خدماتنا">
-          <a href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener" aria-label="إنستغرام">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.33 3.608 1.305.975.975 1.243 2.242 1.305 3.608.058 1.266.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.33 2.633-1.305 3.608-.975.975-2.242 1.243-3.608 1.305-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.33-3.608-1.305-.975-.975-1.243-2.242-1.305-3.608C2.175 15.647 2.163 15.268 2.163 12s.012-3.584.07-4.85c.062-1.366.33-2.633 1.305-3.608.975-.975 2.242-1.243 3.608-1.305C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.736 0 8.332.013 7.052.072 5.78.131 4.602.438 3.6 1.44 2.598 2.442 2.291 3.62 2.232 4.892 2.173 6.172 2.16 6.576 2.16 12c0 5.424.013 5.828.072 7.108.059 1.272.366 2.45 1.368 3.452 1.002 1.002 2.18 1.309 3.452 1.368 1.28.059 1.684.072 7.108.072s5.828-.013 7.108-.072c1.272-.059 2.45-.366 3.452-1.368 1.002-1.002 1.309-2.18 1.368-3.452.059-1.28.072-1.684.072-7.108s-.013-5.828-.072-7.108c-.059-1.272-.366-2.45-1.368-3.452C19.55.438 18.372.131 17.1.072 15.82.013 15.416 0 12 0z"/>
-              <circle cx="12" cy="12" r="3.6"/>
-              <circle cx="18.406" cy="5.594" r="1.44"/>
-            </svg>
-            إنستغرام
-          </a>
-        </div>
-      </div>
-    </div>
-    <!-- Mobile nav (injected) -->
-    <div class="nav-mobile" id="nav-mobile" aria-label="قائمة الموبايل">
-      <a href="index.html" class="active">الرئيسية</a>
-      <a href="about.html">حولنا</a>
-      <a href="contact.html">اتصل بنا</a>
-      <div class="dropdown-mobile">
-        <button aria-expanded="false" id="mobile-dropbtn">خدماتنا ▾</button>
-        <div class="dropdown-mobile-content" id="mobile-dropdown-content">
-          <a href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener">إنستغرام</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+    /* Testimonials */
+    .testimonials-wrapper{
+      position:relative;
+      overflow:hidden;
+    }
+    .testimonials{
+      display:flex;
+      gap:20px;
+      transition:transform .6s cubic-bezier(.4,.2,.2,1);
+      will-change:transform;
+    }
+    .testimonial{
+      flex:0 0 100%;
+      max-width:100%;
+      background: var(--card);
+      border-radius:12px;
+      padding:24px 26px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      position:relative;
+      box-shadow: var(--shadow);
+    }
+    .testimonial .text{font-size:16px; margin:0; color: var(--text);}
+    .testimonial .meta{display:flex; gap:12px; align-items:center; margin-top:4px;}
+    .testimonial .avatar{
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      background: #ccc;
+      flex-shrink:0;
+    }
+    .testimonial .name{font-weight:700;}
+    .testimonial-controls{
+      position:absolute;
+      bottom:-10px;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      gap:8px;
+    }
+    .dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:rgba(0,0,0,.1);
+      cursor:pointer;
+      border:2px solid transparent;
+      transition:var(--transition);
+    }
+    .dot.active{background:var(--primary); border-color:#fff;}
 
-  <!-- Hero -->
-  <header class="hero">
-    <div class="hero-content">
-      <h1>مرحبًا بكم في أكاديمية مونكس</h1>
-      <p>أفضل الدورات التعليمية لتنمية مهاراتك وتحقيق طموحاتك المالية بثقة واحترافية.</p>
-      <button class="btn-primary" onclick="location.href='courses.html'">تصفح الدورات</button>
-    </div>
-  </header>
+    /* Courses */
+    .courses{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:24px;
+      margin-top:12px;
+    }
+    .course-card{
+      background:var(--card);
+      border-radius:12px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      position:relative;
+      box-shadow: var(--shadow);
+      transition:transform .3s ease;
+    }
+    .course-card:hover{transform:translateY(-4px);}
+    .course-thumb{position:relative;}
+    .course-body{padding:18px; display:flex; flex-direction:column; gap:8px; flex:1;}
+    .course-title{margin:0; font-size:18px; font-weight:700;}
+    .course-desc{margin:0; font-size:14px; flex:1; color: var(--muted);}
+    .course-footer{display:flex; justify-content:space-between; align-items:center; margin-top:6px;}
+    .price{font-weight:700; font-size:16px;}
+    .enroll{background:var(--primary); padding:8px 16px; border-radius:6px; font-size:14px; font-weight:600; color:#222; }
 
-  <!-- Main -->
-  <main>
-    <section>
-      <h2>لماذا تختار أكاديمية مونكس؟</h2>
-      <p>نقدم محتوى تعليمي عالي الجودة، مدعوم بخبراء في مجال التداول والاستثمار، مع دعم مستمر وخطة تعليمية واضحة تناسب جميع المستويات.</p>
-    </section>
-    <section>
-      <h2>دوراتنا المميزة</h2>
-      <p>تعلّم استراتيجيات التداول المتقدمة، إدارة المخاطر، التحليل الفني والأساسي، وأكثر من ذلك، من خلال دورات عملية تفاعلية.</p>
-    </section>
-  </main>
+    /* Newsletter */
+    .newsletter{
+      background: var(--primary);
+      padding:50px 24px;
+      border-radius:12px;
+      color:#222;
+      position:relative;
+      overflow:hidden;
+      margin-top:10px;
+    }
+    .newsletter h2{margin:0 0 10px; font-size:28px;}
+    .newsletter p{margin:0 0 16px;}
+    .newsletter-form{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      max-width:800px;
+    }
+    .newsletter-form input{
+      flex:1;
+      min-width:200px;
+      padding:14px 16px;
+      border-radius:6px;
+      border:2px solid rgba(0,0,0,.08);
+      font-size:14px;
+      outline:none;
+    }
+    .newsletter-form button{
+      background:#222;
+      color:#fff;
+      padding:14px 20px;
+      border-radius:6px;
+      font-weight:600;
+      flex-shrink:0;
+    }
 
-  <!-- Footer -->
-  <footer>
-    جميع الحقوق محفوظة © 2025 - Monex Academy
-  </footer>
+    /* Social share */
+    .social-share{
+      display:flex;
+      gap:12px;
+      margin-top:12px;
+    }
+    .share-btn{
+      background:rgba(255,255,255,.1);
+      padding:10px 14px;
+      border-radius:6px;
+      font-size:14px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:600;
+      color:white;
+      transition:var(--transition);
+    }
+    .share-btn:hover{filter:brightness(1.08);}
 
-  <!-- ====== Script ====== -->
-  <script>
-    // Toggle mobile menu
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('nav-mobile');
-    const mobileDropbtn = document.getElementById('mobile-dropbtn');
-    const mobileDropdownContent = document.getElementById('mobile-dropdown-content');
+    /* Footer */
+    footer{
+      padding:36px 20px;
+      text-align:center;
+      font-size:14px;
+      background:#1f2a44;
+      color:#d0d9ff;
+    }
+    .footer-links{display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-bottom:16px;}
+    .footer-links a{color:inherit; font-size:14px; transition:opacity .2s;}
+    .footer-bottom{font-size:13px; opacity:.85; margin-top:8px;}
 
-    hamburger.addEventListener('click', () => {
-      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', !expanded);
-      mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
-    });
+    /* Responsive */
+    @media (max-width:1024px){
+      .hero-inner{flex-direction:column-reverse; gap:28px;}
+    }
+    @media (max-width:900px){
+      .nav-links{display:none;}
+      .hamburger{display:flex;}
+      .mobile-menu{display:flex;}
+    }
 
-    mobileDropbtn.addEventListener('click', () => {
-      const expanded = mobileDropbtn.getAttribute('aria-expanded') === 'true';
-      mobileDropbtn.setAttribute('aria-expanded', !expanded);
-      mobileDropdownContent.style.display = mobileDropdownContent.style.display === 'block' ? 'none' : 'block';
-    });
-
-    // Optional: Close mobile if clicked outside
-    document.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
-        mobileNav.style.display = 'none';
-        hamburger.setAttribute('aria-expanded', 'false');
-      }
-    });
-  </script>
-</body>
-</html>
