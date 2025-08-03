@@ -379,4 +379,331 @@
       .hamburger{display:flex;}
       .mobile-menu{display:flex;}
     }
+    @media (max-width:720px){
+      .features{grid-template-columns:1fr;}
+      .courses{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav aria-label="القائمة الرئيسية">
+    <div class="container flex" style="align-items:center;justify-content:space-between;">
+      <div class="flex" style="gap:18px; align-items:center;">
+        <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo" loading="lazy" />
+        <div class="nav-links" aria-label="روابط الموقع">
+          <a href="#" class="active">الرئيسية</a>
+          <a href="#about">حولنا</a>
+          <a href="#courses">الدورات</a>
+          <a href="#testimonials">آراء الطلاب</a>
+        </div>
+      </div>
+      <div class="cta-group">
+        <button class="theme-toggle" aria-label="تبديل الوضع" id="theme-btn">
+          <span id="theme-label">وضع داكن</span>
+        </button>
+        <a href="#signup" class="btn btn-primary">سجل الآن</a>
+        <div class="hamburger" aria-label="فتح القائمة" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile overlay -->
+    <div class="mobile-menu" id="mobile-menu" aria-label="قائمة الهاتف" hidden>
+      <a href="#">الرئيسية</a>
+      <a href="#about">حولنا</a>
+      <a href="#courses">الدورات</a>
+      <a href="#testimonials">آراء الطلاب</a>
+      <a href="#signup" class="btn btn-primary" style="margin-top:8px;">سجل الآن</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" aria-label="قسم الترحيب">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <div class="badge">أكاديمية معتمدة</div>
+        <h1>ارتقِ بمهاراتك في التداول والاستثمار</h1>
+        <p>تعلم من خبراء، طبق استراتيجيات متقدمة، وحقق نتائج واقعية. دورات عملية، دعم مستمر، وخطة واضحة.</p>
+        <div class="hero-actions">
+          <a href="#courses" class="btn btn-primary">ابدأ الآن</a>
+          <a href="#about" class="btn" style="background:rgba(255,255,255,.1); border-radius:8px; color:#fff;">من نحن</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="hero-illustration.webp" alt="تعليم التداول" loading="lazy" width="500" height="350" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Features / ماذا نقدّم -->
+  <section class="section" id="about">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:30px;">
+        <h2 style="margin:0; font-size:32px;">ماذا نقدّم؟</h2>
+        <p class="text-muted" style="margin-top:6px;">مجموعة متكاملة من الأدوات التعليمية والدعم لرحلتك في التداول.</p>
+      </div>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3>تحليل فني متقدم</h3>
+          <p>تعلم كيفية قراءة الشموع، الأنماط، والمؤشرات لاكتشاف الفرص بدقة.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>إدارة المخاطر</h3>
+          <p>استراتيجيات لحماية رأس المال وتحسين نسبة المخاطرة إلى العائد.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>خطط مدروسة</h3>
+          <p>مسارات تعليمية مبسطة تناسب المبتدئين والمحترفين خطوة بخطوة.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>دعم مباشر</h3>
+          <p>فريق خبراء يرافقك بالإجابات، مراجعة الأداء، وتنقيح الاستراتيجيات.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section" id="testimonials" style="background:rgba(255,247,230,.5);">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:25px;">
+        <h2 style="margin:0; font-size:32px;">آراء الطلاب</h2>
+        <p class="text-muted" style="margin-top:6px;">ما قاله من أكملوا دوراتهم وحققوا تطور حقيقي.</p>
+      </div>
+      <div class="testimonials-wrapper">
+        <div class="testimonials" id="testimonials">
+          <div class="testimonial">
+            <p class="text">"منذ التحاقي بالأكاديمية قدرت أفهم السوق بشكل مختلف، الدورات مفهومة والكوتشينغ فعّال."</p>
+            <div class="meta">
+              <div class="avatar" aria-hidden="true"></div>
+              <div>
+                <div class="name">لمياء العبيدي</div>
+                <div class="role" style="font-size:12px; color: var(--muted);">متدربة في التداول</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <p class="text">"التحليل الفني صار سهل، وأسلوب الشرح خلىني أطبق من أول أسبوع وأشوف نتائج."</p>
+            <div class="meta">
+              <div class="avatar" aria-hidden="true"></div>
+              <div>
+                <div class="name">سامي بوعكاز</div>
+                <div class="role" style="font-size:12px; color: var(--muted);">مستثمر</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <p class="text">"أحببت التوازن بين النظرية والتطبيق، والدعم بعد الدورة هو اللي فرّق معي."</p>
+            <div class="meta">
+              <div class="avatar" aria-hidden="true"></div>
+              <div>
+                <div class="name">رهام كريم</div>
+                <div class="role" style="font-size:12px; color: var(--muted);">متدربة</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- controls -->
+        <div class="testimonial-controls" aria-label="تنقل آراء">
+          <div class="dot active" data-index="0" aria-label="الشهادة 1"></div>
+          <div class="dot" data-index="1" aria-label="الشهادة 2"></div>
+          <div class="dot" data-index="2" aria-label="الشهادة 3"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses -->
+  <section class="section" id="courses">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:25px;">
+        <h2 style="margin:0; font-size:32px;">دوراتنا المميزة</h2>
+        <p class="text-muted" style="margin-top:6px;">اختر المسار الذي يناسبك وابدأ بتطوير مهاراتك اليوم.</p>
+      </div>
+      <div class="courses">
+        <div class="course-card">
+          <div class="course-thumb">
+            <img src="course1.webp" alt="دورة التحليل الفني" loading="lazy" />
+          </div>
+          <div class="course-body">
+            <h3 class="course-title">التحليل الفني المتقدم</h3>
+            <p class="course-desc">فهم الأنماط، المؤشرات، وكيفية دخول الصفقات بدقة.</p>
+            <div class="course-footer">
+              <div class="price">$49</div>
+              <div class="enroll">سجل الآن</div>
+            </div>
+          </div>
+        </div>
+        <div class="course-card">
+          <div class="course-thumb">
+            <img src="course2.webp" alt="إدارة المخاطر" loading="lazy" />
+          </div>
+          <div class="course-body">
+            <h3 class="course-title">إدارة المخاطر الذكية</h3>
+            <p class="course-desc">حماية رأس المال مع تحسين العائد عبر استراتيجيات مجربة.</p>
+            <div class="course-footer">
+              <div class="price">$39</div>
+              <div class="enroll">سجل الآن</div>
+            </div>
+          </div>
+        </div>
+        <div class="course-card">
+          <div class="course-thumb">
+            <img src="course3.webp" alt="خطة تعليمية" loading="lazy" />
+          </div>
+          <div class="course-body">
+            <h3 class="course-title">الخطة المتكاملة</h3>
+            <p class="course-desc">مسار تدريبي من الصفر حتى الاحتراف مع متابعة شخصية.</p>
+            <div class="course-footer">
+              <div class="price">$99</div>
+              <div class="enroll">سجل الآن</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter / Sign up -->
+  <section class="section" id="signup">
+    <div class="container">
+      <div class="newsletter rounded">
+        <div style="display:flex; flex-wrap:wrap; gap:30px; align-items:center;">
+          <div style="flex:1; min-width:260px;">
+            <h2>انضم لنشرتنا البريدية</h2>
+            <p>احصل على نصائح مجانية، خصومات حصرية، وتحديثات دورات مباشرة إلى بريدك.</p>
+            <form class="newsletter-form" action="https://formspree.io/f/yourformid" method="POST" aria-label="نموذج النشرة">
+              <input type="email" name="email" placeholder="بريدك الإلكتروني" required aria-label="البريد الإلكتروني" />
+              <button type="submit">اشترك الآن</button>
+            </form>
+            <div class="social-share" aria-label="مشاركة اجتماعية">
+              <div class="share-btn" onclick="share('facebook')">مشاركة فيسبوك</div>
+              <div class="share-btn" onclick="share('twitter')">مشاركة تويتر</div>
+              <div class="share-btn" onclick="share('whatsapp')">واتساب</div>
+            </div>
+          </div>
+          <div style="flex:1; min-width:200px; text-align:center;">
+            <img src="newsletter-illustration.webp" alt="اشترك في النشرة" loading="lazy" style="max-width:280px;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer aria-label="تذييل الصفحة">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#">الرئيسية</a>
+        <a href="#about">حولنا</a>
+        <a href="#courses">الدورات</a>
+        <a href="#testimonials">آراء الطلاب</a>
+        <a href="#">سياسة الخصوصية</a>
+      </div>
+      <div class="footer-bottom">
+        جميع الحقوق محفوظة © 2025 - Monex Academy
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts (يمكن نقله لاحقاً إلى main.js) -->
+  <script>
+    // Dark mode persistence
+    const themeBtn = document.getElementById('theme-btn');
+    const themeLabel = document.getElementById('theme-label');
+    const storedTheme = localStorage.getItem('theme');
+    const applyTheme = (mode) => {
+      if (mode === 'dark') {
+        document.documentElement.setAttribute('data-theme','dark');
+        themeLabel.textContent = 'وضع فاتح';
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeLabel.textContent = 'وضع داكن';
+      }
+      localStorage.setItem('theme', mode);
+    };
+    if(storedTheme) applyTheme(storedTheme);
+    else if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+      applyTheme('dark');
+    }
+    themeBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const opened = hamburger.classList.toggle('active');
+      if(opened){
+        mobileMenu.hidden = false;
+      } else {
+        mobileMenu.hidden = true;
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if(!mobileMenu.contains(e.target) && !hamburger.contains(e.target)){
+        hamburger.classList.remove('active');
+        mobileMenu.hidden = true;
+      }
+    });
+
+    // Testimonials slider
+    const testimonialsEl = document.getElementById('testimonials');
+    const dots = document.querySelectorAll('.dot');
+    let currentIdx = 0;
+    const updateSlider = (idx) => {
+      const width = testimonialsEl.offsetWidth;
+      testimonialsEl.style.transform = `translateX(-${idx * 100}%)`;
+      dots.forEach(d => d.classList.remove('active'));
+      dots[idx].classList.add('active');
+    };
+    dots.forEach(d => {
+      d.addEventListener('click', () => {
+        currentIdx = parseInt(d.dataset.index);
+        updateSlider(currentIdx);
+      });
+    });
+    // auto rotate
+    setInterval(() => {
+      currentIdx = (currentIdx + 1) % dots.length;
+      updateSlider(currentIdx);
+    }, 6000);
+
+    // Social share basic
+    function share(platform){
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent("أكاديمية مونكس - تعلم التداول والاستثمار باحتراف");
+      let shareUrl = '';
+      if(platform==='facebook') shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+      if(platform==='twitter') shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+      if(platform==='whatsapp') shareUrl = `https://wa.me/?text=${text}%20${url}`;
+      window.open(shareUrl,'_blank');
+    }
+
+    // Highlight active nav link based on scroll
+    const sections = document.querySelectorAll('section[id], footer');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          const id = e.target.id;
+          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
+        }
+      });
+    }, {threshold: 0.5});
+    sections.forEach(s => {
+      if(s.id) observer.observe(s);
+    });
+  </script>
+</body>
+</html>
 
