@@ -5,20 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>أكاديمية مونكس | تعلم التداول والاستثمار باحتراف</title>
 
-  <!-- SEO & Social -->
+  <!-- SEO -->
   <meta name="description" content="أكاديمية مونكس: دورات احترافية في التداول والاستثمار. تعلم التحليل الفني، إدارة المخاطر، واستراتيجيات متقدمة بثقة." />
   <meta name="keywords" content="تداول, استثمار, أكاديمية, تحليل فني, إدارة مخاطر, دورات, تعليم مالي" />
-  <link rel="canonical" href="https://yourdomain.com/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="أكاديمية مونكس - تعلم التداول والاستثمار باحتراف" />
-  <meta property="og:description" content="دورات تعليمية متقدمة في التداول، إدارة المخاطر، والتحليل المالي من خبراء." />
-  <!-- استبدل هذه الصورة برابط حقيقي عند النشر -->
-  <meta property="og:image" content="https://yourdomain.com/og-image.jpg" />
-  <meta property="og:url" content="https://yourdomain.com/" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="أكاديمية مونكس - تعلم التداول والاستثمار باحتراف" />
-  <meta name="twitter:description" content="دورات تعليمية متقدمة في التداول، إدارة المخاطر، والتحليل المالي من خبراء." />
-  <meta name="twitter:image" content="https://yourdomain.com/og-image.jpg" />
 
   <link rel="icon" href="favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,12 +25,6 @@
       --shadow:0 20px 50px -10px rgba(35,47,62,0.15);
       --transition:.35s cubic-bezier(.4,.2,.2,1);
     }
-    [data-theme="dark"] {
-      --bg:#0f172a;
-      --card:#1f2a44;
-      --text:#e3e9ff;
-      --muted:rgba(227,233,255,.75);
-    }
     *{box-sizing:border-box;}
     body{
       margin:0;
@@ -56,11 +39,6 @@
     a{color:inherit; text-decoration:none;}
     img{display:block; max-width:100%; height:auto; border-radius:6px;}
     button{cursor:pointer; font-family:inherit; border:none; background:none;}
-
-/* Reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      *{animation:none !important; transition:none !important;}
-    }
 
 /* Utility */
     .container{max-width:1150px; margin:0 auto; padding:0 20px;}
@@ -90,6 +68,7 @@
       flex-wrap:wrap;
     }
     .logo{height:48px; flex-shrink:0;}
+    .nav-inner{display:flex; align-items:center; gap:18px;}
     .nav-links{display:flex; gap:16px; align-items:center; flex-wrap:wrap;}
     .nav-links a{
       padding:8px 14px;
@@ -102,17 +81,46 @@
     }
     .nav-links a.active,
     .nav-links a:hover{background:rgba(255,255,255,.08);}
-    .cta-group{display:flex; gap:12px; align-items:center;}
-    .theme-toggle{
-      background:rgba(255,255,255,.08);
-      padding:6px 12px;
-      border-radius:999px;
-      font-size:12px;
+    .dropdown{
+      position:relative;
+    }
+    .dropbtn{
+      background:var(--primary);
+      color:#222;
+      padding:8px 14px;
+      border-radius:6px;
+      font-weight:600;
       display:flex;
-      gap:6px;
       align-items:center;
-      color:white;
-      border:1px solid rgba(255,255,255,.2);
+      gap:4px;
+      cursor:pointer;
+      font-size:15px;
+    }
+    .dropdown-content{
+      display:none;
+      position:absolute;
+      right:0;
+      top:calc(100% + 6px);
+      background:#1f2a44;
+      min-width:180px;
+      padding:8px 0;
+      border-radius:8px;
+      box-shadow:0 20px 50px -10px rgba(0,0,0,0.3);
+      z-index:50;
+    }
+    .dropdown-content a{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      font-size:14px;
+      color:#fff;
+      transition:background .2s;
+    }
+    .dropdown-content a:hover{background:rgba(255,255,255,0.08);}
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content{
+      display:block;
     }
 
 /* Hamburger mobile */
@@ -150,11 +158,43 @@
       border-radius:6px;
       background:rgba(255,255,255,0.05);
     }
+    .mobile-dropdown{
+      position:relative;
+    }
+    .mobile-dropdown button{
+      background:var(--primary);
+      color:#222;
+      padding:10px 14px;
+      border-radius:6px;
+      font-weight:600;
+      width:100%;
+      text-align:right;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:6px;
+      font-size:14px;
+      cursor:pointer;
+    }
+    .mobile-dropdown-content{
+      display:none;
+      background:#1f2a44;
+      border-radius:6px;
+      margin-top:6px;
+      overflow:hidden;
+    }
+    .mobile-dropdown-content a{
+      padding:10px 16px;
+      display:block;
+      font-size:14px;
+      color:#fff;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
 
 /* Hero */
     .hero{
       position:relative;
-      padding:120px 0 100px;
+      padding:100px 0 80px;
       overflow:hidden;
       background: linear-gradient(135deg, rgba(35,47,62,.85) 0%, rgba(35,47,62,.65) 60%), url('swing-trading-patterns.webp') center/cover no-repeat;
       color:white;
@@ -169,12 +209,12 @@
     .hero-inner{position:relative; display:flex; gap:40px; align-items:center; flex-wrap:wrap;}
     .hero-text{flex:1; min-width:280px;}
     .hero-text h1{
-      font-size:2.8rem;
+      font-size:2.6rem;
       margin:0 0 12px;
       line-height:1.1;
     }
     .hero-text p{
-      font-size:1.1rem;
+      font-size:1rem;
       margin:0 0 18px;
     }
     .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:6px;}
@@ -202,12 +242,10 @@
       background:var(--card);
       padding:24px;
       border-radius:12px;
-      position:relative;
-      overflow:hidden;
       display:flex;
       flex-direction:column;
       gap:12px;
-      min-height:260px;
+      min-height:250px;
       box-shadow: var(--shadow);
     }
     .feature-icon{
@@ -221,7 +259,7 @@
       font-size:24px;
     }
     .feature-card h3{margin:0; font-size:20px;}
-    .feature-card p{margin:0; font-size:15px; flex:1;}
+    .feature-card p{margin:0; font-size:15px; color: var(--text);}
 
 /* Testimonials */
     .testimonials-wrapper{
@@ -243,7 +281,6 @@
       display:flex;
       flex-direction:column;
       gap:14px;
-      position:relative;
       box-shadow: var(--shadow);
     }
     .testimonial .text{font-size:16px; margin:0; color: var(--text);}
@@ -257,12 +294,10 @@
     }
     .testimonial .name{font-weight:700;}
     .testimonial-controls{
-      position:absolute;
-      bottom:-10px;
-      left:50%;
-      transform:translateX(-50%);
       display:flex;
       gap:8px;
+      justify-content:center;
+      margin-top:12px;
     }
     .dot{
       width:12px;
@@ -293,7 +328,6 @@
       transition:transform .3s ease;
     }
     .course-card:hover{transform:translateY(-4px);}
-    .course-thumb{position:relative;}
     .course-body{padding:18px; display:flex; flex-direction:column; gap:8px; flex:1;}
     .course-title{margin:0; font-size:18px; font-weight:700;}
     .course-desc{margin:0; font-size:14px; flex:1; color: var(--muted);}
@@ -337,27 +371,6 @@
       flex-shrink:0;
     }
 
-/* Social share */
-    .social-share{
-      display:flex;
-      gap:12px;
-      margin-top:12px;
-    }
-    .share-btn{
-      background:rgba(255,255,255,.1);
-      padding:10px 14px;
-      border-radius:6px;
-      font-size:14px;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-weight:600;
-      color:white;
-      transition:var(--transition);
-      cursor:pointer;
-    }
-    .share-btn:hover{filter:brightness(1.08);}
-
 /* Footer */
     footer{
       padding:36px 20px;
@@ -375,7 +388,7 @@
       .hero-inner{flex-direction:column-reverse; gap:28px;}
     }
     @media (max-width:900px){
-      .nav-links{display:none;}
+      .nav-inner .nav-links{display:none;}
       .hamburger{display:flex;}
       .mobile-menu{display:flex;}
     }
@@ -392,29 +405,47 @@
     <div class="container flex" style="align-items:center;justify-content:space-between;">
       <div class="flex" style="gap:18px; align-items:center;">
         <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo" loading="lazy" />
-        <div class="nav-links" aria-label="روابط الموقع">
-          <a href="#" class="active">الرئيسية</a>
-          <a href="#about">حولنا</a>
-          <a href="#courses">الدورات</a>
-          <a href="#testimonials">آراء الطلاب</a>
+        <div class="nav-inner">
+          <div class="nav-links" aria-label="روابط الموقع">
+            <a href="#" class="active">الرئيسية</a>
+            <a href="#about">حولنا</a>
+            <a href="#courses">الدورات</a>
+            <a href="#testimonials">آراء الطلاب</a>
+            <div class="dropdown">
+              <button class="dropbtn" aria-haspopup="true" aria-expanded="false">خدماتنا ▾</button>
+              <div class="dropdown-content" role="menu">
+                <a href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener" aria-label="إنستغرام">
+                  <svg width="18" height="18" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.33 3.608 1.305.975.975 1.243 2.242 1.305 3.608.058 1.266.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.33 2.633-1.305 3.608-.975.975-2.242 1.243-3.608 1.305-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.33-3.608-1.305-.975-.975-1.243-2.242-1.305-3.608C2.175 15.647 2.163 15.268 2.163 12s.012-3.584.07-4.85c.062-1.366.33-2.633 1.305-3.608.975-.975 2.242-1.243 3.608-1.305C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.736 0 8.332.013 7.052.072 5.78.131 4.602.438 3.6 1.44 2.598 2.442 2.291 3.62 2.232 4.892 2.173 6.172 2.16 6.576 2.16 12c0 5.424.013 5.828.072 7.108.059 1.272.366 2.45 1.368 3.452 1.002 1.002 2.18 1.309 3.452 1.368 1.28.059 1.684.072 7.108.072s5.828-.013 7.108-.072c1.272-.059 2.45-.366 3.452-1.368 1.002-1.002 1.309-2.18 1.368-3.452.059-1.28.072-1.684.072-7.108s-.013-5.828-.072-7.108c-.059-1.272-.366-2.45-1.368-3.452C19.55.438 18.372.131 17.1.072 15.82.013 15.416 0 12 0z"/>
+                    <circle cx="12" cy="12" r="3.6"/>
+                    <circle cx="18.406" cy="5.594" r="1.44"/>
+                  </svg>
+                  إنستغرام
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="cta-group">
-        <button class="theme-toggle" aria-label="تبديل الوضع" id="theme-btn">
-          <span id="theme-label">وضع داكن</span>
-        </button>
         <a href="#signup" class="btn btn-primary">سجل الآن</a>
         <div class="hamburger" aria-label="فتح القائمة" id="hamburger">
           <span></span><span></span><span></span>
         </div>
       </div>
     </div>
-    <!-- Mobile overlay -->
+    <!-- Mobile menu -->
     <div class="mobile-menu" id="mobile-menu" aria-label="قائمة الهاتف" hidden>
       <a href="#">الرئيسية</a>
       <a href="#about">حولنا</a>
       <a href="#courses">الدورات</a>
       <a href="#testimonials">آراء الطلاب</a>
+      <div class="mobile-dropdown">
+        <button aria-expanded="false" id="mobile-services-btn">خدماتنا ▾</button>
+        <div class="mobile-dropdown-content" id="mobile-services-content">
+          <a href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener">إنستغرام</a>
+        </div>
+      </div>
       <a href="#signup" class="btn btn-primary" style="margin-top:8px;">سجل الآن</a>
     </div>
   </nav>
@@ -437,7 +468,7 @@
     </div>
   </section>
 
-  <!-- Features / ماذا نقدّم -->
+  <!-- Features -->
   <section class="section" id="about">
     <div class="container">
       <div style="text-align:center; margin-bottom:30px;">
@@ -448,22 +479,22 @@
         <div class="feature-card">
           <div class="feature-icon" aria-hidden="true">📈</div>
           <h3>تحليل فني متقدم</h3>
-          <p>تعلم كيفية قراءة الشموع، الأنماط، والمؤشرات لاكتشاف الفرص بدقة.</p>
+          <p>تعلم قراءة الشموع، الأنماط والمؤشرات لاكتشاف الفرص بدقة.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon" aria-hidden="true">🛡️</div>
           <h3>إدارة المخاطر</h3>
-          <p>استراتيجيات لحماية رأس المال وتحسين نسبة المخاطرة إلى العائد.</p>
+          <p>استراتيجيات لحماية رأس المال وتحسين العائد.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon" aria-hidden="true">🎯</div>
           <h3>خطط مدروسة</h3>
-          <p>مسارات تعليمية مبسطة تناسب المبتدئين والمحترفين خطوة بخطوة.</p>
+          <p>مسارات تعليمية مبسطة تناسب الجميع خطوة بخطوة.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon" aria-hidden="true">🤝</div>
           <h3>دعم مباشر</h3>
-          <p>فريق خبراء يرافقك بالإجابات، مراجعة الأداء، وتنقيح الاستراتيجيات.</p>
+          <p>فريق خبراء يرافقك في التطبيق وتحسين الأداء.</p>
         </div>
       </div>
     </div>
@@ -527,12 +558,9 @@
       </div>
       <div class="courses">
         <div class="course-card">
-          <div class="course-thumb">
-            <img src="course1.webp" alt="دورة التحليل الفني" loading="lazy" />
-          </div>
           <div class="course-body">
             <h3 class="course-title">التحليل الفني المتقدم</h3>
-            <p class="course-desc">فهم الأنماط، المؤشرات، وكيفية دخول الصفقات بدقة.</p>
+            <p class="course-desc">فهم الأنماط والمؤشرات بدقة.</p>
             <div class="course-footer">
               <div class="price">$49</div>
               <div class="enroll">سجل الآن</div>
@@ -540,12 +568,9 @@
           </div>
         </div>
         <div class="course-card">
-          <div class="course-thumb">
-            <img src="course2.webp" alt="إدارة المخاطر" loading="lazy" />
-          </div>
           <div class="course-body">
             <h3 class="course-title">إدارة المخاطر الذكية</h3>
-            <p class="course-desc">حماية رأس المال مع تحسين العائد عبر استراتيجيات مجربة.</p>
+            <p class="course-desc">حماية رأس المال مع تحسين العائد.</p>
             <div class="course-footer">
               <div class="price">$39</div>
               <div class="enroll">سجل الآن</div>
@@ -553,12 +578,9 @@
           </div>
         </div>
         <div class="course-card">
-          <div class="course-thumb">
-            <img src="course3.webp" alt="خطة تعليمية" loading="lazy" />
-          </div>
           <div class="course-body">
             <h3 class="course-title">الخطة المتكاملة</h3>
-            <p class="course-desc">مسار تدريبي من الصفر حتى الاحتراف مع متابعة شخصية.</p>
+            <p class="course-desc">مسار تدريبي من الصفر حتى الاحتراف.</p>
             <div class="course-footer">
               <div class="price">$99</div>
               <div class="enroll">سجل الآن</div>
@@ -569,24 +591,18 @@
     </div>
   </section>
 
-  <!-- Newsletter / Sign up -->
+  <!-- Newsletter -->
   <section class="section" id="signup">
     <div class="container">
       <div class="newsletter rounded">
         <div style="display:flex; flex-wrap:wrap; gap:30px; align-items:center;">
           <div style="flex:1; min-width:260px;">
             <h2>انضم لنشرتنا البريدية</h2>
-            <p>احصل على نصائح مجانية، خصومات حصرية، وتحديثات دورات مباشرة إلى بريدك.</p>
-            <!-- استبدل action برابط Formspree أو Mailchimp الفعلي -->
+            <p>احصل على نصائح مجانية وتحديثات دورات مباشرة إلى بريدك.</p>
             <form class="newsletter-form" action="https://formspree.io/f/yourformid" method="POST" aria-label="نموذج النشرة">
               <input type="email" name="email" placeholder="بريدك الإلكتروني" required aria-label="البريد الإلكتروني" />
               <button type="submit">اشترك الآن</button>
             </form>
-            <div class="social-share" aria-label="مشاركة اجتماعية">
-              <div class="share-btn" onclick="share('facebook')">مشاركة فيسبوك</div>
-              <div class="share-btn" onclick="share('twitter')">مشاركة تويتر</div>
-              <div class="share-btn" onclick="share('whatsapp')">واتساب</div>
-            </div>
           </div>
           <div style="flex:1; min-width:200px; text-align:center;">
             <img src="newsletter-illustration.webp" alt="اشترك في النشرة" loading="lazy" style="max-width:280px;" />
@@ -614,109 +630,70 @@
 
   <!-- Scripts -->
   <script>
-    // Dark mode persistence
-    const themeBtn = document.getElementById('theme-btn');
-    const themeLabel = document.getElementById('theme-label');
-    const storedTheme = localStorage.getItem('theme');
-    const applyTheme = (mode) => {
-      if (mode === 'dark') {
-        document.documentElement.setAttribute('data-theme','dark');
-        themeLabel.textContent = 'وضع فاتح';
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-        themeLabel.textContent = 'وضع داكن';
-      }
-      localStorage.setItem('theme', mode);
-    };
-    if(storedTheme) applyTheme(storedTheme);
-    else if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
-      applyTheme('dark');
-    }
-    themeBtn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-      applyTheme(current === 'dark' ? 'light' : 'dark');
-    });
-
     // Mobile menu toggle
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
+    const mobileServicesBtn = document.getElementById('mobile-services-btn');
+    const mobileServicesContent = document.getElementById('mobile-services-content');
+
     hamburger.addEventListener('click', (e) => {
       e.stopPropagation();
-      const opened = hamburger.classList.toggle('active');
-      if(opened){
-        mobileMenu.hidden = false;
-      } else {
-        mobileMenu.hidden = true;
-      }
+      const open = hamburger.classList.toggle('active');
+      if (open) mobileMenu.hidden = false;
+      else mobileMenu.hidden = true;
     });
     document.addEventListener('click', (e) => {
-      if(!mobileMenu.contains(e.target) && !hamburger.contains(e.target)){
+      if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
         hamburger.classList.remove('active');
         mobileMenu.hidden = true;
       }
     });
 
-    // Testimonials slider logic
+    mobileServicesBtn && mobileServicesBtn.addEventListener('click', () => {
+      const expanded = mobileServicesBtn.getAttribute('aria-expanded') === 'true';
+      mobileServicesBtn.setAttribute('aria-expanded', !expanded);
+      if (mobileServicesContent.style.display === 'block') mobileServicesContent.style.display = 'none';
+      else mobileServicesContent.style.display = 'block';
+    });
+
+    // Testimonials slider
     const slider = document.getElementById('testimonials-slider');
     const dots = document.querySelectorAll('.dot');
-    let currentIdx = 0;
-    const updateSlider = (idx) => {
-      slider.style.transform = `translateX(-${idx * 100}%)`;
-      dots.forEach(d => d.classList.toggle('active', parseInt(d.dataset.index) === idx));
-    };
+    let idx = 0;
+    function updateSlider(i){
+      slider.style.transform = `translateX(-${i * 100}%)`;
+      dots.forEach(d => d.classList.toggle('active', parseInt(d.dataset.index) === i));
+    }
     dots.forEach(d => {
       d.addEventListener('click', () => {
-        currentIdx = parseInt(d.dataset.index);
-        updateSlider(currentIdx);
+        idx = parseInt(d.dataset.index);
+        updateSlider(idx);
       });
     });
-    // Auto rotate
     let auto = setInterval(() => {
-      currentIdx = (currentIdx + 1) % dots.length;
-      updateSlider(currentIdx);
+      idx = (idx + 1) % dots.length;
+      updateSlider(idx);
     }, 6000);
-    // Pause on hover
     slider.addEventListener('mouseenter', () => clearInterval(auto));
     slider.addEventListener('mouseleave', () => {
       auto = setInterval(() => {
-        currentIdx = (currentIdx + 1) % dots.length;
-        updateSlider(currentIdx);
+        idx = (idx + 1) % dots.length;
+        updateSlider(idx);
       }, 6000);
     });
 
-    // Highlight nav link on scroll
-    const sectionElems = document.querySelectorAll('section[id]');
+    // Active nav on scroll
+    const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting){
           const id = entry.target.id;
-          navLinks.forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
-          });
+          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
         }
       });
-    }, {threshold: 0.5});
-    sectionElems.forEach(s => observer.observe(s));
-
-    // Social share
-    function share(platform){
-      const url = encodeURIComponent(window.location.href);
-      const text = encodeURIComponent("أكاديمية مونكس - تعلم التداول والاستثمار باحتراف");
-      let shareUrl = '';
-      if(platform==='facebook') shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-      if(platform==='twitter') shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-      if(platform==='whatsapp') shareUrl = `https://wa.me/?text=${text}%20${url}`;
-      window.open(shareUrl,'_blank');
-    }
-
-    // Accessibility: close mobile menu with escape
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape'){
-        hamburger.classList.remove('active');
-        mobileMenu.hidden = true;
-      }
-    });
+    }, {threshold:0.5});
+    sections.forEach(s => observer.observe(s));
   </script>
 </body>
 </html>
