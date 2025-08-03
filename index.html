@@ -1,700 +1,248 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>أكاديمية مونكس | تعلم التداول والاستثمار باحتراف</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>الرئيسية | أكاديمية مونكس</title>
+<style>
+  /* Reset */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff;
+    color: #222;
+  }
+  /* Navbar */
+  nav {
+    background-color: #232F3E;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    color: white;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  nav .logo {
+    height: 50px;
+    cursor: pointer;
+  }
+  nav .nav-links {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+  }
+  nav .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  nav .nav-links a:hover {
+    background-color: #37475a;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropbtn {
+    background: #FFD700;
+    color: #222;
+    padding: 6px 14px;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: filter .2s;
+  }
+  .dropbtn:hover {
+    filter: brightness(1.1);
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1f2a44;
+    min-width: 180px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    border-radius: 6px;
+    z-index: 10;
+    margin-top: 6px;
+    right: 0;
+    padding: 6px 0;
+  }
+  .dropdown-content a {
+    color: white;
+    padding: 10px 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    transition: background .2s;
+  }
+  .dropdown-content a:hover {
+    background: rgba(255,255,255,0.08);
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
 
-  <!-- SEO -->
-  <meta name="description" content="أكاديمية مونكس: دورات احترافية في التداول والاستثمار. تعلم التحليل الفني، إدارة المخاطر، واستراتيجيات متقدمة بثقة." />
-  <meta name="keywords" content="تداول, استثمار, أكاديمية, تحليل فني, إدارة مخاطر, دورات, تعليم مالي" />
+  /* Hero Section */
+  header.hero {
+    background-image: url('swing-trading-patterns.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 40px;
+    color: white;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+  }
+  header.hero h1 {
+    font-size: 48px;
+    margin: 0 0 15px 0;
+  }
+  header.hero p {
+    font-size: 22px;
+    max-width: 600px;
+    margin-bottom: 25px;
+  }
+  header.hero .btn-primary {
+    background-color: #FFD700;
+    color: #222;
+    padding: 14px 28px;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255,215,0,0.5);
+  }
+  header.hero .btn-primary:hover {
+    background-color: #e6c200;
+  }
 
-  <link rel="icon" href="favicon.ico" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet" />
+  /* Main content */
+  main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  main section {
+    margin-bottom: 50px;
+  }
+  main section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #232F3E;
+  }
+  main section p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
 
-  <style>
-    :root {
-      --bg:#ffffff;
-      --card:#f5f7fa;
-      --text:#1f2a44;
-      --muted:#555;
-      --primary:#FFD700;
-      --radius:10px;
-      --shadow:0 20px 50px -10px rgba(35,47,62,0.15);
-      --transition:.35s cubic-bezier(.4,.2,.2,1);
-    }
-    *{box-sizing:border-box;}
-    body{
-      margin:0;
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background:var(--bg);
-      color: var(--text);
-      line-height:1.55;
-      -webkit-font-smoothing:antialiased;
-      transition: background var(--transition), color var(--transition);
-      scroll-behavior:smooth;
-    }
-    a{color:inherit; text-decoration:none;}
-    img{display:block; max-width:100%; height:auto; border-radius:6px;}
-    button{cursor:pointer; font-family:inherit; border:none; background:none;}
+  /* Footer */
+  footer {
+    background-color: #232F3E;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 14px;
+  }
 
-/* Utility */
-    .container{max-width:1150px; margin:0 auto; padding:0 20px;}
-    .flex{display:flex; gap:16px;}
-    .center{display:flex; align-items:center; justify-content:center;}
-    .section{padding:80px 0; position:relative;}
-    .rounded{border-radius:var(--radius);}
-    .shadow{box-shadow: var(--shadow);}
-    .btn{padding:14px 26px; border-radius:8px; font-weight:700; display:inline-flex; align-items:center; gap:8px; transition:var(--transition);}
-    .btn-primary{background:var(--primary); color:#222; position:relative;}
-    .btn-primary:hover{filter:brightness(1.08);}
-    .badge{background:#eef2f7; padding:6px 14px; border-radius:999px; font-size:12px; display:inline-block; margin-bottom:6px;}
-    .text-muted{color: var(--muted);}
-
-/* Navbar */
-    nav{
-      position:sticky;
-      top:0;
-      z-index:100;
-      background:rgba(35,47,62,.95);
-      backdrop-filter:blur(8px);
-      padding:10px 24px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
+  /* Responsive */
+  @media (max-width: 768px) {
+    header.hero {
+      height: 300px;
+      padding: 0 20px;
+      align-items: center;
+      text-align: center;
     }
-    .logo{height:48px; flex-shrink:0;}
-    .nav-inner{display:flex; align-items:center; gap:18px;}
-    .nav-links{display:flex; gap:16px; align-items:center; flex-wrap:wrap;}
-    .nav-links a{
-      padding:8px 14px;
-      border-radius:6px;
-      font-size:15px;
-      font-weight:600;
-      position:relative;
-      transition:var(--transition);
-      color:#fff;
+    header.hero h1 {
+      font-size: 32px;
     }
-    .nav-links a.active,
-    .nav-links a:hover{background:rgba(255,255,255,.08);}
-    .dropdown{
-      position:relative;
+    header.hero p {
+      font-size: 16px;
+      max-width: 100%;
     }
-    .dropbtn{
-      background:var(--primary);
-      color:#222;
-      padding:8px 14px;
-      border-radius:6px;
-      font-weight:600;
-      display:flex;
-      align-items:center;
-      gap:4px;
-      cursor:pointer;
-      font-size:15px;
+    nav {
+      flex-direction: column;
+      gap: 10px;
     }
-    .dropdown-content{
-      display:none;
-      position:absolute;
-      right:0;
-      top:calc(100% + 6px);
-      background:#1f2a44;
-      min-width:180px;
-      padding:8px 0;
-      border-radius:8px;
-      box-shadow:0 20px 50px -10px rgba(0,0,0,0.3);
-      z-index:50;
+    nav .nav-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
     }
-    .dropdown-content a{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 16px;
-      font-size:14px;
-      color:#fff;
-      transition:background .2s;
-    }
-    .dropdown-content a:hover{background:rgba(255,255,255,0.08);}
-    .dropdown:hover .dropdown-content,
-    .dropdown:focus-within .dropdown-content{
-      display:block;
-    }
-
-/* Hamburger mobile */
-    .hamburger{
-      display:none;
-      flex-direction:column;
-      gap:4px;
-      width:28px;
-      cursor:pointer;
-    }
-    .hamburger span{
-      height:3px;
-      border-radius:3px;
-      background:#fff;
-      transition:all .3s ease;
-    }
-    .hamburger.active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
-    .hamburger.active span:nth-child(2){opacity:0;}
-    .hamburger.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
-    .mobile-menu{
-      position:absolute;
-      inset:0;
-      background:rgba(35,47,62,.97);
-      padding:100px 20px 40px;
-      display:none;
-      flex-direction:column;
-      gap:18px;
-      z-index:90;
-    }
-    .mobile-menu a{
-      color:white;
-      font-size:18px;
-      font-weight:600;
-      padding:12px;
-      border-radius:6px;
-      background:rgba(255,255,255,0.05);
-    }
-    .mobile-dropdown{
-      position:relative;
-    }
-    .mobile-dropdown button{
-      background:var(--primary);
-      color:#222;
-      padding:10px 14px;
-      border-radius:6px;
-      font-weight:600;
-      width:100%;
-      text-align:right;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:6px;
-      font-size:14px;
-      cursor:pointer;
-    }
-    .mobile-dropdown-content{
-      display:none;
-      background:#1f2a44;
-      border-radius:6px;
-      margin-top:6px;
-      overflow:hidden;
-    }
-    .mobile-dropdown-content a{
-      padding:10px 16px;
-      display:block;
-      font-size:14px;
-      color:#fff;
-      border-top:1px solid rgba(255,255,255,0.08);
-    }
-
-/* Hero */
-    .hero{
-      position:relative;
-      padding:100px 0 80px;
-      overflow:hidden;
-      background: linear-gradient(135deg, rgba(35,47,62,.85) 0%, rgba(35,47,62,.65) 60%), url('swing-trading-patterns.webp') center/cover no-repeat;
-      color:white;
-    }
-    .hero::after{
-      content:'';
-      position:absolute;
-      inset:0;
-      background:rgba(0,0,0,0.2);
-      pointer-events:none;
-    }
-    .hero-inner{position:relative; display:flex; gap:40px; align-items:center; flex-wrap:wrap;}
-    .hero-text{flex:1; min-width:280px;}
-    .hero-text h1{
-      font-size:2.6rem;
-      margin:0 0 12px;
-      line-height:1.1;
-    }
-    .hero-text p{
-      font-size:1rem;
-      margin:0 0 18px;
-    }
-    .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:6px;}
-    .hero-image{
-      flex:1;
-      min-width:250px;
-      position:relative;
-    }
-    .hero-image img{
-      border-radius:14px;
-      max-width:500px;
-      width:100%;
-      object-fit:cover;
-      filter:drop-shadow(0 30px 50px rgba(0,0,0,0.35));
-    }
-
-/* Features */
-    .features{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:28px;
-      margin-top:20px;
-    }
-    .feature-card{
-      background:var(--card);
-      padding:24px;
-      border-radius:12px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      min-height:250px;
-      box-shadow: var(--shadow);
-    }
-    .feature-icon{
-      width:48px;
-      height:48px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(255,215,0,.15);
-      border-radius:50%;
-      font-size:24px;
-    }
-    .feature-card h3{margin:0; font-size:20px;}
-    .feature-card p{margin:0; font-size:15px; color: var(--text);}
-
-/* Testimonials */
-    .testimonials-wrapper{
-      position:relative;
-      overflow:hidden;
-    }
-    .testimonials{
-      display:flex;
-      gap:20px;
-      transition:transform .6s cubic-bezier(.4,.2,.2,1);
-      will-change:transform;
-    }
-    .testimonial{
-      flex:0 0 100%;
-      max-width:100%;
-      background: var(--card);
-      border-radius:12px;
-      padding:24px 26px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      box-shadow: var(--shadow);
-    }
-    .testimonial .text{font-size:16px; margin:0; color: var(--text);}
-    .testimonial .meta{display:flex; gap:12px; align-items:center; margin-top:4px;}
-    .testimonial .avatar{
-      width:48px;
-      height:48px;
-      border-radius:50%;
-      background: #ccc;
-      flex-shrink:0;
-    }
-    .testimonial .name{font-weight:700;}
-    .testimonial-controls{
-      display:flex;
-      gap:8px;
-      justify-content:center;
-      margin-top:12px;
-    }
-    .dot{
-      width:12px;
-      height:12px;
-      border-radius:50%;
-      background:rgba(0,0,0,.1);
-      cursor:pointer;
-      border:2px solid transparent;
-      transition:var(--transition);
-    }
-    .dot.active{background:var(--primary); border-color:#fff;}
-
-/* Courses */
-    .courses{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:24px;
-      margin-top:12px;
-    }
-    .course-card{
-      background:var(--card);
-      border-radius:12px;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      position:relative;
-      box-shadow: var(--shadow);
-      transition:transform .3s ease;
-    }
-    .course-card:hover{transform:translateY(-4px);}
-    .course-body{padding:18px; display:flex; flex-direction:column; gap:8px; flex:1;}
-    .course-title{margin:0; font-size:18px; font-weight:700;}
-    .course-desc{margin:0; font-size:14px; flex:1; color: var(--muted);}
-    .course-footer{display:flex; justify-content:space-between; align-items:center; margin-top:6px;}
-    .price{font-weight:700; font-size:16px;}
-    .enroll{background:var(--primary); padding:8px 16px; border-radius:6px; font-size:14px; font-weight:600; color:#222; cursor:pointer;}
-
-/* Newsletter */
-    .newsletter{
-      background: var(--primary);
-      padding:50px 24px;
-      border-radius:12px;
-      color:#222;
-      position:relative;
-      overflow:hidden;
-      margin-top:10px;
-    }
-    .newsletter h2{margin:0 0 10px; font-size:28px;}
-    .newsletter p{margin:0 0 16px;}
-    .newsletter-form{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      max-width:800px;
-    }
-    .newsletter-form input{
-      flex:1;
-      min-width:200px;
-      padding:14px 16px;
-      border-radius:6px;
-      border:2px solid rgba(0,0,0,.08);
-      font-size:14px;
-      outline:none;
-    }
-    .newsletter-form button{
-      background:#222;
-      color:#fff;
-      padding:14px 20px;
-      border-radius:6px;
-      font-weight:600;
-      flex-shrink:0;
-    }
-
-/* Footer */
-    footer{
-      padding:36px 20px;
-      text-align:center;
-      font-size:14px;
-      background:#1f2a44;
-      color:#d0d9ff;
-    }
-    .footer-links{display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-bottom:16px;}
-    .footer-links a{color:inherit; font-size:14px; transition:opacity .2s;}
-    .footer-bottom{font-size:13px; opacity:.85; margin-top:8px;}
-
-/* Responsive */
-    @media (max-width:1024px){
-      .hero-inner{flex-direction:column-reverse; gap:28px;}
-    }
-    @media (max-width:900px){
-      .nav-inner .nav-links{display:none;}
-      .hamburger{display:flex;}
-      .mobile-menu{display:flex;}
-    }
-    @media (max-width:720px){
-      .features{grid-template-columns:1fr;}
-      .courses{grid-template-columns:1fr;}
-    }
-  </style>
+  }
+  .icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+</style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav aria-label="القائمة الرئيسية">
-    <div class="container flex" style="align-items:center;justify-content:space-between;">
-      <div class="flex" style="gap:18px; align-items:center;">
-        <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo" loading="lazy" />
-        <div class="nav-inner">
-          <div class="nav-links" aria-label="روابط الموقع">
-            <a href="#" class="active">الرئيسية</a>
-            <a href="#about">حولنا</a>
-            <a href="#courses">الدورات</a>
-            <a href="#testimonials">آراء الطلاب</a>
-            <div class="dropdown">
-              <button class="dropbtn" aria-haspopup="true" aria-expanded="false">خدماتنا ▾</button>
-              <div class="dropdown-content" role="menu">
-                <a href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener" aria-label="إنستغرام">
-                  <svg width="18" height="18" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.33 3.608 1.305.975.975 1.243 2.242 1.305 3.608.058 1.266.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.33 2.633-1.305 3.608-.975.975-2.242 1.243-3.608 1.305-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.33-3.608-1.305-.975-.975-1.243-2.242-1.305-3.608C2.175 15.647 2.163 15.268 2.163 12s.012-3.584.07-4.85c.062-1.366.33-2.633 1.305-3.608.975-.975 2.242-1.243 3.608-1.305C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.736 0 8.332.013 7.052.072 5.78.131 4.602.438 3.6 1.44 2.598 2.442 2.291 3.62 2.232 4.892 2.173 6.172 2.16 6.576 2.16 12c0 5.424.013 5.828.072 7.108.059 1.272.366 2.45 1.368 3.452 1.002 1.002 2.18 1.309 3.452 1.368 1.28.059 1.684.072 7.108.072s5.828-.013 7.108-.072c1.272-.059 2.45-.366 3.452-1.368 1.002-1.002 1.309-2.18 1.368-3.452.059-1.28.072-1.684.072-7.108s-.013-5.828-.072-7.108c-.059-1.272-.366-2.45-1.368-3.452C19.55.438 18.372.131 17.1.072 15.82.013 15.416 0 12 0z"/>
-                    <circle cx="12" cy="12" r="3.6"/>
-                    <circle cx="18.406" cy="5.594" r="1.44"/>
-                  </svg>
-                  إنستغرام
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="cta-group">
-        <a href="#signup" class="btn btn-primary">سجل الآن</a>
-        <div class="hamburger" aria-label="فتح القائمة" id="hamburger">
-          <span></span><span></span><span></span>
-        </div>
+<nav>
+  <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo" />
+  <div class="nav-links">
+    <a href="index.html">الرئيسية</a>
+    <a href="about.html">حولنا</a>
+    <a href="contact.html">اتصل بنا</a>
+    <div class="dropdown">
+      <button class="dropbtn">خدماتنا ▾</button>
+      <div class="dropdown-content">
+        <a href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.33 3.608 1.305.975.975 1.243 2.242 1.305 3.608.058 1.266.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.33 2.633-1.305 3.608-.975.975-2.242 1.243-3.608 1.305-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.33-3.608-1.305-.975-.975-1.243-2.242-1.305-3.608C2.175 15.647 2.163 15.268 2.163 12s.012-3.584.07-4.85c.062-1.366.33-2.633 1.305-3.608.975-.975 2.242-1.243 3.608-1.305C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.736 0 8.332.013 7.052.072 5.78.131 4.602.438 3.6 1.44 2.598 2.442 2.291 3.62 2.232 4.892 2.173 6.172 2.16 6.576 2.16 12c0 5.424.013 5.828.072 7.108.059 1.272.366 2.45 1.368 3.452 1.002 1.002 2.18 1.309 3.452 1.368 1.28.059 1.684.072 7.108.072s5.828-.013 7.108-.072c1.272-.059 2.45-.366 3.452-1.368 1.002-1.002 1.309-2.18 1.368-3.452.059-1.28.072-1.684.072-7.108s-.013-5.828-.072-7.108c-.059-1.272-.366-2.45-1.368-3.452C19.55.438 18.372.131 17.1.072 15.82.013 15.416 0 12 0z"/>
+            <circle cx="12" cy="12" r="3.6"/>
+            <circle cx="18.406" cy="5.594" r="1.44"/>
+          </svg>
+          إنستغرام
+        </a>
       </div>
     </div>
-    <!-- Mobile menu -->
-    <div class="mobile-menu" id="mobile-menu" aria-label="قائمة الهاتف" hidden>
-      <a href="#">الرئيسية</a>
-      <a href="#about">حولنا</a>
-      <a href="#courses">الدورات</a>
-      <a href="#testimonials">آراء الطلاب</a>
-      <div class="mobile-dropdown">
-        <button aria-expanded="false" id="mobile-services-btn">خدماتنا ▾</button>
-        <div class="mobile-dropdown-content" id="mobile-services-content">
-          <a href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener">إنستغرام</a>
-        </div>
-      </div>
-      <a href="#signup" class="btn btn-primary" style="margin-top:8px;">سجل الآن</a>
-    </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- Hero -->
-  <section class="hero" aria-label="قسم الترحيب">
-    <div class="container hero-inner">
-      <div class="hero-text">
-        <div class="badge">أكاديمية معتمدة</div>
-        <h1>ارتقِ بمهاراتك في التداول والاستثمار</h1>
-        <p>تعلم من خبراء، طبق استراتيجيات متقدمة، وحقق نتائج واقعية. دورات عملية، دعم مستمر، وخطة واضحة.</p>
-        <div class="hero-actions">
-          <a href="#courses" class="btn btn-primary">ابدأ الآن</a>
-          <a href="#about" class="btn" style="background:rgba(255,255,255,.1); border-radius:8px; color:#fff;">من نحن</a>
-        </div>
-      </div>
-      <div class="hero-image">
-        <img src="hero-illustration.webp" alt="تعليم التداول" loading="lazy" width="500" height="350" />
-      </div>
-    </div>
+<header class="hero">
+  <h1>مرحبًا بكم في أكاديمية مونكس</h1>
+  <p>أفضل الدورات التعليمية لتنمية مهاراتك وتحقيق طموحاتك المالية بثقة واحترافية.</p>
+  <button class="btn-primary" onclick="location.href='courses.html'">تصفح الدورات</button>
+</header>
+
+<main>
+  <section>
+    <h2>لماذا تختار أكاديمية مونكس؟</h2>
+    <p>نقدم محتوى تعليمي عالي الجودة، مدعوم بخبراء في مجال التداول والاستثمار، مع دعم مستمر وخطة تعليمية واضحة تناسب جميع المستويات.</p>
   </section>
-
-  <!-- Features -->
-  <section class="section" id="about">
-    <div class="container">
-      <div style="text-align:center; margin-bottom:30px;">
-        <h2 style="margin:0; font-size:32px;">ماذا نقدّم؟</h2>
-        <p class="text-muted" style="margin-top:6px;">مجموعة متكاملة من الأدوات التعليمية والدعم لرحلتك في التداول.</p>
-      </div>
-      <div class="features">
-        <div class="feature-card">
-          <div class="feature-icon" aria-hidden="true">📈</div>
-          <h3>تحليل فني متقدم</h3>
-          <p>تعلم قراءة الشموع، الأنماط والمؤشرات لاكتشاف الفرص بدقة.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" aria-hidden="true">🛡️</div>
-          <h3>إدارة المخاطر</h3>
-          <p>استراتيجيات لحماية رأس المال وتحسين العائد.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" aria-hidden="true">🎯</div>
-          <h3>خطط مدروسة</h3>
-          <p>مسارات تعليمية مبسطة تناسب الجميع خطوة بخطوة.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" aria-hidden="true">🤝</div>
-          <h3>دعم مباشر</h3>
-          <p>فريق خبراء يرافقك في التطبيق وتحسين الأداء.</p>
-        </div>
-      </div>
-    </div>
+  <section>
+    <h2>دوراتنا المميزة</h2>
+    <p>تعلّم استراتيجيات التداول المتقدمة، إدارة المخاطر، التحليل الفني والأساسي، وأكثر من ذلك، من خلال دورات عملية تفاعلية.</p>
   </section>
+</main>
 
-  <!-- Testimonials -->
-  <section class="section" id="testimonials" style="background:rgba(255,247,230,.5);">
-    <div class="container">
-      <div style="text-align:center; margin-bottom:25px;">
-        <h2 style="margin:0; font-size:32px;">آراء الطلاب</h2>
-        <p class="text-muted" style="margin-top:6px;">ما قاله من أكملوا دوراتهم وحققوا تطور حقيقي.</p>
-      </div>
-      <div class="testimonials-wrapper">
-        <div class="testimonials" id="testimonials-slider">
-          <div class="testimonial" aria-label="تقييم من لمياء العبيدي">
-            <p class="text">"منذ التحاقي بالأكاديمية قدرت أفهم السوق بشكل مختلف، الدورات مفهومة والكوتشينغ فعّال."</p>
-            <div class="meta">
-              <div class="avatar" aria-hidden="true"></div>
-              <div>
-                <div class="name">لمياء العبيدي</div>
-                <div class="role" style="font-size:12px; color: var(--muted);">متدربة في التداول</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial" aria-label="تقييم من سامي بوعكاز">
-            <p class="text">"التحليل الفني صار سهل، وأسلوب الشرح خلىني أطبق من أول أسبوع وأشوف نتائج."</p>
-            <div class="meta">
-              <div class="avatar" aria-hidden="true"></div>
-              <div>
-                <div class="name">سامي بوعكاز</div>
-                <div class="role" style="font-size:12px; color: var(--muted);">مستثمر</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial" aria-label="تقييم من رهام كريم">
-            <p class="text">"أحببت التوازن بين النظرية والتطبيق، والدعم بعد الدورة هو اللي فرّق معي."</p>
-            <div class="meta">
-              <div class="avatar" aria-hidden="true"></div>
-              <div>
-                <div class="name">رهام كريم</div>
-                <div class="role" style="font-size:12px; color: var(--muted);">متدربة</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-controls" aria-label="تنقل آراء">
-          <div class="dot active" data-index="0" aria-label="الشهادة 1"></div>
-          <div class="dot" data-index="1" aria-label="الشهادة 2"></div>
-          <div class="dot" data-index="2" aria-label="الشهادة 3"></div>
-        </div>
-      </div>
-    </div>
-  </section>
+<footer>
+  جميع الحقوق محفوظة © 2025 - Monex Academy
+</footer>
 
-  <!-- Courses -->
-  <section class="section" id="courses">
-    <div class="container">
-      <div style="text-align:center; margin-bottom:25px;">
-        <h2 style="margin:0; font-size:32px;">دوراتنا المميزة</h2>
-        <p class="text-muted" style="margin-top:6px;">اختر المسار الذي يناسبك وابدأ بتطوير مهاراتك اليوم.</p>
-      </div>
-      <div class="courses">
-        <div class="course-card">
-          <div class="course-body">
-            <h3 class="course-title">التحليل الفني المتقدم</h3>
-            <p class="course-desc">فهم الأنماط والمؤشرات بدقة.</p>
-            <div class="course-footer">
-              <div class="price">$49</div>
-              <div class="enroll">سجل الآن</div>
-            </div>
-          </div>
-        </div>
-        <div class="course-card">
-          <div class="course-body">
-            <h3 class="course-title">إدارة المخاطر الذكية</h3>
-            <p class="course-desc">حماية رأس المال مع تحسين العائد.</p>
-            <div class="course-footer">
-              <div class="price">$39</div>
-              <div class="enroll">سجل الآن</div>
-            </div>
-          </div>
-        </div>
-        <div class="course-card">
-          <div class="course-body">
-            <h3 class="course-title">الخطة المتكاملة</h3>
-            <p class="course-desc">مسار تدريبي من الصفر حتى الاحتراف.</p>
-            <div class="course-footer">
-              <div class="price">$99</div>
-              <div class="enroll">سجل الآن</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Newsletter -->
-  <section class="section" id="signup">
-    <div class="container">
-      <div class="newsletter rounded">
-        <div style="display:flex; flex-wrap:wrap; gap:30px; align-items:center;">
-          <div style="flex:1; min-width:260px;">
-            <h2>انضم لنشرتنا البريدية</h2>
-            <p>احصل على نصائح مجانية وتحديثات دورات مباشرة إلى بريدك.</p>
-            <form class="newsletter-form" action="https://formspree.io/f/yourformid" method="POST" aria-label="نموذج النشرة">
-              <input type="email" name="email" placeholder="بريدك الإلكتروني" required aria-label="البريد الإلكتروني" />
-              <button type="submit">اشترك الآن</button>
-            </form>
-          </div>
-          <div style="flex:1; min-width:200px; text-align:center;">
-            <img src="newsletter-illustration.webp" alt="اشترك في النشرة" loading="lazy" style="max-width:280px;" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer aria-label="تذييل الصفحة">
-    <div class="container">
-      <div class="footer-links">
-        <a href="#">الرئيسية</a>
-        <a href="#about">حولنا</a>
-        <a href="#courses">الدورات</a>
-        <a href="#testimonials">آراء الطلاب</a>
-        <a href="#">سياسة الخصوصية</a>
-      </div>
-      <div class="footer-bottom">
-        جميع الحقوق محفوظة © 2025 - Monex Academy
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script>
-    // Mobile menu toggle
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileServicesBtn = document.getElementById('mobile-services-btn');
-    const mobileServicesContent = document.getElementById('mobile-services-content');
-
-    hamburger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const open = hamburger.classList.toggle('active');
-      if (open) mobileMenu.hidden = false;
-      else mobileMenu.hidden = true;
-    });
-    document.addEventListener('click', (e) => {
-      if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
-        hamburger.classList.remove('active');
-        mobileMenu.hidden = true;
-      }
-    });
-
-    mobileServicesBtn && mobileServicesBtn.addEventListener('click', () => {
-      const expanded = mobileServicesBtn.getAttribute('aria-expanded') === 'true';
-      mobileServicesBtn.setAttribute('aria-expanded', !expanded);
-      if (mobileServicesContent.style.display === 'block') mobileServicesContent.style.display = 'none';
-      else mobileServicesContent.style.display = 'block';
-    });
-
-    // Testimonials slider
-    const slider = document.getElementById('testimonials-slider');
-    const dots = document.querySelectorAll('.dot');
-    let idx = 0;
-    function updateSlider(i){
-      slider.style.transform = `translateX(-${i * 100}%)`;
-      dots.forEach(d => d.classList.toggle('active', parseInt(d.dataset.index) === i));
-    }
-    dots.forEach(d => {
-      d.addEventListener('click', () => {
-        idx = parseInt(d.dataset.index);
-        updateSlider(idx);
-      });
-    });
-    let auto = setInterval(() => {
-      idx = (idx + 1) % dots.length;
-      updateSlider(idx);
-    }, 6000);
-    slider.addEventListener('mouseenter', () => clearInterval(auto));
-    slider.addEventListener('mouseleave', () => {
-      auto = setInterval(() => {
-        idx = (idx + 1) % dots.length;
-        updateSlider(idx);
-      }, 6000);
-    });
-
-    // Active nav on scroll
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          const id = entry.target.id;
-          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
-        }
-      });
-    }, {threshold:0.5});
-    sections.forEach(s => observer.observe(s));
-  </script>
 </body>
 </html>
+
 
