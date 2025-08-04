@@ -759,28 +759,17 @@
         hamburger.setAttribute('aria-expanded', 'false');
       }
     });
-  </script>
-<!-- 🔐 نموذج تسجيل الدخول -->
-<div id="login-section" style="margin-top: 50px; padding: 20px; border-top: 1px solid #ccc;">
-  <h2>تسجيل الدخول</h2>
-  <form id="login-form">
-    <label for="email">البريد الإلكتروني:</label><br />
-    <input type="email" id="email" required /><br /><br />
-    
-    <label for="password">كلمة المرور:</label><br />
-    <input type="password" id="password" required /><br /><br />
-    
-    <button type="submit">دخول</button>
-    <p id="error-msg" style="color: red;"></p>
-  </form>
-</div>
-</body>
-<!-- 🔌 Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js"></script>
+<!-- ====== Firebase مودولار v12: تهيئة + فحص جلسة + تسجيل دخول ====== -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-<script>
-  // 🧠 إعدادات Firebase الخاصة بمشروعك
+  // إعدادات Firebase الخاصة بك
   const firebaseConfig = {
     apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
     authDomain: "monex-academ.firebaseapp.com",
@@ -791,28 +780,47 @@
     measurementId: "G-D7CGRPRKQE"
   };
 
-  // ⏱️ تهيئة Firebase
-  firebase.initializeApp(firebaseConfig);
+  // تهيئة Firebase و Analytics و Auth
+  const app = initializeApp(firebaseConfig);
+  getAnalytics(app);
+  const auth = getAuth(app);
 
-  // 🛂 التعامل مع تسجيل الدخول
   const loginForm = document.getElementById("login-form");
   const errorMsg = document.getElementById("error-msg");
 
-  loginForm.addEventListener("submit", function (e) {
+  // إذا المستخدم مسجل دخول مسبقاً، يذهب مباشرة للوحة التحكم
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      window.location.href = "dashboard.html";
+    }
+  });
+
+  loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const email = document.getElementById("email").value;
+    errorMsg.textContent = "";
+
+    const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // ✅ تسجيل دخول ناجح → الانتقال إلى لوحة التحكم
-        window.location.href = "dashboard.html";
-      })
-      .catch((error) => {
-        // ❌ رسالة خطأ عند الفشل
-        errorMsg.textContent = "خطأ: " + error.message;
-      });
+    if (!email || !password) {
+      errorMsg.textContent = "يرجى ملء جميع الحقول.";
+      return;
+    }
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      // التوجيه يتم عبر onAuthStateChanged
+    } catch (err) {
+      errorMsg.textContent = formatFirebaseError(err);
+    }
   });
+
+  function formatFirebaseError(e) {
+    if (e.code === "auth/user-not-found") return "البريد الإلكتروني غير مسجل.";
+    if (e.code === "auth/wrong-password") return "كلمة المرور غير صحيحة.";
+    if (e.code === "auth/invalid-email") return "البريد الإلكتروني غير صالح.";
+    if (e.code === "auth/too-many-requests") return "تم حظر المحاولة مؤقتاً، أعد المحاولة لاحقاً.";
+    return e.message;
+  }
 </script>
-</body>
-  </html>
+<!-- ============================================================= -->
