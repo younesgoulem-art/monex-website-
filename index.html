@@ -54,7 +54,7 @@
 <body>
   <div class="container">
     <h1>مرحبًا بك في Monex Academy</h1>
-    <p>هذه الصفحة محمية، ولا يمكن الوصول إليها إلا بعد تسجيل الدخول.</p>
+    <p>هذه الصفحة محمية ولا يمكن الوصول إليها إلا بعد تسجيل الدخول.</p>
     <button id="logoutBtn">تسجيل الخروج</button>
   </div>
 
@@ -69,7 +69,6 @@
     </div>
   </div>
 
-  <!-- Firebase و التحقق من المصادقة -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
@@ -84,7 +83,7 @@
       apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
       authDomain: "monex-academ.firebaseapp.com",
       projectId: "monex-academ",
-      storageBucket: "monex-academ.firebasestorage.app",
+      storageBucket: "monex-academ.appspot.com",
       messagingSenderId: "739982923559",
       appId: "1:739982923559:web:47ebe50822acba14d3fb02",
       measurementId: "G-D7CGRPRKQE"
@@ -99,18 +98,17 @@
     const logoutBtn = document.getElementById("logoutBtn");
     const loginError = document.getElementById("loginError");
 
+    // تحقق من حالة تسجيل الدخول
     onAuthStateChanged(auth, (user) => {
+      document.body.style.display = "block"; // عرض الصفحة دائمًا بعد التحقق
       if (user) {
-        // ✅ المستخدم مسجل دخول: عرض الصفحة
-        document.body.style.display = "block";
         loginModal.style.display = "none";
       } else {
-        // ❌ غير مسجل دخول: إظهار نموذج تسجيل الدخول
-        document.body.style.display = "block";
         loginModal.style.display = "flex";
       }
     });
 
+    // تسجيل الدخول
     loginBtn.addEventListener("click", async () => {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
@@ -118,15 +116,15 @@
         await signInWithEmailAndPassword(auth, email, password);
         loginError.textContent = "";
       } catch (error) {
-        loginError.textContent = "فشل تسجيل الدخول: تأكد من البيانات";
+        loginError.textContent = "فشل تسجيل الدخول: تأكد من صحة البيانات";
       }
     });
 
+    // تسجيل الخروج
     logoutBtn.addEventListener("click", async () => {
       await signOut(auth);
     });
   </script>
 </body>
 </html>
-
 
