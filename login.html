@@ -1,104 +1,23 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<<!DOCTYPE html>
+<html lang="ar">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>تسجيل الدخول | أكاديمية مونكس</title>
-  <style>
-    body {
-      font-family: Tahoma, sans-serif;
-      background-color: #f5f7fa;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .login-container {
-      background-color: white;
-      padding: 30px 25px;
-      border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .login-container h2 {
-      margin-bottom: 20px;
-      text-align: center;
-      color: #232F3E;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: bold;
-    }
-
-    input[type="email"],
-    input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 16px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    .btn-login {
-      background-color: #FFD700;
-      color: #222;
-      border: none;
-      padding: 12px;
-      width: 100%;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .btn-login:hover {
-      background-color: #e6c200;
-    }
-
-    .error-msg {
-      color: red;
-      margin-bottom: 12px;
-      text-align: center;
-    }
-
-    .small {
-      text-align: center;
-      margin-top: 10px;
-      font-size: 14px;
-    }
-
-    .small a {
-      color: #232F3E;
-      text-decoration: none;
-    }
-  </style>
+  <title>تسجيل الدخول</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
-<body>
-  <div class="login-container">
-    <h2>تسجيل الدخول</h2>
-    <form id="login-form">
-      <label for="email">البريد الإلكتروني</label>
-      <input type="email" id="email" required placeholder="example@mail.com" />
+<body style="font-family: sans-serif; max-width: 400px; margin: auto; padding-top: 50px;">
 
-      <label for="password">كلمة المرور</label>
-      <input type="password" id="password" required placeholder="********" />
+  <h2>تسجيل الدخول</h2>
 
-      <div class="error-msg" id="error-msg"></div>
+  <form id="login-form">
+    <input type="email" id="email" placeholder="البريد الإلكتروني" required style="width: 100%; margin-bottom: 10px;" />
+    <input type="password" id="password" placeholder="كلمة المرور" required style="width: 100%; margin-bottom: 10px;" />
+    <button type="submit" style="width: 100%;">تسجيل الدخول</button>
+  </form>
 
-      <button type="submit" class="btn-login">تسجيل الدخول</button>
-    </form>
-    <div class="small">
-      ليس لديك حساب؟ <a href="signup.html">إنشاء حساب</a>
-    </div>
-  </div>
+  <p id="error-msg" style="color: red; margin-top: 10px;"></p>
 
-  <!-- Firebase Auth -->
+  <!-- سكربت Firebase -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
@@ -109,8 +28,7 @@
       projectId: "monex-academ",
       storageBucket: "monex-academ.firebasestorage.app",
       messagingSenderId: "739982923559",
-      appId: "1:739982923559:web:47ebe50822acba14d3fb02",
-      measurementId: "G-D7CGRPRKQE"
+      appId: "1:739982923559:web:47ebe50822acba14d3fb02"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -119,10 +37,10 @@
     const loginForm = document.getElementById("login-form");
     const errorMsg = document.getElementById("error-msg");
 
-    // إذا المستخدم مسجل دخول، أعد توجيهه
+    // التحقق من الجلسة: إذا كان المستخدم مسجلاً الدخول بالفعل
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        window.location.href = "index.html";
+        window.location.href = "dashboard.html";
       }
     });
 
@@ -133,26 +51,31 @@
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
 
+      if (!email || !password) {
+        errorMsg.textContent = "يرجى إدخال البريد الإلكتروني وكلمة المرور.";
+        return;
+      }
+
       try {
         await signInWithEmailAndPassword(auth, email, password);
-        // سيتم التوجيه تلقائيًا من onAuthStateChanged
+        // سيتم التوجيه تلقائياً إذا نجح الدخول
       } catch (error) {
-        errorMsg.textContent = getErrorMessage(error);
+        errorMsg.textContent = translateError(error);
       }
     });
 
-    function getErrorMessage(error) {
+    function translateError(error) {
       switch (error.code) {
-        case "auth/invalid-email":
-          return "البريد الإلكتروني غير صحيح.";
         case "auth/user-not-found":
-          return "لا يوجد مستخدم بهذا البريد.";
+          return "البريد الإلكتروني غير مسجل.";
         case "auth/wrong-password":
           return "كلمة المرور غير صحيحة.";
+        case "auth/invalid-email":
+          return "البريد الإلكتروني غير صالح.";
         case "auth/too-many-requests":
-          return "تم حظر المحاولة مؤقتًا. أعد المحاولة لاحقًا.";
+          return "تم حظر المحاولة مؤقتًا. حاول لاحقًا.";
         default:
-          return "حدث خطأ. حاول مرة أخرى.";
+          return "حدث خطأ: " + error.message;
       }
     }
   </script>
