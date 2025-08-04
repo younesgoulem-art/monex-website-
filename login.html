@@ -4,19 +4,42 @@
   <meta charset="UTF-8" />
   <title>تسجيل الدخول</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      direction: rtl;
+      font-family: sans-serif;
+      max-width: 400px;
+      margin: auto;
+      padding-top: 50px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    #error-msg {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
 </head>
-<body style="font-family: sans-serif; max-width: 400px; margin: auto; padding-top: 50px;">
+<body>
   <h2>تسجيل الدخول</h2>
   <form id="login-form">
-    <input type="email" id="email" placeholder="البريد الإلكتروني" required style="width: 100%; margin-bottom: 10px;" />
-    <input type="password" id="password" placeholder="كلمة المرور" required style="width: 100%; margin-bottom: 10px;" />
-    <button type="submit" style="width: 100%;">دخول</button>
+    <input type="email" id="email" placeholder="البريد الإلكتروني" required />
+    <input type="password" id="password" placeholder="كلمة المرور" required />
+    <button type="submit">دخول</button>
   </form>
-  <p id="error-msg" style="color: red;"></p>
+  <p id="error-msg"></p>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
@@ -30,9 +53,11 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // توجيه المستخدم إذا كان مسجلاً
+    // التوجيه التلقائي إذا المستخدم مسجل دخول مسبقًا
     onAuthStateChanged(auth, (user) => {
-      if (user) window.location.href = "index.html";
+      if (user) {
+        window.location.href = "index.html";
+      }
     });
 
     const loginForm = document.getElementById("login-form");
@@ -40,26 +65,35 @@
 
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
+      errorMsg.textContent = "";
+
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
 
       try {
         await signInWithEmailAndPassword(auth, email, password);
-        // يتم التوجيه تلقائيًا في onAuthStateChanged
-      } catch (error) {
-        switch (error.code) {
-          case "auth/user-not-found":
-            errorMsg.textContent = "المستخدم غير موجود.";
-            break;
-          case "auth/wrong-password":
-            errorMsg.textContent = "كلمة المرور غير صحيحة.";
-            break;
-          default:
-            errorMsg.textContent = "خطأ: " + error.message;
-        }
+        // المستخدم سيتم تحويله تلقائيًا في onAuthStateChanged
+      } catch (err) {
+        errorMsg.textContent = formatErrorMessage(err);
       }
     });
+
+    function formatErrorMessage(error) {
+      switch (error.code) {
+        case "auth/user-not-found":
+          return "المستخدم غير موجود.";
+        case "auth/wrong-password":
+          return "كلمة المرور غير صحيحة.";
+        case "auth/invalid-email":
+          return "البريد الإلكتروني غير صالح.";
+        case "auth/too-many-requests":
+          return "تم حظر المحاولة مؤقتًا. حاول لاحقًا.";
+        default:
+          return "حدث خطأ: " + error.message;
+      }
+    }
   </script>
 </body>
 </html>
+
 
