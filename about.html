@@ -4,140 +4,276 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>حولنا | أكاديمية مونكس</title>
+  <meta name="description" content="أكاديمية مونكس: محتوى تعليمي متميز في التداول وتنمية المهارات الشخصية والمهنية." />
   <style>
+    :root {
+      --radius: 12px;
+      --transition: 0.35s cubic-bezier(.4,.2,.2,1);
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #f59e0b;
+      --gradient: linear-gradient(135deg, #1e3a8a 0%, #6366f1 60%);
+      --shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1119;
+        --card: #1f233a;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --accent: #f59e0b;
+        --shadow: 0 20px 40px -10px rgba(0,0,0,0.6);
+      }
+      body { background: #0f1119; }
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
     }
+
+    a { text-decoration: none; }
 
     header {
       position: relative;
-      background-image: url('swing-trading-patterns.jpg');
-      background-size: cover;
-      background-position: center;
-      height: 250px;
+      background: var(--gradient) url('swing-trading-patterns.jpg') center/cover no-repeat;
+      overflow: hidden;
+      padding: 60px 20px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      color: white;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
-      padding: 0 20px;
+      gap: 12px;
       text-align: center;
+      color: white;
     }
 
-    header .logo {
+    header::after {
+      content: "";
       position: absolute;
-      top: 20px;
-      right: 20px;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+      width: 100%;
+    }
+
+    .logo-wrapper {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo {
+      display: block;
       max-height: 80px;
       width: auto;
-      border-radius: 8px;
+      border-radius: 10px;
       object-fit: contain;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-      background-color: white;
-      padding: 4px;
+      box-shadow: 0 10px 30px -5px rgba(0,0,0,0.35);
+      background: white;
+      padding: 6px;
+      transition: transform var(--transition);
+    }
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     header h1 {
-      font-size: 32px;
+      font-size: clamp(1.8rem, 2.5vw, 3.2rem);
       margin: 0;
-      line-height: 1.2;
-      font-weight: 700;
+      font-weight: 800;
+      position: relative;
+      z-index: 1;
     }
 
     nav {
-      background-color: #FFD700;
+      background: #fff;
+      margin-top: -10px;
       padding: 12px 0;
-      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 8px 30px -5px rgba(0,0,0,0.08);
+      backdrop-filter: blur(6px);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      font-size: 15px;
     }
 
     nav a {
-      color: #222;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      font-size: 16px;
+      color: var(--text);
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      position: relative;
+      transition: var(--transition);
     }
-
+    nav a::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      background: rgba(255,215,0,0.1);
+      opacity: 0;
+      transition: var(--transition);
+    }
     nav a:hover {
-      text-decoration: underline;
+      color: #111;
+    }
+    nav a:hover::after {
+      opacity: 1;
+    }
+    nav a.active {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 12px 30px -5px rgba(245,158,11,0.5);
     }
 
     main {
-      padding: 30px 20px;
+      padding: 60px 20px 40px;
       text-align: center;
     }
 
-    main p {
-      font-size: 18px;
-      line-height: 1.6;
-      max-width: 700px;
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      max-width: 850px;
       margin: 0 auto;
-      color: #444;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition);
+    }
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .card p {
+      font-size: 1.1rem;
+      margin: 0;
+      color: var(--text);
+    }
+
+    .highlight {
+      display: inline-block;
+      background: rgba(255,235,205,0.6);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 600;
     }
 
     footer {
-      background-color: #333;
-      color: white;
+      background-color: #1f2937;
+      color: #d1d5db;
       text-align: center;
-      padding: 15px;
-      margin-top: 40px;
+      padding: 25px 16px;
+      margin-top: 60px;
+      font-size: 14px;
     }
 
-    @media (max-width: 600px) {
-      header {
-        height: 180px;
-        padding: 20px 10px;
-      }
+    .small {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
 
-      header .logo {
-        max-height: 50px;
-        top: 10px;
-        right: 10px;
-        padding: 2px;
+    /* Responsive */
+    @media (max-width: 900px) {
+      .nav-inner {
+        gap: 12px;
       }
+    }
 
-      header h1 {
-        font-size: 22px;
+    @media (max-width: 640px) {
+      .card {
+        padding: 24px 18px;
       }
+    }
 
-      nav a {
-        display: block;
-        margin: 10px 0;
-      }
-
-      main {
-        padding: 20px 10px;
+    /* Subtle entrance animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: appear 0.9s cubic-bezier(.4,.2,.2,1) forwards;
+    }
+    @keyframes appear {
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo" />
-    <h1>من نحن؟</h1>
+  <header aria-label="رأس الصفحة التعريفي">
+    <div class="container" style="position:relative; width:100%;">
+      <div class="logo-wrapper">
+        <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo" loading="lazy" />
+      </div>
+      <h1 class="fade-in">من نحن؟</h1>
+      <p class="fade-in" style="max-width: 760px; margin:12px auto 0; font-weight:500;">
+        في أكاديمية مونكس نُقدّم محتوى تعليميًا متميّزًا في التداول وتنمية المهارات، نُرشد المتعلّمين لاتخاذ قرارات مالية ومعرفية بثقة واحترافية.
+      </p>
+    </div>
   </header>
 
-  <nav>
-    <a href="index.html">الرئيسية</a>
-    <a href="about.html">حولنا</a>
-    <a href="contact.html">اتصل بنا</a>
+  <nav aria-label="القائمة الرئيسية">
+    <div class="container">
+      <div class="nav-inner" role="menubar">
+        <a href="index.html" role="menuitem">الرئيسية</a>
+        <a href="about.html" class="active" role="menuitem" aria-current="page">حولنا</a>
+        <a href="contact.html" role="menuitem">اتصل بنا</a>
+      </div>
+    </div>
   </nav>
 
   <main>
-    <p>
-      نحن في أكاديمية مونكس نطمح لتقديم أفضل المحتويات التعليمية المتميزة في مجالات التداول وتنمية المهارات الشخصية والمهنية.
-      نسعى بكل جهد لتمكين المتعلمين من اتخاذ قرارات مستنيرة تساعدهم على تحقيق النجاح المالي والمعرفي بثقة واحترافية.
-    </p>
+    <div class="container">
+      <div class="card" aria-label="نبذة عن الأكاديمية">
+        <p>
+          نحن في <span class="highlight">أكاديمية مونكس</span> نطمح لتقديم أفضل المحتويات التعليمية المتميزة في مجالات التداول وتنمية المهارات الشخصية والمهنية.
+          نسعى بكل جهد لتمكين المتعلمين من اتخاذ قرارات مستنيرة تساعدهم على تحقيق النجاح المالي والمعرفي بثقة واحترافية.
+        </p>
+      </div>
+    </div>
   </main>
 
   <footer>
-    جميع الحقوق محفوظة © 2025 - Monex Academy
+    <div class="container">
+      <div>جميع الحقوق محفوظة © 2025 - Monex Academy</div>
+      <div class="small">
+        صُمم للعملاء الطموحين. تابعنا لتحصل على تحديثات جديدة في المحتوى والتطوير.
+      </div>
+    </div>
   </footer>
 
 </body>
 </html>
+
 
