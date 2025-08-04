@@ -19,32 +19,32 @@
       background-position: center;
       height: 250px;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
+      color: white;
       padding: 0 20px;
       text-align: center;
     }
 
-    /* تأثير إضاءة للنص */
-    header h1 {
-      font-size: 32px;
-      margin: 0;
-      font-weight: 700;
-      color: white;
-      text-shadow: 0 0 8px rgba(0,0,0,0.7), 0 0 15px rgba(0,0,0,0.5);
-    }
-
-    /* تحسين ظهور اللوغو */
     header .logo {
       position: absolute;
       top: 20px;
       right: 20px;
       max-height: 80px;
-      background: rgba(255,255,255,0.9);
-      padding: 4px;
+      width: auto;
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      object-fit: contain;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      background-color: white;
+      padding: 4px;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin: 0;
+      line-height: 1.2;
+      font-weight: 700;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9); /* ظل قوي للنص */
     }
 
     nav {
@@ -89,16 +89,27 @@
     @media (max-width: 600px) {
       header {
         height: 180px;
+        padding: 20px 10px;
       }
+
       header .logo {
         max-height: 50px;
+        top: 10px;
+        right: 10px;
+        padding: 2px;
       }
+
       header h1 {
         font-size: 22px;
       }
+
       nav a {
         display: block;
         margin: 10px 0;
+      }
+
+      main {
+        padding: 20px 10px;
       }
     }
   </style>
