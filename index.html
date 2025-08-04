@@ -1,71 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>أكاديمية مونكس</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body { display: none; }
-    .login-modal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .login-box {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-    }
-    .login-box input {
-      width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-    .login-box button {
-      width: 100%;
-      padding: 0.75rem;
-      font-size: 1rem;
-      background: #007BFF;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    .error-message {
-      color: red;
-      margin-bottom: 1rem;
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- نافذة تسجيل الدخول -->
-  <div class="login-modal" id="loginModal">
-    <div class="login-box">
-      <h2>تسجيل الدخول</h2>
-      <div class="error-message" id="loginError"></div>
-      <input type="email" id="email" placeholder="البريد الإلكتروني" required>
-      <input type="password" id="password" placeholder="كلمة المرور" required>
-      <button id="loginBtn">تسجيل الدخول</button>
-    </div>
-  </div>
-
-  <!-- محتوى موقعك الكامل هنا -->
-  <div id="app">
- <!DOCTYPE html>
-<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -161,8 +95,6 @@
       box-shadow: 0 12px 32px rgba(255,215,0,0.35);
       transition: filter var(--transition), transform var(--transition);
       font-size: 15px;
-      cursor: pointer;
-      border: none;
     }
     .btn-primary:hover {
       filter: brightness(1.05);
@@ -183,7 +115,6 @@
       gap: 6px;
       transition: filter var(--transition);
       cursor: pointer;
-      border: none;
     }
     .dropbtn:hover, .dropbtn:focus-visible { filter: brightness(1.08); outline: none; }
     .dropdown-content {
@@ -223,7 +154,6 @@
       border: none;
       padding: 6px;
       margin-left: 8px;
-      cursor: pointer;
     }
     .mobile-toggle svg {
       width: 26px;
@@ -563,75 +493,6 @@
       outline: 3px solid rgba(255,215,0,0.8);
       outline-offset: 2px;
     }
-
-    /* نموذج الدخول (مضمن) */
-    .login-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 200;
-      display: none;
-    }
-    .login-box {
-      background: white;
-      border-radius: 12px;
-      padding: 24px 28px;
-      max-width: 400px;
-      width: 100%;
-      box-shadow: 0 24px 64px rgba(35,47,62,0.2);
-      position: relative;
-      direction: rtl;
-    }
-    .login-box h2 {
-      margin-top: 0;
-      margin-bottom: 12px;
-      font-size: 1.4rem;
-      text-align: center;
-    }
-    .login-box label {
-      display: block;
-      margin-bottom: 4px;
-      font-weight: 600;
-    }
-    .login-box input {
-      width: 100%;
-      padding: 10px 12px;
-      margin-bottom: 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-    .login-box button {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      background: var(--dark-bg);
-      color: #fff;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 1rem;
-      margin-top: 6px;
-    }
-    .close-login {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: transparent;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-    }
-    .error-msg {
-      color: #c0392b;
-      min-height: 1.2em;
-      margin-bottom: 6px;
-      font-size: 0.9rem;
-    }
   </style>
 </head>
 <body>
@@ -667,7 +528,6 @@
             </a>
           </div>
         </div>
-        <button class="btn-primary" id="open-login">تسجيل الدخول</button>
       </div>
 
       <!-- Mobile menu -->
@@ -867,34 +727,12 @@
     </div>
   </footer>
 
-  <!-- نموذج تسجيل الدخول -->
-  <div class="login-modal" id="loginModal" aria-label="نموذج تسجيل الدخول">
-    <div class="login-box" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-      <button class="close-login" aria-label="إغلاق" id="closeLogin">&times;</button>
-      <h2 id="loginTitle">تسجيل الدخول</h2>
-      <div class="error-msg" id="error-msg"></div>
-      <form id="login-form" novalidate>
-        <label for="email">البريد الإلكتروني</label>
-        <input type="email" id="email" required autocomplete="username" />
-
-        <label for="password">كلمة المرور</label>
-        <input type="password" id="password" required autocomplete="current-password" />
-
-        <button type="submit">دخول</button>
-      </form>
-      <p class="small" style="margin-top:8px;">إذا لم يكن لديك حساب، أنشئ واحداً أو تواصل معنا.</p>
-    </div>
-  </div>
-
   <script>
     // Toggle mobile menu
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     const servicesToggle = document.getElementById('servicesToggle');
     const servicesSubmenu = document.getElementById('servicesSubmenu');
-    const openLogin = document.getElementById('open-login');
-    const loginModal = document.getElementById('loginModal');
-    const closeLogin = document.getElementById('closeLogin');
 
     hamburger.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -907,7 +745,7 @@
       }
     });
 
-    servicesToggle?.addEventListener('click', (e) => {
+    servicesToggle.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = servicesSubmenu.style.display === 'flex';
       servicesSubmenu.style.display = isOpen ? 'none' : 'flex';
@@ -921,146 +759,69 @@
         hamburger.setAttribute('aria-expanded', 'false');
       }
     });
+<!-- ====== Firebase مودولار v12: تهيئة + فحص جلسة + تسجيل دخول ====== -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-    // Login modal toggle
-    openLogin.addEventListener('click', () => {
-      loginModal.style.display = 'flex';
-    });
-    closeLogin.addEventListener('click', () => {
-      loginModal.style.display = 'none';
-    });
-    loginModal.addEventListener('click', (e) => {
-      if (e.target === loginModal) loginModal.style.display = 'none';
-    });
-  </script>
+  // إعدادات Firebase الخاصة بك
+  const firebaseConfig = {
+    apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
+    authDomain: "monex-academ.firebaseapp.com",
+    projectId: "monex-academ",
+    storageBucket: "monex-academ.firebasestorage.app",
+    messagingSenderId: "739982923559",
+    appId: "1:739982923559:web:47ebe50822acba14d3fb02",
+    measurementId: "G-D7CGRPRKQE"
+  };
 
-  <!-- ====== Firebase مودولار v12: تهيئة + فحص جلسة + تسجيل دخول ====== -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
-    import {
-      getAuth,
-      signInWithEmailAndPassword,
-      onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+  // تهيئة Firebase و Analytics و Auth
+  const app = initializeApp(firebaseConfig);
+  getAnalytics(app);
+  const auth = getAuth(app);
 
-    // إعدادات Firebase الخاصة بك
-    const firebaseConfig = {
-      apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
-      authDomain: "monex-academ.firebaseapp.com",
-      projectId: "monex-academ",
-      storageBucket: "monex-academ.firebasestorage.app",
-      messagingSenderId: "739982923559",
-      appId: "1:739982923559:web:47ebe50822acba14d3fb02",
-      measurementId: "G-D7CGRPRKQE"
-    };
+  const loginForm = document.getElementById("login-form");
+  const errorMsg = document.getElementById("error-msg");
 
-    // تهيئة Firebase و Analytics و Auth
-    const app = initializeApp(firebaseConfig);
-    getAnalytics(app);
-    const auth = getAuth(app);
+  // إذا المستخدم مسجل دخول مسبقاً، يذهب مباشرة للوحة التحكم
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      window.location.href = "dashboard.html";
+    }
+  });
 
-    const loginForm = document.getElementById("login-form");
-    const errorMsg = document.getElementById("error-msg");
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorMsg.textContent = "";
 
-    // إذا المستخدم مسجل دخول سابقاً → توجيه تلقائي
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        window.location.href = "dashboard.html";
-      }
-    });
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
 
-    if (loginForm) {
-      loginForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        if (errorMsg) errorMsg.textContent = "";
-
-        const emailInput = document.getElementById("email");
-        const passwordInput = document.getElementById("password");
-        const email = emailInput ? emailInput.value.trim() : "";
-        const password = passwordInput ? passwordInput.value : "";
-
-        if (!email || !password) {
-          if (errorMsg) errorMsg.textContent = "يرجى ملء جميع الحقول.";
-          return;
-        }
-
-        try {
-          await signInWithEmailAndPassword(auth, email, password);
-          // التوجيه يتم عبر onAuthStateChanged
-        } catch (err) {
-          if (errorMsg) errorMsg.textContent = formatFirebaseError(err);
-        }
-      });
+    if (!email || !password) {
+      errorMsg.textContent = "يرجى ملء جميع الحقول.";
+      return;
     }
 
-    function formatFirebaseError(e) {
-      if (!e || !e.code) return "حدث خطأ غير متوقع.";
-      if (e.code === "auth/user-not-found") return "البريد الإلكتروني غير مسجل.";
-      if (e.code === "auth/wrong-password") return "كلمة المرور غير صحيحة.";
-      if (e.code === "auth/invalid-email") return "البريد الإلكتروني غير صالح.";
-      if (e.code === "auth/too-many-requests") return "تم حظر المحاولة مؤقتاً، أعد المحاولة لاحقاً.";
-      return e.message || "خطأ في المصادقة.";
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      // التوجيه يتم عبر onAuthStateChanged
+    } catch (err) {
+      errorMsg.textContent = formatFirebaseError(err);
     }
-  </script>
-  <!-- ============================================================= -->
-</body>
-</html>
-  </div>
+  });
 
-  <!-- Firebase Authentication Script -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signInWithEmailAndPassword,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
-      authDomain: "monex-academ.firebaseapp.com",
-      projectId: "monex-academ",
-      storageBucket: "monex-academ.appspot.com",
-      messagingSenderId: "739982923559",
-      appId: "1:739982923559:web:47ebe50822acba14d3fb02",
-      measurementId: "G-D7CGRPRKQE"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    getAnalytics(app);
-    const auth = getAuth(app);
-
-    const loginModal = document.getElementById("loginModal");
-    const loginBtn = document.getElementById("loginBtn");
-    const loginError = document.getElementById("loginError");
-
-    onAuthStateChanged(auth, (user) => {
-      document.body.style.display = "block";
-      if (user) {
-        loginModal.style.display = "none";
-      } else {
-        loginModal.style.display = "flex";
-      }
-    });
-
-    loginBtn.addEventListener("click", async () => {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        loginError.textContent = "";
-      } catch (error) {
-        loginError.textContent = "فشل تسجيل الدخول. تأكد من البيانات.";
-      }
-    });
-  </script>
-
-</body>
-</html>
-
-
+  function formatFirebaseError(e) {
+    if (e.code === "auth/user-not-found") return "البريد الإلكتروني غير مسجل.";
+    if (e.code === "auth/wrong-password") return "كلمة المرور غير صحيحة.";
+    if (e.code === "auth/invalid-email") return "البريد الإلكتروني غير صالح.";
+    if (e.code === "auth/too-many-requests") return "تم حظر المحاولة مؤقتاً، أعد المحاولة لاحقاً.";
+    return e.message;
+  }
+</script>
+<!-- ============================================================= -->
 
