@@ -760,40 +760,57 @@
       }
     });
   </script>
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+<!-- 🔐 نموذج تسجيل الدخول -->
+<div id="login-section" style="margin-top: 50px; padding: 20px; border-top: 1px solid #ccc;">
+  <h2>تسجيل الدخول</h2>
+  <form id="login-form">
+    <label for="email">البريد الإلكتروني:</label><br />
+    <input type="email" id="email" required /><br /><br />
+    
+    <label for="password">كلمة المرور:</label><br />
+    <input type="password" id="password" required /><br /><br />
+    
+    <button type="submit">دخول</button>
+    <p id="error-msg" style="color: red;"></p>
+  </form>
+</div>
+
+<!-- 🔌 Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js"></script>
 
 <script>
-  // إعداد Firebase
+  // 🧠 إعدادات Firebase الخاصة بمشروعك
   const firebaseConfig = {
     apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
     authDomain: "monex-academ.firebaseapp.com",
     projectId: "monex-academ",
-    storageBucket: "monex-academ.appspot.com",
+    storageBucket: "monex-academ.firebasestorage.app",
     messagingSenderId: "739982923559",
     appId: "1:739982923559:web:47ebe50822acba14d3fb02",
     measurementId: "G-D7CGRPRKQE"
   };
 
-  // تهيئة Firebase
+  // ⏱️ تهيئة Firebase
   firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
 
-  // الاستماع لإرسال النموذج
-  document.getElementById("login-form").addEventListener("submit", function (e) {
+  // 🛂 التعامل مع تسجيل الدخول
+  const loginForm = document.getElementById("login-form");
+  const errorMsg = document.getElementById("error-msg");
+
+  loginForm.addEventListener("submit", function (e) {
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    auth.signInWithEmailAndPassword(email, password)
+    firebase.auth().signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        // تسجيل دخول ناجح
+        // ✅ تسجيل دخول ناجح → الانتقال إلى لوحة التحكم
         window.location.href = "dashboard.html";
       })
       .catch((error) => {
-        // خطأ في تسجيل الدخول
-        document.getElementById("error-message").innerText = "خطأ في البريد أو كلمة المرور.";
+        // ❌ رسالة خطأ عند الفشل
+        errorMsg.textContent = "خطأ: " + error.message;
       });
   });
 </script>
