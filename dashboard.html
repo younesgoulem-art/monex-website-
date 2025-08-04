@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>لوحة التحكم</title>
+  <title>لوحة التحكم | أكاديمية مونكس</title>
+  <meta name="description" content="لوحة تحكم المستخدم - أكاديمية مونكس" />
   <style>
     :root {
       --radius: 12px;
@@ -93,7 +94,7 @@
       </div>
       <button id="logout-btn">تسجيل الخروج</button>
       <div class="small">
-        إذا كنت تريد العودة لتسجيل الدخول: <a href="index.html">صفحة الدخول</a>
+        إذا لم تكن أنت، <a href="index.html">الرجوع لتسجيل الدخول</a>
       </div>
     </div>
 
@@ -122,7 +123,6 @@
       measurementId: "G-D7CGRPRKQE"
     };
 
-    // تهيئة Firebase
     const app = initializeApp(firebaseConfig);
     getAnalytics(app);
     const auth = getAuth(app);
@@ -151,7 +151,6 @@
     logoutBtn.addEventListener("click", async () => {
       try {
         await signOut(auth);
-        // بعد الخروج نرجع لصفحة الدخول
         window.location.href = "index.html";
       } catch (e) {
         alert("فشل تسجيل الخروج: " + e.message);
@@ -160,3 +159,4 @@
   </script>
 </body>
 </html>
+
