@@ -14,7 +14,7 @@
       --text: #1f2937;
       --muted: #6b7280;
       --accent: #f59e0b;
-      --gradient: linear-gradient(135deg, #1e3a8a 0%, #6366f1 60%);
+      --gradient: linear-gradient(135deg, #4f46e5 0%, #6366f1 70%);
       --shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
     }
 
@@ -35,23 +35,22 @@
     header {
       position: relative;
       background: var(--gradient) url('swing-trading-patterns.jpg') center/cover no-repeat;
-      overflow: hidden;
-      padding: 60px 20px;
+      padding: 60px 20px 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       text-align: center;
       color: white;
+      overflow: hidden;
     }
 
     header::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.35);
+      background: rgba(0,0,0,0.12); /* تغطية خفيفة لقراءة النص بدون أن تكون داكنة */
       pointer-events: none;
-      mix-blend-mode: multiply;
     }
 
     .container {
@@ -65,9 +64,6 @@
       position: absolute;
       top: 18px;
       right: 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .logo {
@@ -76,46 +72,63 @@
       width: auto;
       border-radius: 10px;
       object-fit: contain;
-      box-shadow: 0 10px 30px -5px rgba(0,0,0,0.35);
-      background: white;
+      background: rgba(255,255,255,0.95);
       padding: 6px;
-      transition: transform var(--transition);
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 12px 36px -8px rgba(0,0,0,0.2);
+      transition: transform var(--transition), box-shadow var(--transition);
     }
     .logo:hover {
-      transform: scale(1.05);
+      transform: scale(1.07);
+      box-shadow: 0 16px 48px -6px rgba(0,0,0,0.25);
     }
 
     header h1 {
-      font-size: clamp(1.8rem, 2.5vw, 3.2rem);
+      font-size: clamp(1.9rem, 2.8vw, 3.4rem);
       margin: 0;
       font-weight: 800;
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      padding: 10px 18px;
+      border-radius: 9px;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 1rem;
+      max-width: 760px;
+      font-weight: 500;
       position: relative;
       z-index: 1;
     }
 
     nav {
-      background: #fff;
-      margin-top: -10px;
-      padding: 12px 0;
+      background: #ffffff;
+      padding: 14px 0;
       position: sticky;
       top: 0;
       z-index: 10;
       box-shadow: 0 8px 30px -5px rgba(0,0,0,0.08);
-      backdrop-filter: blur(6px);
+      margin-top: -30px;
     }
 
     .nav-inner {
       display: flex;
       justify-content: center;
-      gap: 25px;
+      gap: 24px;
       flex-wrap: wrap;
       font-size: 15px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 12px;
     }
 
     nav a {
       color: var(--text);
       font-weight: 600;
-      padding: 8px 14px;
+      padding: 8px 16px;
       border-radius: 8px;
       position: relative;
       transition: var(--transition);
@@ -125,7 +138,7 @@
       position: absolute;
       inset: 0;
       border-radius: 8px;
-      background: rgba(245,158,11,0.1);
+      background: rgba(245,158,11,0.12);
       opacity: 0;
       transition: var(--transition);
     }
@@ -138,7 +151,7 @@
     nav a.active {
       background: var(--accent);
       color: #fff;
-      box-shadow: 0 12px 30px -5px rgba(245,158,11,0.5);
+      box-shadow: 0 12px 30px -5px rgba(245,158,11,0.4);
     }
 
     main {
@@ -186,28 +199,38 @@
 
     .small {
       font-size: 0.85rem;
-      color: var(--muted);
+      color: #9ca3af;
       margin-top: 6px;
     }
 
     /* Responsive */
     @media (max-width: 900px) {
       .nav-inner {
-        gap: 12px;
+        gap: 14px;
       }
     }
 
     @media (max-width: 640px) {
+      header {
+        padding: 50px 16px 70px;
+      }
+      header h1 {
+        font-size: 1.9rem;
+      }
       .card {
         padding: 24px 18px;
       }
+      .logo {
+        max-height: 60px;
+        padding: 4px;
+      }
     }
 
-    /* Entrance animation */
+    /* Entrance subtle */
     .fade-in {
       opacity: 0;
-      transform: translateY(8px);
-      animation: appear 0.9s cubic-bezier(.4,.2,.2,1) forwards;
+      transform: translateY(6px);
+      animation: appear 0.8s cubic-bezier(.4,.2,.2,1) forwards;
     }
     @keyframes appear {
       to {
@@ -220,24 +243,22 @@
 <body>
 
   <header aria-label="رأس الصفحة التعريفي">
-    <div class="container" style="position:relative; width:100%;">
+    <div class="container" style="position: relative; width: 100%;">
       <div class="logo-wrapper">
         <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo" loading="lazy" />
       </div>
       <h1 class="fade-in">من نحن؟</h1>
-      <p class="fade-in" style="max-width: 760px; margin:12px auto 0; font-weight:500;">
+      <p class="fade-in">
         في أكاديمية مونكس نُقدّم محتوى تعليميًا متميّزًا في التداول وتنمية المهارات، نُرشد المتعلّمين لاتخاذ قرارات مالية ومعرفية بثقة واحترافية.
       </p>
     </div>
   </header>
 
   <nav aria-label="القائمة الرئيسية">
-    <div class="container">
-      <div class="nav-inner" role="menubar">
-        <a href="index.html" role="menuitem">الرئيسية</a>
-        <a href="about.html" class="active" role="menuitem" aria-current="page">حولنا</a>
-        <a href="contact.html" role="menuitem">اتصل بنا</a>
-      </div>
+    <div class="nav-inner" role="menubar">
+      <a href="index.html" role="menuitem">الرئيسية</a>
+      <a href="about.html" class="active" role="menuitem" aria-current="page">حولنا</a>
+      <a href="contact.html" role="menuitem">اتصل بنا</a>
     </div>
   </nav>
 
