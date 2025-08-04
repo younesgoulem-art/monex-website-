@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar">
 <head>
   <meta charset="UTF-8" />
@@ -6,18 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body style="font-family: sans-serif; max-width: 400px; margin: auto; padding-top: 50px;">
-
   <h2>تسجيل الدخول</h2>
-
   <form id="login-form">
     <input type="email" id="email" placeholder="البريد الإلكتروني" required style="width: 100%; margin-bottom: 10px;" />
     <input type="password" id="password" placeholder="كلمة المرور" required style="width: 100%; margin-bottom: 10px;" />
-    <button type="submit" style="width: 100%;">تسجيل الدخول</button>
+    <button type="submit" style="width: 100%;">دخول</button>
   </form>
+  <p id="error-msg" style="color: red;"></p>
 
-  <p id="error-msg" style="color: red; margin-top: 10px;"></p>
-
-  <!-- سكربت Firebase -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
@@ -34,50 +30,36 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    // توجيه المستخدم إذا كان مسجلاً
+    onAuthStateChanged(auth, (user) => {
+      if (user) window.location.href = "index.html";
+    });
+
     const loginForm = document.getElementById("login-form");
     const errorMsg = document.getElementById("error-msg");
 
-    // التحقق من الجلسة: إذا كان المستخدم مسجلاً الدخول بالفعل
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        window.location.href = "dashboard.html";
-      }
-    });
-
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      errorMsg.textContent = "";
-
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
 
-      if (!email || !password) {
-        errorMsg.textContent = "يرجى إدخال البريد الإلكتروني وكلمة المرور.";
-        return;
-      }
-
       try {
         await signInWithEmailAndPassword(auth, email, password);
-        // سيتم التوجيه تلقائياً إذا نجح الدخول
+        // يتم التوجيه تلقائيًا في onAuthStateChanged
       } catch (error) {
-        errorMsg.textContent = translateError(error);
+        switch (error.code) {
+          case "auth/user-not-found":
+            errorMsg.textContent = "المستخدم غير موجود.";
+            break;
+          case "auth/wrong-password":
+            errorMsg.textContent = "كلمة المرور غير صحيحة.";
+            break;
+          default:
+            errorMsg.textContent = "خطأ: " + error.message;
+        }
       }
     });
-
-    function translateError(error) {
-      switch (error.code) {
-        case "auth/user-not-found":
-          return "البريد الإلكتروني غير مسجل.";
-        case "auth/wrong-password":
-          return "كلمة المرور غير صحيحة.";
-        case "auth/invalid-email":
-          return "البريد الإلكتروني غير صالح.";
-        case "auth/too-many-requests":
-          return "تم حظر المحاولة مؤقتًا. حاول لاحقًا.";
-        default:
-          return "حدث خطأ: " + error.message;
-      }
-    }
   </script>
 </body>
 </html>
+
