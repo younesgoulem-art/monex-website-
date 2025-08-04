@@ -1,41 +1,67 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>تسجيل الدخول - Monex Academy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      direction: rtl;
+      text-align: center;
+      margin-top: 100px;
+      background-color: #f9f9f9;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    #loginBtn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    #loginBtn:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-  <h2>تسجيل الدخول باستخدام Google</h2>
-  <button id="loginBtn">تسجيل الدخول</button>
+  <h2>يرجى تسجيل الدخول للمتابعة</h2>
+  <button id="loginBtn">تسجيل الدخول باستخدام Google</button>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
+    // إعدادات Firebase (نفسها من index.html)
     const firebaseConfig = {
       apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
       authDomain: "monex-academ.firebaseapp.com",
       projectId: "monex-academ",
       storageBucket: "monex-academ.appspot.com",
       messagingSenderId: "739982923559",
-      appId: "1:739982923559:web:47ebe50822acba14d3fb02"
+      appId: "1:739982923559:web:47ebe50822acba14d3fb02",
+      measurementId: "G-D7CGRPRKQE"
     };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
-    document.getElementById('loginBtn').addEventListener('click', () => {
+    // زر تسجيل الدخول
+    document.getElementById("loginBtn").addEventListener("click", () => {
       signInWithPopup(auth, provider)
         .then((result) => {
-          // تسجيل دخول ناجح
+          // تم تسجيل الدخول → الذهاب إلى index.html
           window.location.href = "index.html";
         })
         .catch((error) => {
-          alert("حدث خطأ أثناء تسجيل الدخول: " + error.message);
+          alert("فشل تسجيل الدخول: " + error.message);
         });
     });
   </script>
 </body>
 </html>
-
