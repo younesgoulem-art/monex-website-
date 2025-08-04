@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تسجيل الدخول | أكاديمية مونكس</title>
+  <style>
+    body {
+      font-family: Tahoma, sans-serif;
+      background-color: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background-color: white;
+      padding: 30px 25px;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #232F3E;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .btn-login {
+      background-color: #FFD700;
+      color: #222;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn-login:hover {
+      background-color: #e6c200;
+    }
+
+    .error-msg {
+      color: red;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .small {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .small a {
+      color: #232F3E;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>تسجيل الدخول</h2>
+    <form id="login-form">
+      <label for="email">البريد الإلكتروني</label>
+      <input type="email" id="email" required placeholder="example@mail.com" />
+
+      <label for="password">كلمة المرور</label>
+      <input type="password" id="password" required placeholder="********" />
+
+      <div class="error-msg" id="error-msg"></div>
+
+      <button type="submit" class="btn-login">تسجيل الدخول</button>
+    </form>
+    <div class="small">
+      ليس لديك حساب؟ <a href="signup.html">إنشاء حساب</a>
+    </div>
+  </div>
+
+  <!-- Firebase Auth -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
+      authDomain: "monex-academ.firebaseapp.com",
+      projectId: "monex-academ",
+      storageBucket: "monex-academ.firebasestorage.app",
+      messagingSenderId: "739982923559",
+      appId: "1:739982923559:web:47ebe50822acba14d3fb02",
+      measurementId: "G-D7CGRPRKQE"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const loginForm = document.getElementById("login-form");
+    const errorMsg = document.getElementById("error-msg");
+
+    // إذا المستخدم مسجل دخول، أعد توجيهه
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        window.location.href = "index.html";
+      }
+    });
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      errorMsg.textContent = "";
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        // سيتم التوجيه تلقائيًا من onAuthStateChanged
+      } catch (error) {
+        errorMsg.textContent = getErrorMessage(error);
+      }
+    });
+
+    function getErrorMessage(error) {
+      switch (error.code) {
+        case "auth/invalid-email":
+          return "البريد الإلكتروني غير صحيح.";
+        case "auth/user-not-found":
+          return "لا يوجد مستخدم بهذا البريد.";
+        case "auth/wrong-password":
+          return "كلمة المرور غير صحيحة.";
+        case "auth/too-many-requests":
+          return "تم حظر المحاولة مؤقتًا. أعد المحاولة لاحقًا.";
+        default:
+          return "حدث خطأ. حاول مرة أخرى.";
+      }
+    }
+  </script>
+</body>
+</html>
