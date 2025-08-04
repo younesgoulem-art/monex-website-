@@ -760,38 +760,27 @@
       }
     });
   </script>
-<!-- Firebase SDK -->
+<!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 
-<!-- نموذج تسجيل الدخول -->
-<div id="login-box" style="text-align:center; padding: 20px; max-width: 400px; margin: auto; background-color: #f5f5f5; border-radius: 10px;">
-  <h2>تسجيل الدخول</h2>
-  <form id="login-form">
-    <input type="email" id="email" placeholder="البريد الإلكتروني" required style="padding:10px; width: 90%; margin: 5px;"><br>
-    <input type="password" id="password" placeholder="كلمة المرور" required style="padding:10px; width: 90%; margin: 5px;"><br>
-    <button type="submit" style="padding:10px 20px; background-color:#007bff; color:white; border:none; border-radius:5px;">دخول</button>
-  </form>
-  <p id="error-message" style="color:red; margin-top:10px;"></p>
-</div>
-
-<!-- تهيئة Firebase -->
 <script>
+  // إعداد Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
     authDomain: "monex-academ.firebaseapp.com",
     projectId: "monex-academ",
-    storageBucket: "monex-academ.firebasestorage.app",
+    storageBucket: "monex-academ.appspot.com",
     messagingSenderId: "739982923559",
     appId: "1:739982923559:web:47ebe50822acba14d3fb02",
     measurementId: "G-D7CGRPRKQE"
   };
 
-  // تفعيل Firebase
+  // تهيئة Firebase
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
 
-  // عند الضغط على زر الدخول
+  // الاستماع لإرسال النموذج
   document.getElementById("login-form").addEventListener("submit", function (e) {
     e.preventDefault();
     const email = document.getElementById("email").value;
@@ -799,12 +788,12 @@
 
     auth.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        // نجاح تسجيل الدخول ✅
-        window.location.href = "dashboard.html"; // توجيه إلى صفحة خاصة
+        // تسجيل دخول ناجح
+        window.location.href = "dashboard.html";
       })
       .catch((error) => {
-        // فشل تسجيل الدخول ⛔
-        document.getElementById("error-message").innerText = "بيانات غير صحيحة أو غير مصرح بها.";
+        // خطأ في تسجيل الدخول
+        document.getElementById("error-message").innerText = "خطأ في البريد أو كلمة المرور.";
       });
   });
 </script>
