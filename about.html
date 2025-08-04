@@ -18,18 +18,6 @@
       --shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f1119;
-        --card: #1f233a;
-        --text: #e2e8f0;
-        --muted: #94a3b8;
-        --accent: #f59e0b;
-        --shadow: 0 20px 40px -10px rgba(0,0,0,0.6);
-      }
-      body { background: #0f1119; }
-    }
-
     * { box-sizing: border-box; }
 
     body {
@@ -137,7 +125,7 @@
       position: absolute;
       inset: 0;
       border-radius: 8px;
-      background: rgba(255,215,0,0.1);
+      background: rgba(245,158,11,0.1);
       opacity: 0;
       transition: var(--transition);
     }
@@ -215,7 +203,7 @@
       }
     }
 
-    /* Subtle entrance animation */
+    /* Entrance animation */
     .fade-in {
       opacity: 0;
       transform: translateY(8px);
@@ -275,5 +263,4 @@
 
 </body>
 </html>
-
 
