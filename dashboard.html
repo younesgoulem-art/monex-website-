@@ -1,162 +1,108 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>لوحة التحكم | أكاديمية مونكس</title>
-  <meta name="description" content="لوحة تحكم المستخدم - أكاديمية مونكس" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    :root {
-      --radius: 12px;
-      --shadow: 0 16px 40px rgba(0,0,0,0.08);
-      --bg: #f2f6fb;
-      --card-bg: #ffffff;
-      --primary: #2563eb;
-      --danger: #e53e3e;
-      font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    }
-    * { box-sizing: border-box; }
     body {
       margin: 0;
-      padding: 0;
-      background: var(--bg);
-      min-height: 100vh;
+      font-family: sans-serif;
+      direction: rtl;
+      background: #f9f9f9;
+    }
+    .layout {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      min-height: 100vh;
     }
-    .card {
-      background: var(--card-bg);
-      padding: 2rem 2.5rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      max-width: 500px;
-      width: 100%;
-      text-align: center;
-      position: relative;
-    }
-    h1 {
-      margin: 0 0 0.5rem;
-      font-size: 1.75rem;
-    }
-    p {
-      margin: 0.25rem 0;
-      line-height: 1.4;
-    }
-    .info {
-      background: #f5f8fd;
-      padding: 12px 16px;
-      border-radius: 8px;
-      margin: 1rem 0;
-      word-break: break-word;
-      font-size: 0.95rem;
-    }
-    button {
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: filter .2s;
-    }
-    #logout-btn {
-      background: var(--danger);
+    aside {
+      width: 250px;
+      background: #1E1E2F;
       color: white;
+      padding: 20px;
     }
-    #logout-btn:hover {
-      filter: brightness(1.05);
+    aside h2 {
+      margin-bottom: 2rem;
     }
-    a {
-      color: var(--primary);
+    aside ul {
+      list-style: none;
+      padding: 0;
+    }
+    aside ul li {
+      margin-bottom: 1rem;
+    }
+    aside ul li a {
+      color: white;
       text-decoration: none;
     }
-    #loading {
-      font-size: 0.9rem;
-      color: #555;
+    aside ul li a.logout {
+      color: #FF5252;
     }
-    .small {
-      margin-top: 1rem;
-      font-size: 0.8rem;
-      color: #666;
+    main {
+      flex: 1;
+      padding: 40px;
+    }
+    .cards {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      flex: 1;
     }
   </style>
 </head>
+
 <body>
-  <div class="card" aria-live="polite">
-    <div id="loading">جارٍ التحقق من الجلسة...</div>
+  <div class="layout">
+    <!-- الشريط الجانبي -->
+    <aside>
+      <h2>لوحة التحكم</h2>
+      <ul>
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="#">الدورات</a></li>
+        <li><a href="#">المستخدمين</a></li>
+        <li><a href="#">الإعدادات</a></li>
+        <li><a href="#" class="logout" onclick="logout()">تسجيل الخروج</a></li>
+      </ul>
+    </aside>
 
-    <div id="user-content" style="display:none;">
-      <h1>لوحة التحكم</h1>
-      <p>مرحباً بك، تم التحقق من تسجيل دخولك بنجاح.</p>
-      <div class="info" id="user-info">
-        <!-- يظهر البريد و UID هنا -->
-      </div>
-      <button id="logout-btn">تسجيل الخروج</button>
-      <div class="small">
-        إذا لم تكن أنت، <a href="index.html">الرجوع لتسجيل الدخول</a>
-      </div>
-    </div>
+    <!-- المحتوى الرئيسي -->
+    <main>
+      <h1>مرحبًا بك في الأكاديمية 🎓</h1>
+      <p>يمكنك إدارة محتوى الموقع من خلال لوحة التحكم.</p>
 
-    <div id="not-auth" style="display:none;">
-      <h1>غير مسجل</h1>
-      <p>يبدو أنك لم تسجل دخول. <a href="index.html">اضغط هنا للدخول</a></p>
-    </div>
+      <div class="cards">
+        <div class="card">
+          <h3>عدد المستخدمين</h3>
+          <p>52</p>
+        </div>
+        <div class="card">
+          <h3>عدد الدورات</h3>
+          <p>12</p>
+        </div>
+      </div>
+    </main>
   </div>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
-      authDomain: "monex-academ.firebaseapp.com",
-      projectId: "monex-academ",
-      storageBucket: "monex-academ.firebasestorage.app",
-      messagingSenderId: "739982923559",
-      appId: "1:739982923559:web:47ebe50822acba14d3fb02",
-      measurementId: "G-D7CGRPRKQE"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    getAnalytics(app);
-    const auth = getAuth(app);
-
-    const loadingEl = document.getElementById("loading");
-    const userContent = document.getElementById("user-content");
-    const notAuth = document.getElementById("not-auth");
-    const userInfo = document.getElementById("user-info");
-    const logoutBtn = document.getElementById("logout-btn");
-
-    onAuthStateChanged(auth, (user) => {
-      loadingEl.style.display = "none";
-      if (user) {
-        userContent.style.display = "block";
-        notAuth.style.display = "none";
-        userInfo.innerHTML = `
-          <div><strong>البريد الإلكتروني:</strong> ${user.email || "غير متوفر"}</div>
-          <div style="margin-top:4px;"><strong>UID:</strong> ${user.uid}</div>
-        `;
-      } else {
-        userContent.style.display = "none";
-        notAuth.style.display = "block";
-      }
-    });
-
-    logoutBtn.addEventListener("click", async () => {
-      try {
-        await signOut(auth);
+    const logout = () => {
+      const auth = getAuth();
+      signOut(auth).then(() => {
         window.location.href = "index.html";
-      } catch (e) {
-        alert("فشل تسجيل الخروج: " + e.message);
-      }
-    });
+      });
+    };
+    window.logout = logout;
   </script>
 </body>
+
 </html>
 
