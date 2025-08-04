@@ -726,40 +726,6 @@
       <div class="small">جميع الحقوق محفوظة © 2025 - Monex Academy</div>
     </div>
   </footer>
-
-  <script>
-    // Toggle mobile menu
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const servicesToggle = document.getElementById('servicesToggle');
-    const servicesSubmenu = document.getElementById('servicesSubmenu');
-
-    hamburger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', !expanded);
-      if (mobileMenu.style.display === 'flex') {
-        mobileMenu.style.display = 'none';
-      } else {
-        mobileMenu.style.display = 'flex';
-      }
-    });
-
-    servicesToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = servicesSubmenu.style.display === 'flex';
-      servicesSubmenu.style.display = isOpen ? 'none' : 'flex';
-      servicesToggle.setAttribute('aria-expanded', !isOpen);
-    });
-
-    // Close mobile menu on outside click
-    document.addEventListener('click', (e) => {
-      if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
-        mobileMenu.style.display = 'none';
-        hamburger.setAttribute('aria-expanded', 'false');
-      }
-    });
-<!-- ====== Firebase مودولار v12: تهيئة + فحص جلسة + تسجيل دخول ====== -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
@@ -769,7 +735,6 @@
     onAuthStateChanged
   } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-  // إعدادات Firebase الخاصة بك
   const firebaseConfig = {
     apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
     authDomain: "monex-academ.firebaseapp.com",
@@ -780,40 +745,37 @@
     measurementId: "G-D7CGRPRKQE"
   };
 
-  // تهيئة Firebase و Analytics و Auth
   const app = initializeApp(firebaseConfig);
   getAnalytics(app);
   const auth = getAuth(app);
 
-  const loginForm = document.getElementById("login-form");
-  const errorMsg = document.getElementById("error-msg");
-
-  // إذا المستخدم مسجل دخول مسبقاً، يذهب مباشرة للوحة التحكم
   onAuthStateChanged(auth, (user) => {
     if (user) {
       window.location.href = "dashboard.html";
     }
   });
 
-  loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    errorMsg.textContent = "";
+  const loginForm = document.getElementById("login-form");
+  const errorMsg = document.getElementById("error-msg");
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+  if (loginForm) {
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-    if (!email || !password) {
-      errorMsg.textContent = "يرجى ملء جميع الحقول.";
-      return;
-    }
+      if (!email || !password) {
+        errorMsg.textContent = "يرجى إدخال البريد الإلكتروني وكلمة المرور.";
+        return;
+      }
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      // التوجيه يتم عبر onAuthStateChanged
-    } catch (err) {
-      errorMsg.textContent = formatFirebaseError(err);
-    }
-  });
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+      } catch (error) {
+        errorMsg.textContent = formatFirebaseError(error);
+      }
+    });
+  }
 
   function formatFirebaseError(e) {
     if (e.code === "auth/user-not-found") return "البريد الإلكتروني غير مسجل.";
@@ -823,5 +785,3 @@
     return e.message;
   }
 </script>
-<!-- ============================================================= -->
-
