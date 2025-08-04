@@ -16,13 +16,30 @@
       color: #333;
       line-height: 1.6;
     }
-    /* الهيدر العصري */
+    /* هيدر بصورة وتدرج */
     header {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      text-align: center;
-      padding: 80px 20px 100px;
       position: relative;
+      background: url('swing-trading-patterns.jpg') center/cover no-repeat;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+    /* التدرج الشفاف فوق الصورة */
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.1));
+    }
+    header .content {
+      position: relative;
+      z-index: 2;
     }
     header .logo {
       max-height: 80px;
@@ -33,16 +50,18 @@
       position: absolute;
       top: 20px;
       right: 20px;
+      z-index: 3;
     }
     header h1 {
       font-size: 2.5rem;
       margin-bottom: 10px;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.8);
     }
     header p {
       font-size: 1.1rem;
       max-width: 600px;
       margin: 0 auto;
-      opacity: 0.9;
+      opacity: 0.95;
     }
     /* شريط التنقل */
     nav {
@@ -68,10 +87,10 @@
       transition: 0.3s;
     }
     nav a:hover {
-      background: #1e3c72;
+      background: #333;
       color: white;
     }
-    /* قسم المحتوى */
+    /* صندوق المحتوى */
     main {
       max-width: 1100px;
       margin: -60px auto 40px;
@@ -83,7 +102,7 @@
     main h2 {
       text-align: center;
       margin-bottom: 20px;
-      color: #1e3c72;
+      color: #333;
     }
     main p {
       font-size: 1.05rem;
@@ -94,7 +113,7 @@
     }
     /* الفوتر */
     footer {
-      background: #1e3c72;
+      background: #222;
       color: white;
       text-align: center;
       padding: 20px;
@@ -117,8 +136,10 @@
 
   <header>
     <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo">
-    <h1>من نحن؟</h1>
-    <p>في أكاديمية مونكس نقدم محتوى تعليمي احترافي في التداول وتنمية المهارات، مع التركيز على الجودة والإبداع.</p>
+    <div class="content">
+      <h1>من نحن؟</h1>
+      <p>في أكاديمية مونكس نقدم محتوى تعليمي احترافي في التداول وتنمية المهارات، مع التركيز على الجودة والإبداع.</p>
+    </div>
   </header>
 
   <nav>
@@ -143,6 +164,7 @@
 
 </body>
 </html>
+
 
 
 
