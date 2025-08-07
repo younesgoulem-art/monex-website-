@@ -1,35 +1,14 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>تسجيل الدخول</title>
 </head>
 <body>
-  <h2>يرجى تسجيل الدخول</h2>
-  <button id="loginBtn">تسجيل الدخول باستخدام Google</button>
-  <p id="status">...</p>
+  <h1>تسجيل الدخول</h1>
+  <button id="login-btn">تسجيل الدخول بـ Google</button>
 
-  <script type="module">
-    import { auth } from './firebase-init.js';
-    import { GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-    const provider = new GoogleAuthProvider();
-
-    // تحقق إذا كان المستخدم مسجلاً دخول
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        window.location.href = "index.html";
-      } else {
-        document.getElementById("status").textContent = "لم تقم بتسجيل الدخول بعد.";
-      }
-    });
-
-    // تسجيل الدخول عند الضغط على الزر
-    document.getElementById("loginBtn").addEventListener("click", () => {
-      signInWithPopup(auth, provider)
-        .then(() => window.location.href = "index.html")
-        .catch((error) => alert("حدث خطأ: " + error.message));
-    });
-  </script>
+  <script type="module" src="login.js"></script>
 </body>
 </html>
