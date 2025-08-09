@@ -563,3 +563,17 @@
     loginForm.addEventListener('submit', function(e) {
       e.preventDefault();
       const email = loginForm.email.value;
+      const password = loginForm.password.value;
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          loginMsg.style.color = 'green';
+          loginMsg.textContent = 'تم تسجيل الدخول بنجاح!';
+        })
+        .catch(error => {
+          loginMsg.style.color = 'red';
+          loginMsg.textContent = error.message;
+        });
+    });
+  </script>
+</body>
+</html>
