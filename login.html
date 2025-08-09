@@ -1,99 +1,109 @@
+
+
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fff8d6; /* أصفر فاتح */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .login-box {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 300px;
-        }
-        input {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #ffcc00;
-            color: black;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            width: 100%;
-        }
-        p.error {
-            color: red;
-            font-size: 14px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل الدخول - MONEX Academy</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Tajawal', sans-serif;
+      background-color: #111;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-container {
+      background: #222;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      width: 350px;
+      text-align: center;
+    }
+    h1 {
+      color: gold;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      background: #333;
+      color: white;
+      font-size: 16px;
+    }
+    input:focus {
+      outline: 2px solid gold;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: gold;
+      border: none;
+      border-radius: 6px;
+      color: black;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #ffcc00;
+    }
+    .error {
+      color: #ff4d4d;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
 
-<div class="login-box">
-    <h2>تسجيل الدخول</h2>
-    <input type="email" id="email" placeholder="البريد الإلكتروني" required>
-    <input type="password" id="password" placeholder="كلمة المرور" required>
-    <button id="loginBtn">دخول</button>
-    <p class="error" id="errorMsg"></p>
-</div>
+  <div class="login-container">
+    <h1>MONEX Academy</h1>
+    <input type="email" id="email" placeholder="البريد الإلكتروني" required />
+    <input type="password" id="password" placeholder="كلمة المرور" required />
+    <button id="loginBtn">تسجيل الدخول</button>
+    <div class="error" id="errorMsg"></div>
+  </div>
 
-<script type="module">
+  <script type="module">
+    // استدعاء Firebase
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } 
-        from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    // إعدادات Firebase من index.html
     const firebaseConfig = {
-        apiKey: "AIzaSyCVOXCAcf6nqSmWnbDYTkzamNl2m015o",
-        authDomain: "monex-academi.firebaseapp.com",
-        projectId: "monex-academi",
-        storageBucket: "monex-academi.appspot.com",
-        messagingSenderId: "739982923359",
-        appId: "1:739982923359:web:a72eb5682ac2da1413fb02",
-        measurementId: "G-D7GCRPRK0E"
+      apiKey: "AIzaSyCVOyCAd6mShxmOTYzkzAmInlz0l15o",
+      authDomain: "monex-academ.firebaseapp.com",
+      projectId: "monex-academ",
+      storageBucket: "monex-academ.appspot.com",
+      messagingSenderId: "173992823359",
+      appId: "1:173992823359:web:472eb88208a2cb14d3f802",
+      measurementId: "G-D7CGRPRKQE"
     };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    // زر تسجيل الدخول
     document.getElementById("loginBtn").addEventListener("click", () => {
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        const errorMsg = document.getElementById("errorMsg");
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const errorMsg = document.getElementById("errorMsg");
 
-        signInWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                window.location.href = "index.html";
-            })
-            .catch((error) => {
-                errorMsg.textContent = "خطأ: تأكد من البريد أو كلمة المرور";
-            });
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          window.location.href = "index.html"; // نجاح
+        })
+        .catch((error) => {
+          errorMsg.textContent = "❌ البريد الإلكتروني أو كلمة المرور غير صحيحة";
+        });
     });
-
-    // إذا كان مسجل دخول بالفعل → يوديه للصفحة الرئيسية
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            window.location.href = "index.html";
-        }
-    });
-</script>
-
+  </script>
 </body>
 </html>
-
