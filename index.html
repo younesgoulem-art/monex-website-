@@ -837,31 +837,5 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
-  <!-- حماية الصفحة باستخدام Firebase Auth -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNm12LOl5o",
-    authDomain: "monex-academ.firebaseapp.com",
-    projectId: "monex-academ",
-    storageBucket: "monex-academ.appspot.com",
-    messagingSenderId: "739982923559",
-    appId: "1:739982923559:web:47ebe50822acba14d3fb02",
-    measurementId: "G-D7CGRPRKQE"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  // التحقق من حالة تسجيل الدخول
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      // إذا لم يكن مسجل دخول → تحويل إلى login.html
-      window.location.href = "login.html";
-    }
-  });
-</script>
 </body>
 </html>
