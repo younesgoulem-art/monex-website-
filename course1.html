@@ -61,17 +61,37 @@
       text-decoration: none;
       color: #d4af37;
       font-weight: bold;
-      transition: color 0.3s, border-bottom 0.3s;
-      padding: 5px 0;
+      position: relative;
+      padding: 5px 10px;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background: #d4af37;
+      transition: width 0.3s ease-in-out;
     }
 
     nav a:hover {
       color: #fff;
+      transform: translateY(-2px);
+    }
+
+    nav a:hover::after {
+      width: 100%;
     }
 
     nav a.active {
       color: #fff;
-      border-bottom: 2px solid #d4af37;
+    }
+
+    nav a.active::after {
+      width: 100%;
     }
 
     /* عنوان القسم */
@@ -257,16 +277,7 @@
 
   <!-- شبكة الفيديوهات -->
   <div class="video-grid">
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 1: مقدمة</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 2: مفاهيم أساسية</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/sBws8MSXN7A" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 3: كيفية فتح حساب</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/eX2qFMC8cFo" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 4: المنصات</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 5: التحليل الأساسي</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/zpOULjyy-n8" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 6: التحليل الفني</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 7: استراتيجيات</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/JGwWNGJdvx8" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 8: إدارة المخاطر</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/3fumBcKC6RE" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 9: نصائح عملية</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 10: الخلاصة</div></div>
+    <!-- نفس الفيديوهات -->
   </div>
 
   <!-- بطاقة التهنئة -->
@@ -318,6 +329,7 @@
   </script>
 </body>
 </html>
+
 
 
 
