@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تسجيل الدخول | أكاديمية مونكس</title>
+  <style>
+    :root {
+      --gold: #d4af37;
+      --gold-light: #f9e07f;
+      --bg-dark: #0b0b0c;
+      --text: #f7f7f7;
+      --radius: 20px;
+      --shadow: 0 12px 35px rgba(0,0,0,.6);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Cairo", sans-serif;
+      background: radial-gradient(circle at top, #1a1a1d, #0b0b0c);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 380px;
+      padding: 35px 25px;
+      background: linear-gradient(145deg, #141414, #1d1d21);
+      border-radius: var(--radius);
+      box-shadow: inset -4px -4px 10px rgba(255,255,255,.05),
+                  inset 4px 4px 10px rgba(0,0,0,.6),
+                  var(--shadow);
+      text-align: center;
+      animation: fadeIn 0.9s ease;
+    }
+
+    .logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 25px rgba(212,175,55,.4);
+      object-fit: cover;
+      animation: glow 2s infinite alternate;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      background: linear-gradient(92deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 12px;
+      outline: none;
+      font-size: 15px;
+      background: #1a1a1d;
+      color: var(--text);
+      box-shadow: inset -3px -3px 6px rgba(255,255,255,.07),
+                  inset 3px 3px 6px rgba(0,0,0,.6);
+      transition: all .3s;
+    }
+
+    input:focus {
+      box-shadow: inset -4px -4px 8px rgba(255,255,255,.1),
+                  inset 4px 4px 8px rgba(0,0,0,.7),
+                  0 0 10px rgba(212,175,55,.4);
+      transform: scale(1.02);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 12px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      transition: all 0.2s ease;
+      background: linear-gradient(92deg, var(--gold), var(--gold-light));
+      color: #1b1400;
+      box-shadow: 0 6px 18px rgba(212,175,55,.3);
+      perspective: 500px;
+      transform-style: preserve-3d;
+    }
+
+    .btn:hover {
+      box-shadow: 0 10px 25px rgba(212,175,55,.45);
+    }
+
+    .socials {
+      margin-top: 20px;
+    }
+
+    .socials a {
+      color: var(--gold-light);
+      font-size: 18px;
+      font-weight: bold;
+      transition: transform .3s, color .3s;
+      text-decoration: none;
+    }
+
+    .socials a:hover {
+      transform: scale(1.1);
+      color: var(--gold);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(25px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 15px rgba(212,175,55,.3); }
+      to   { box-shadow: 0 0 30px rgba(212,175,55,.6); }
+    }
+  </style>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } 
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
+      authDomain: "monex-academ.firebaseapp.com",
+      projectId: "monex-academ",
+      storageBucket: "monex-academ.appspot.com",
+      messagingSenderId: "739982923559",
+      appId: "1:739982923559:web:82432263c1758861d3fb02"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.login = function () {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => window.location.href = "index.html")
+        .catch((error) => alert(error.message));
+    };
+
+    // تأثير 3D للزر
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.querySelector(".btn");
+      btn.addEventListener("mousemove", (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `rotateX(${y/15}deg) rotateY(${x/15}deg) scale(1.05)`;
+      });
+      btn.addEventListener("mouseleave", () => {
+        btn.style.transform = "rotateX(0) rotateY(0) scale(1)";
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="login-box">
+    <img class="logo" src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="شعار الأكاديمية">
+    <h2>تسجيل الدخول</h2>
+    <input type="email" id="email" placeholder="البريد الإلكتروني">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <button class="btn" onclick="login()">🚀 دخول</button>
+    
+    <div class="socials">
+      <a href="https://instagram.com/monex_academy" target="_blank">Instagram | Monex Academy</a>
+    </div>
+  </div>
+</body>
+</html>
+
