@@ -14,11 +14,6 @@
       color: #fff;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* الهيدر */
     header {
       text-align: center;
       padding: 30px 10px 15px;
@@ -46,7 +41,6 @@
       }
     }
 
-    /* شريط التنقل */
     nav {
       display: flex;
       justify-content: center;
@@ -54,27 +48,19 @@
       padding: 10px;
       background: #000;
       border-bottom: 1px solid #333;
-      flex-wrap: wrap;
     }
 
     nav a {
       text-decoration: none;
       color: #d4af37;
       font-weight: bold;
-      transition: color 0.3s, border-bottom 0.3s;
-      padding: 5px 0;
+      transition: color 0.3s;
     }
 
     nav a:hover {
       color: #fff;
     }
 
-    nav a.active {
-      color: #fff;
-      border-bottom: 2px solid #d4af37;
-    }
-
-    /* عنوان القسم */
     h2 {
       color: #d4af37;
       text-align: center;
@@ -82,7 +68,6 @@
       font-size: 26px;
     }
 
-    /* شبكة الفيديوهات */
     .video-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -111,8 +96,7 @@
 
     .video-card iframe {
       width: 100%;
-      aspect-ratio: 16 / 9;
-      height: auto;
+      height: 200px;
       border: none;
     }
 
@@ -122,7 +106,6 @@
       color: #d4af37;
       font-weight: bold;
       font-size: 16px;
-      text-align: center;
     }
 
     @keyframes fadeInUp {
@@ -132,7 +115,6 @@
       }
     }
 
-    /* الفوتر */
     footer {
       background: #000;
       color: #d4af37;
@@ -142,23 +124,12 @@
       border-top: 2px solid #d4af37;
     }
 
-    footer p {
-      margin: 10px 0;
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
     .social-icons a {
+      margin: 0 10px;
       display: inline-block;
       font-size: 22px;
       color: #d4af37;
-      transition: transform 0.3s, color 0.3s;
+      transition: transform 0.3s;
     }
 
     .social-icons a:hover {
@@ -166,32 +137,41 @@
       color: #fff;
     }
 
-    /* زر الرجوع للأعلى */
-    #backToTop {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: #d4af37;
-      color: #000;
-      border: none;
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      font-size: 20px;
-      cursor: pointer;
+    /* الرسالة النهائية */
+    #congrats {
       display: none;
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
-      transition: background 0.3s, transform 0.3s;
-      z-index: 1000;
+      text-align: center;
+      margin: 40px auto;
+      padding: 20px;
+      max-width: 600px;
+      border: 2px solid #d4af37;
+      border-radius: 15px;
+      background: #111;
+      box-shadow: 0 0 15px rgba(212,175,55,0.5);
     }
 
-    #backToTop:hover {
+    #congrats h3 {
+      font-size: 22px;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    #congrats a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #d4af37;
+      color: #000;
+      font-weight: bold;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    #congrats a:hover {
       background: #fff;
-      transform: scale(1.1);
+      color: #000;
     }
   </style>
-  <!-- أيقونات -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
 
@@ -204,8 +184,8 @@
   <!-- شريط التنقل -->
   <nav>
     <a href="index.html">🏠 الرئيسية</a>
-    <a href="#" class="active">📚 الدورات</a>
-    <a href="contact.html">📞 اتصل بنا</a>
+    <a href="#">📚 الدورات</a>
+    <a href="#">📞 اتصل بنا</a>
   </nav>
 
   <h2>مشاهدة الدروس</h2>
@@ -221,7 +201,13 @@
     <div class="video-card"><iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" allowfullscreen></iframe><div class="video-title">الدرس 7: استراتيجيات</div></div>
     <div class="video-card"><iframe src="https://www.youtube.com/embed/JGwWNGJdvx8" allowfullscreen></iframe><div class="video-title">الدرس 8: إدارة المخاطر</div></div>
     <div class="video-card"><iframe src="https://www.youtube.com/embed/3fumBcKC6RE" allowfullscreen></iframe><div class="video-title">الدرس 9: نصائح عملية</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" allowfullscreen></iframe><div class="video-title">الدرس 10: الخلاصة</div></div>
+    <div class="video-card" id="last-video"><iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" allowfullscreen></iframe><div class="video-title">الدرس 10: الخلاصة</div></div>
+  </div>
+
+  <!-- الرسالة النهائية -->
+  <div id="congrats">
+    <h3>🎉 أحسنت يا بطل! مرحبا بك مع النخبة 🎉</h3>
+    <a href="https://t.me/YOUR_CHANNEL" target="_blank">🚀 انضم إلى قناتنا على التلغرام</a>
   </div>
 
   <!-- الفوتر -->
@@ -234,25 +220,18 @@
     <p>© 2025 أكاديمية مونكس</p>
   </footer>
 
-  <!-- زر الرجوع للأعلى -->
-  <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
-
   <script>
-    const backToTop = document.getElementById("backToTop");
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        backToTop.style.display = "block";
-      } else {
-        backToTop.style.display = "none";
-      }
-    });
-
-    backToTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    // إظهار الرسالة بعد انتهاء آخر فيديو
+    document.getElementById("last-video").querySelector("iframe").addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("congrats").style.display = "block";
+        document.getElementById("congrats").scrollIntoView({behavior: "smooth"});
+      }, 10000); // 10 ثواني بعد تشغيل الفيديو الأخير
     });
   </script>
+
 </body>
 </html>
+
 
 
