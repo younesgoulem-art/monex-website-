@@ -5,141 +5,149 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>دورة أساسيات التداول | أكاديمية مونكس</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
     body {
       margin: 0;
-      font-family: "Tajawal", Arial, sans-serif;
-      background-color: #0d0d0d;
+      font-family: "Tajawal", sans-serif;
+      background: linear-gradient(180deg, #000 0%, #111 100%);
       color: #fff;
-      line-height: 1.8;
     }
 
     /* الهيدر */
     header {
-      background: linear-gradient(90deg, #000, #1a1a1a);
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      text-align: center;
+      padding: 30px 10px 15px;
       border-bottom: 2px solid #d4af37;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.7);
     }
 
     header img {
-      height: 70px;
-      margin-left: 20px;
-      border-radius: 15px;
+      height: 80px;
+      margin-bottom: 10px;
     }
 
     header h1 {
-      color: #d4af37;
       font-size: 32px;
       margin: 0;
+      background: linear-gradient(90deg, #d4af37, #fff, #d4af37);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s linear infinite;
     }
 
-    /* مقدمة */
-    .intro {
-      text-align: center;
-      padding: 30px 20px;
-      max-width: 900px;
-      margin: auto;
+    @keyframes shine {
+      to {
+        background-position: 200% center;
+      }
     }
-    .intro h2 {
+
+    /* شريط التنقل */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      padding: 10px;
+      background: #000;
+      border-bottom: 1px solid #333;
+    }
+
+    nav a {
+      text-decoration: none;
       color: #d4af37;
-      font-size: 24px;
-      margin-bottom: 10px;
+      font-weight: bold;
+      transition: color 0.3s;
     }
-    .intro p {
-      color: #ccc;
-      font-size: 18px;
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    /* عنوان القسم */
+    h2 {
+      color: #d4af37;
+      text-align: center;
+      margin: 30px 0 20px;
+      font-size: 26px;
     }
 
     /* شبكة الفيديوهات */
-    .content {
-      display: flex;
-      max-width: 1300px;
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
       margin: auto;
     }
 
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      flex: 3;
-    }
-
     .video-card {
-      background: #1a1a1a;
-      padding: 15px;
-      border: 1px solid #d4af37;
+      background: #000;
+      border: 2px solid #d4af37;
       border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.6);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s forwards;
     }
 
     .video-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.8);
-    }
-
-    .video-card h3 {
-      color: #d4af37;
-      margin-bottom: 10px;
-      font-size: 18px;
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
     }
 
     .video-card iframe {
       width: 100%;
       height: 200px;
-      border-radius: 8px;
       border: none;
     }
 
-    /* شريط جانبي */
-    .sidebar {
-      flex: 1;
+    .video-title {
+      padding: 10px;
       background: #111;
-      border-right: 2px solid #d4af37;
-      padding: 20px;
-    }
-    .sidebar h3 {
       color: #d4af37;
-      margin-bottom: 15px;
+      font-weight: bold;
+      font-size: 16px;
     }
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
-    .sidebar ul li {
-      margin: 10px 0;
-    }
-    .sidebar ul li a {
-      text-decoration: none;
-      color: #fff;
-      transition: color 0.3s;
-    }
-    .sidebar ul li a:hover {
-      color: #d4af37;
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* الفوتر */
     footer {
       background: #000;
       color: #d4af37;
-      padding: 20px;
+      text-align: center;
+      padding: 25px 15px;
       margin-top: 30px;
       border-top: 2px solid #d4af37;
-      text-align: center;
     }
 
-    footer a {
-      color: #d4af37;
-      text-decoration: none;
+    footer p {
+      margin: 10px 0;
+    }
+
+    .social-icons a {
       margin: 0 10px;
-      font-weight: bold;
+      display: inline-block;
+      font-size: 22px;
+      color: #d4af37;
+      transition: transform 0.3s;
     }
 
+    .social-icons a:hover {
+      transform: scale(1.2);
+      color: #fff;
+    }
   </style>
+  <!-- أيقونات -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -149,98 +157,37 @@
     <h1>دورة أساسيات التداول</h1>
   </header>
 
-  <!-- المقدمة -->
-  <section class="intro">
-    <h2>📘 مقدمة الدورة</h2>
-    <p>
-      هذه الدورة مخصصة للمبتدئين في عالم التداول. سنتعرف على أساسيات الأسواق المالية، 
-      التحليل الفني والأساسي، إدارة رأس المال، ونفسية المتداول.  
-      الهدف هو تجهيزك بالمعرفة الضرورية لبدء رحلتك بثقة.
-    </p>
-  </section>
+  <!-- شريط التنقل -->
+  <nav>
+    <a href="index.html">🏠 الرئيسية</a>
+    <a href="#">📚 الدورات</a>
+    <a href="#">📞 اتصل بنا</a>
+  </nav>
 
-  <!-- المحتوى -->
-  <div class="content">
+  <h2>مشاهدة الدروس</h2>
 
-    <!-- الشريط الجانبي -->
-    <aside class="sidebar">
-      <h3>📑 قائمة الدروس</h3>
-      <ul>
-        <li><a href="#v1">الدرس 1 – مقدمة</a></li>
-        <li><a href="#v2">الدرس 2 – كيف تعمل الأسواق</a></li>
-        <li><a href="#v3">الدرس 3 – أساسيات العملات</a></li>
-        <li><a href="#v4">الدرس 4 – أوامر البيع والشراء</a></li>
-        <li><a href="#v5">الدرس 5 – التحليل الفني</a></li>
-        <li><a href="#v6">الدرس 6 – التحليل الأساسي</a></li>
-        <li><a href="#v7">الدرس 7 – إدارة رأس المال</a></li>
-        <li><a href="#v8">الدرس 8 – نفسية المتداول</a></li>
-        <li><a href="#v9">الدرس 9 – استراتيجيات بسيطة</a></li>
-        <li><a href="#v10">الدرس 10 – خطوات عملية</a></li>
-      </ul>
-    </aside>
-
-    <!-- شبكة الفيديوهات -->
-    <div class="video-grid">
-
-      <div class="video-card" id="v1">
-        <h3>الدرس 1 – مقدمة عن التداول</h3>
-        <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-card" id="v2">
-        <h3>الدرس 2 – كيف تعمل الأسواق</h3>
-        <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-card" id="v3">
-        <h3>الدرس 3 – أساسيات العملات</h3>
-        <iframe src="https://www.youtube.com/embed/sBws8MSXN7A" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-card" id="v4">
-        <h3>الدرس 4 – أوامر البيع والشراء</h3>
-        <iframe src="https://www.youtube.com/embed/eX2qFMC8cFo" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-card" id="v5">
-        <h3>الدرس 5 – التحليل الفني</h3>
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-card" id="v6">
-        <h3>الدرس 6 – التحليل الأساسي</h3>
-        <iframe src="https://www.youtube.com/embed/zpOULjyy-n8" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-card" id="v7">
-        <h3>الدرس 7 – إدارة رأس المال</h3>
-        <iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-card" id="v8">
-        <h3>الدرس 8 – نفسية المتداول</h3>
-        <iframe src="https://www.youtube.com/embed/JGwWNGJdvx8" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-card" id="v9">
-        <h3>الدرس 9 – استراتيجيات بسيطة</h3>
-        <iframe src="https://www.youtube.com/embed/3fumBcKC6RE" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-card" id="v10">
-        <h3>الدرس 10 – خطواتك العملية الأولى</h3>
-        <iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" allowfullscreen></iframe>
-      </div>
-
-    </div>
+  <!-- شبكة الفيديوهات -->
+  <div class="video-grid">
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen></iframe><div class="video-title">الدرس 1: مقدمة</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen></iframe><div class="video-title">الدرس 2: مفاهيم أساسية</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/sBws8MSXN7A" allowfullscreen></iframe><div class="video-title">الدرس 3: كيفية فتح حساب</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/eX2qFMC8cFo" allowfullscreen></iframe><div class="video-title">الدرس 4: المنصات</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe><div class="video-title">الدرس 5: التحليل الأساسي</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/zpOULjyy-n8" allowfullscreen></iframe><div class="video-title">الدرس 6: التحليل الفني</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" allowfullscreen></iframe><div class="video-title">الدرس 7: استراتيجيات</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/JGwWNGJdvx8" allowfullscreen></iframe><div class="video-title">الدرس 8: إدارة المخاطر</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/3fumBcKC6RE" allowfullscreen></iframe><div class="video-title">الدرس 9: نصائح عملية</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" allowfullscreen></iframe><div class="video-title">الدرس 10: الخلاصة</div></div>
   </div>
 
   <!-- الفوتر -->
   <footer>
-    <p>📌 تابعنا على:</p>
-    <a href="https://t.me/YOUR_CHANNEL" target="_blank">تليغرام</a> |
-    <a href="https://www.youtube.com/" target="_blank">يوتيوب</a> |
-    <a href="https://twitter.com/" target="_blank">تويتر</a>
+    <p>📌 انضم إلى قناتنا على التلغرام لمتابعة كل الدورات:</p>
+    <div class="social-icons">
+      <a href="https://t.me/YOUR_CHANNEL" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://youtube.com/YOUR_CHANNEL" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>© 2025 أكاديمية مونكس</p>
   </footer>
 
 </body>
