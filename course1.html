@@ -18,10 +18,28 @@
       scroll-behavior: smooth;
     }
 
+    /* شريط التقدم */
+    #progressBarContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: #333;
+      z-index: 10000;
+    }
+
+    #progressBar {
+      height: 100%;
+      width: 0%;
+      background: #d4af37;
+      transition: width 0.25s ease-out;
+    }
+
     /* الهيدر */
     header {
       text-align: center;
-      padding: 30px 10px 15px;
+      padding: 40px 10px 15px;
       border-bottom: 2px solid #d4af37;
     }
 
@@ -41,9 +59,7 @@
     }
 
     @keyframes shine {
-      to {
-        background-position: 200% center;
-      }
+      to { background-position: 200% center; }
     }
 
     /* شريط التنقل */
@@ -240,6 +256,11 @@
 </head>
 <body>
 
+  <!-- شريط التقدم -->
+  <div id="progressBarContainer">
+    <div id="progressBar"></div>
+  </div>
+
   <!-- الهيدر -->
   <header>
     <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="Logo">
@@ -257,16 +278,16 @@
 
   <!-- شبكة الفيديوهات -->
   <div class="video-grid">
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 1: مقدمة</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 2: مفاهيم أساسية</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/sBws8MSXN7A" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 3: كيفية فتح حساب</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/eX2qFMC8cFo" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 4: المنصات</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 5: التحليل الأساسي</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/zpOULjyy-n8" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 6: التحليل الفني</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 7: استراتيجيات</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/JGwWNGJdvx8" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 8: إدارة المخاطر</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/3fumBcKC6RE" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 9: نصائح عملية</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe><div class="video-title">الدرس 10: الخلاصة</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 1: مقدمة</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 2: مفاهيم أساسية</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/sBws8MSXN7A" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 3: كيفية فتح حساب</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/eX2qFMC8cFo" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 4: المنصات</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 5: التحليل الأساسي</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/zpOULjyy-n8" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 6: التحليل الفني</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 7: استراتيجيات</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/JGwWNGJdvx8" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 8: إدارة المخاطر</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/3fumBcKC6RE" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 9: نصائح عملية</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 10: الخلاصة</div></div>
   </div>
 
   <!-- بطاقة التهنئة -->
@@ -291,20 +312,25 @@
 
   <script>
     const backToTop = document.getElementById("backToTop");
+    const progressBar = document.getElementById("progressBar");
 
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        backToTop.style.display = "block";
-      } else {
-        backToTop.style.display = "none";
-      }
+      // زر الرجوع للأعلى
+      if (window.scrollY > 300) backToTop.style.display = "block";
+      else backToTop.style.display = "none";
+
+      // شريط التقدم
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressBar.style.width = scrollPercent + "%";
     });
 
     backToTop.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    // ظهور الفيديوهات عند التمرير
+    // ظهور الفيديوهات وبطاقة التهنئة عند التمرير
     const cards = document.querySelectorAll(".video-card, .congrats-card");
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -318,6 +344,5 @@
   </script>
 </body>
 </html>
-
 
 
