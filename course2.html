@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دورة فوركس vip | أكاديمية مونكس</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: "Tajawal", sans-serif;
+      background: linear-gradient(180deg, #000 0%, #111 100%);
+      color: #fff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    /* شريط التقدم */
+    #progressBarContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: #333;
+      z-index: 10000;
+    }
+    #progressBar {
+      height: 100%;
+      width: 0%;
+      background: #d4af37;
+      transition: width 0.25s ease-out;
+    }
+
+    /* الهيدر */
+    header {
+      text-align: center;
+      padding: 40px 10px 15px;
+      border-bottom: 2px solid #d4af37;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* الشعار الدائري مع توهج */
+    header .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 4px solid #d4af37;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
+      background: radial-gradient(circle at 30% 30%, #fff 0%, #d4af37 60%, #d4af37 100%);
+      animation: glow 2.5s infinite alternate;
+    }
+
+    header .logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); transform: scale(1); }
+      50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.9); transform: scale(1.05); }
+      100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.7); transform: scale(1); }
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin: 0;
+      background: linear-gradient(90deg, #d4af37, #fff, #d4af37);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s linear infinite;
+    }
+
+    @keyframes shine { to { background-position: 200% center; } }
+
+    /* شريط التنقل */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      padding: 12px 10px;
+      background: #000;
+      border-bottom: 1px solid #333;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #d4af37;
+      font-weight: bold;
+      padding: 8px 20px;
+      border-radius: 8px;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+
+    nav a:hover {
+      color: #000;
+      background: #d4af37;
+      transform: scale(1.05);
+      border-color: #fff;
+    }
+
+    nav a.active {
+      color: #000;
+      background: #d4af37;
+      border-color: #fff;
+    }
+
+    /* عنوان القسم */
+    h2 {
+      color: #d4af37;
+      text-align: center;
+      margin: 30px 0 20px;
+      font-size: 26px;
+    }
+
+    /* شبكة الفيديوهات */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .video-card {
+      background: #000;
+      border: 2px solid #d4af37;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .video-card.show {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.8s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    }
+
+    .video-card iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      border: none;
+    }
+
+    .video-title {
+      padding: 10px;
+      background: #111;
+      color: #d4af37;
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    /* بطاقة التهنئة */
+    .congrats-card {
+      margin: 40px auto;
+      padding: 25px;
+      max-width: 600px;
+      text-align: center;
+      background: #111;
+      border: 2px solid #d4af37;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 0.8s ease;
+    }
+
+    .congrats-card.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .congrats-card h3 { color: #d4af37; font-size: 24px; margin-bottom: 15px; }
+    .congrats-card p { font-size: 18px; margin-bottom: 20px; }
+    .congrats-card a {
+      display: inline-block;
+      background: #d4af37;
+      color: #000;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .congrats-card a:hover {
+      background: #fff;
+      transform: scale(1.05);
+    }
+
+    /* الفوتر */
+    footer {
+      background: #000;
+      color: #d4af37;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 30px;
+      border-top: 2px solid #d4af37;
+    }
+
+    footer p { margin: 10px 0; }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      font-size: 22px;
+      color: #d4af37;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.2);
+      color: #fff;
+    }
+
+    /* زر الرجوع للأعلى */
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #d4af37;
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+      transition: background 0.3s, transform 0.3s;
+      z-index: 1000;
+    }
+    #backToTop:hover { background: #fff; transform: scale(1.1); }
+  </style>
+  <!-- أيقونات -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- شريط التقدم -->
+  <div id="progressBarContainer">
+    <div id="progressBar"></div>
+  </div>
+
+  <!-- الهيدر -->
+  <header>
+    <div class="logo">
+      <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="Logo">
+    </div>
+    <h1>دورة أساسيات التداول</h1>
+  </header>
+
+  <!-- شريط التنقل -->
+  <nav>
+    <a href="index.html" class="active"><i class="fas fa-home"></i> الرئيسية</a>
+    <a href="#lessons"><i class="fas fa-book"></i> الدورات</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> اتصل بنا</a>
+  </nav>
+
+  <h2 id="lessons">مشاهدة الدروس</h2>
+
+  <!-- شبكة الفيديوهات -->
+  <div class="video-grid">
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 1: مقدمة</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 2: مفاهيم أساسية</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/sBws8MSXN7A" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 3: كيفية فتح حساب</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/eX2qFMC8cFo" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 4: المنصات</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 5: التحليل الأساسي</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/zpOULjyy-n8" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 6: التحليل الفني</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 7: استراتيجيات</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/JGwWNGJdvx8" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 8: إدارة المخاطر</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/3fumBcKC6RE" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 9: نصائح عملية</div></div>
+    <div class="video-card"><iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" allowfullscreen loading="lazy"></iframe><div class="video-title">الدرس 10: الخلاصة</div></div>
+  </div>
+
+  <!-- بطاقة التهنئة -->
+  <div class="congrats-card" id="congrats">
+    <h3>🎉 تهانينا!</h3>
+    <p>مرحبا بك يا نخبة 👑 لقد أكملت الدورة بنجاح.</p>
+    <a href="https://t.me/YOUR_CHANNEL" target="_blank">انضم إلى قناتنا على التلغرام</a>
+  </div>
+
+  <!-- الفوتر -->
+  <footer>
+    <p>📌 انضم إلى قناتنا على التلغرام لمتابعة كل الدورات:</p>
+    <div class="social-icons">
+      <a href="https://t.me/YOUR_CHANNEL" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://youtube.com/YOUR_CHANNEL" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>© 2025 أكاديمية مونكس</p>
+  </footer>
+
+  <!-- زر الرجوع للأعلى -->
+  <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+  <script>
+    const backToTop = document.getElementById("backToTop");
+    const progressBar = document.getElementById("progressBar");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) backToTop.style.display = "block";
+      else backToTop.style.display = "none";
+
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressBar.style.width = scrollPercent + "%";
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // ظهور الفيديوهات وبطاقة التهنئة عند التمرير
+    const cards = document.querySelectorAll(".video-card, .congrats-card");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => observer.observe(card));
+  </script>
+</body>
+</html>
