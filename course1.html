@@ -3,72 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الدورة الأولى | أكاديمية مونكس</title>
+  <title>الدورة 1 | أكاديمية مونكس</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      margin: 0;
+      font-family: "Tajawal", Arial, sans-serif;
       background-color: #111;
       color: #fff;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #d4af37;
-      color: #111;
       text-align: center;
-      padding: 20px;
-      font-size: 22px;
-      font-weight: bold;
     }
-    .container {
-      padding: 20px;
-      max-width: 1000px;
-      margin: auto;
+
+    header {
+      background-color: #000;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 2px solid #d4af37;
     }
+
+    header img {
+      height: 60px;
+      margin-left: 15px;
+      border-radius: 12px;
+    }
+
+    header h1 {
+      color: #d4af37;
+      font-size: 26px;
+      margin: 0;
+    }
+
+    h2 {
+      color: #d4af37;
+      margin: 20px 0;
+    }
+
     .video-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
+      gap: 15px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
     }
-    iframe {
+
+    .video-grid iframe {
       width: 100%;
       height: 200px;
-      border: none;
+      border: 2px solid #d4af37;
       border-radius: 10px;
-      box-shadow: 0 0 10px #d4af37;
     }
+
     footer {
-      margin-top: 40px;
-      text-align: center;
-      background: #222;
-      color: #aaa;
-      padding: 15px;
+      background: #000;
+      color: #d4af37;
+      padding: 20px;
+      margin-top: 30px;
+      border-top: 2px solid #d4af37;
     }
+
     footer a {
       color: #d4af37;
       text-decoration: none;
-      margin: 0 10px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-<header>📚 الدورة الأولى - أكاديمية مونكس</header>
+  <!-- الهيدر مع اللوجو -->
+  <header>
+    <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="Logo">
+    <h1>دورة HTML للمبتدئين</h1>
+  </header>
 
-<div class="container">
-  <h2>قائمة الفيديوهات</h2>
+  <h2>مشاهدة الدروس</h2>
+
+  <!-- شبكة الفيديوهات -->
   <div class="video-grid">
-    <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/sBws8MSXN7A" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/eX2qFMC8cFo" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/zpOULjyy-n8" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/JGwWNGJdvx8" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/3fumBcKC6RE" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" allowfullscreen></iframe>
   </div>
-</div>
 
-<footer>
-  <p>تابعنا على:</p>
-  <a href="#">📺 قناتنا على يوتيوب</a> | 
-  <a href="#">📢 قناتنا على تيليغرام</a>
-</footer>
+  <!-- الفوتر -->
+  <footer>
+    <p>📌 انضم إلى قناتنا على التلغرام لمتابعة كل الدورات:  
+      <a href="https://t.me/YOUR_CHANNEL" target="_blank">اضغط هنا</a>
+    </p>
+  </footer>
 
 </body>
 </html>
+
