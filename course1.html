@@ -3,235 +3,198 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>دورة أساسيات التداول | أكاديمية مونكس</title>
+  <title>دورة التداول | أكاديمية مونكس</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
-
     body {
       margin: 0;
-      font-family: "Tajawal", sans-serif;
-      background: linear-gradient(180deg, #000 0%, #111 100%);
+      font-family: 'Tahoma', sans-serif;
+      background: #000;
       color: #fff;
+      line-height: 1.6;
     }
 
     header {
+      background: #111;
+      padding: 20px;
       text-align: center;
-      padding: 30px 10px 15px;
       border-bottom: 2px solid #d4af37;
     }
 
     header img {
+      width: 80px;
       height: 80px;
+      border-radius: 50%;
+      border: 2px solid #d4af37;
       margin-bottom: 10px;
     }
 
     header h1 {
-      font-size: 32px;
       margin: 0;
-      background: linear-gradient(90deg, #d4af37, #fff, #d4af37);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shine 3s linear infinite;
+      color: #d4af37;
+      font-size: 24px;
     }
 
-    @keyframes shine {
-      to {
-        background-position: 200% center;
-      }
-    }
-
+    /* شريط التنقل */
     nav {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      padding: 10px;
-      background: #000;
-      border-bottom: 1px solid #333;
+      margin-top: 15px;
     }
 
     nav a {
+      display: inline-block;
+      margin: 0 12px;
+      padding: 8px 16px;
+      border-radius: 25px;
       text-decoration: none;
-      color: #d4af37;
       font-weight: bold;
-      transition: color 0.3s;
+      color: #fff;
+      background: transparent;
+      border: 1px solid #d4af37;
+      transition: 0.3s;
     }
 
     nav a:hover {
-      color: #fff;
+      background: #d4af37;
+      color: #000;
     }
 
-    h2 {
-      color: #d4af37;
-      text-align: center;
-      margin: 30px 0 20px;
-      font-size: 26px;
-    }
-
-    .video-grid {
+    .video-gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 20px;
       padding: 20px;
-      max-width: 1200px;
-      margin: auto;
     }
 
     .video-card {
-      background: #000;
-      border: 2px solid #d4af37;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-      transition: transform 0.3s, box-shadow 0.3s;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s forwards;
+      background: #111;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #d4af37;
+      box-shadow: 0 0 10px rgba(212,175,55,0.3);
+      transition: transform 0.3s;
     }
 
     .video-card:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+      transform: translateY(-5px);
     }
 
     .video-card iframe {
       width: 100%;
-      height: 200px;
+      aspect-ratio: 16/9;
+      border-radius: 8px;
       border: none;
     }
 
-    .video-title {
-      padding: 10px;
+    .video-card h3 {
+      text-align: center;
+      margin-top: 10px;
+      color: #d4af37;
+    }
+
+    /* بطاقة التهنئة */
+    .congrats-card {
+      text-align: center;
       background: #111;
-      color: #d4af37;
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    footer {
-      background: #000;
-      color: #d4af37;
-      text-align: center;
-      padding: 25px 15px;
-      margin-top: 30px;
-      border-top: 2px solid #d4af37;
-    }
-
-    .social-icons a {
-      margin: 0 10px;
-      display: inline-block;
-      font-size: 22px;
-      color: #d4af37;
-      transition: transform 0.3s;
-    }
-
-    .social-icons a:hover {
-      transform: scale(1.2);
-      color: #fff;
-    }
-
-    /* الرسالة النهائية */
-    #congrats {
-      display: none;
-      text-align: center;
-      margin: 40px auto;
-      padding: 20px;
-      max-width: 600px;
       border: 2px solid #d4af37;
       border-radius: 15px;
-      background: #111;
-      box-shadow: 0 0 15px rgba(212,175,55,0.5);
+      padding: 25px;
+      margin: 30px auto;
+      max-width: 600px;
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.7);
+      animation: popIn 1.5s ease forwards, glow 2s infinite alternate;
     }
 
-    #congrats h3 {
-      font-size: 22px;
-      color: #fff;
+    .congrats-card h2 {
+      color: #d4af37;
+      font-size: 28px;
       margin-bottom: 15px;
     }
 
-    #congrats a {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #d4af37;
-      color: #000;
-      font-weight: bold;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: 0.3s;
+    .congrats-card p {
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 20px;
     }
 
-    #congrats a:hover {
-      background: #fff;
-      color: #000;
+    .telegram-btn {
+      display: inline-block;
+      background: #0088cc;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .telegram-btn:hover {
+      background: #006fa1;
+      transform: scale(1.05);
+    }
+
+    /* أنيميشن الدخول */
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.6) translateY(40px); }
+      70% { opacity: 1; transform: scale(1.1) translateY(-10px); }
+      100% { transform: scale(1) translateY(0); }
+    }
+
+    /* توهج ذهبي */
+    @keyframes glow {
+      from { box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
+      to   { box-shadow: 0 0 30px rgba(212, 175, 55, 0.9); }
     }
   </style>
 </head>
 <body>
 
-  <!-- الهيدر -->
   <header>
-    <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="Logo">
-    <h1>دورة أساسيات التداول</h1>
+    <!-- ضع هنا اللوجو تبعك -->
+    <img src="logo.png" alt="شعار الأكاديمية">
+    <h1>📚 دورة أساسيات التداول | أكاديمية مونكس</h1>
+    
+    <!-- شريط التنقل -->
+    <nav>
+      <a href="index.html">🏠 الرئيسية</a>
+      <a href="about.html">ℹ️ حولنا</a>
+      <a href="contact.html">📞 اتصل بنا</a>
+    </nav>
   </header>
 
-  <!-- شريط التنقل -->
-  <nav>
-    <a href="index.html">🏠 الرئيسية</a>
-    <a href="#">📚 الدورات</a>
-    <a href="#">📞 اتصل بنا</a>
-  </nav>
-
-  <h2>مشاهدة الدروس</h2>
-
-  <!-- شبكة الفيديوهات -->
-  <div class="video-grid">
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen></iframe><div class="video-title">الدرس 1: مقدمة</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen></iframe><div class="video-title">الدرس 2: مفاهيم أساسية</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/sBws8MSXN7A" allowfullscreen></iframe><div class="video-title">الدرس 3: كيفية فتح حساب</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/eX2qFMC8cFo" allowfullscreen></iframe><div class="video-title">الدرس 4: المنصات</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe><div class="video-title">الدرس 5: التحليل الأساسي</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/zpOULjyy-n8" allowfullscreen></iframe><div class="video-title">الدرس 6: التحليل الفني</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" allowfullscreen></iframe><div class="video-title">الدرس 7: استراتيجيات</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/JGwWNGJdvx8" allowfullscreen></iframe><div class="video-title">الدرس 8: إدارة المخاطر</div></div>
-    <div class="video-card"><iframe src="https://www.youtube.com/embed/3fumBcKC6RE" allowfullscreen></iframe><div class="video-title">الدرس 9: نصائح عملية</div></div>
-    <div class="video-card" id="last-video"><iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" allowfullscreen></iframe><div class="video-title">الدرس 10: الخلاصة</div></div>
-  </div>
-
-  <!-- الرسالة النهائية -->
-  <div id="congrats">
-    <h3>🎉 أحسنت يا بطل! مرحبا بك مع النخبة 🎉</h3>
-    <a href="https://t.me/YOUR_CHANNEL" target="_blank">🚀 انضم إلى قناتنا على التلغرام</a>
-  </div>
-
-  <!-- الفوتر -->
-  <footer>
-    <p>📌 انضم إلى قناتنا على التلغرام لمتابعة كل الدورات:</p>
-    <div class="social-icons">
-      <a href="https://t.me/YOUR_CHANNEL" target="_blank"><i class="fab fa-telegram"></i></a>
-      <a href="https://youtube.com/YOUR_CHANNEL" target="_blank"><i class="fab fa-youtube"></i></a>
+  <section class="video-gallery">
+    <!-- مثال فيديوهات -->
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID1" loading="lazy" allowfullscreen></iframe>
+      <h3>الدرس 1: المقدمة</h3>
     </div>
-    <p>© 2025 أكاديمية مونكس</p>
-  </footer>
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID2" loading="lazy" allowfullscreen></iframe>
+      <h3>الدرس 2: أساسيات السوق</h3>
+    </div>
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID3" loading="lazy" allowfullscreen></iframe>
+      <h3>الدرس 3: أدوات التداول</h3>
+    </div>
+    <!-- ... باقي الفيديوهات ... -->
 
-  <script>
-    // إظهار الرسالة بعد انتهاء آخر فيديو
-    document.getElementById("last-video").querySelector("iframe").addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("congrats").style.display = "block";
-        document.getElementById("congrats").scrollIntoView({behavior: "smooth"});
-      }, 10000); // 10 ثواني بعد تشغيل الفيديو الأخير
-    });
-  </script>
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID10" loading="lazy" allowfullscreen></iframe>
+      <h3>الدرس 10: الخاتمة</h3>
+    </div>
+  </section>
+
+  <!-- بطاقة التهنئة -->
+  <div class="congrats-card">
+    <h2>🎉 أحسنت يا بطل!</h2>
+    <p>مرحبا بك مع النخبة 🚀<br>لقد أكملت دورة أساسيات التداول بنجاح.</p>
+    <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="telegram-btn">
+      📲 انضم إلى قناتنا على التلغرام
+    </a>
+  </div>
 
 </body>
 </html>
+
 
 
 
