@@ -41,25 +41,35 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
     }
 
+    /* الشعار الدائري مع توهج */
     header .logo {
-      width: 100px;
-      height: 100px;
-      background: #d4af37;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      border: 3px solid #fff;
+      border: 4px solid #d4af37;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
+      background: radial-gradient(circle at 30% 30%, #fff 0%, #d4af37 60%, #d4af37 100%);
+      animation: glow 2.5s infinite alternate;
     }
 
     header .logo img {
       width: 70%;
       height: 70%;
       object-fit: cover;
+      border-radius: 50%;
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); transform: scale(1); }
+      50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.9); transform: scale(1.05); }
+      100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.7); transform: scale(1); }
     }
 
     header h1 {
@@ -346,4 +356,3 @@
   </script>
 </body>
 </html>
-
