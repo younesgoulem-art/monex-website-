@@ -111,29 +111,30 @@
       color: #555;
     }
     /* قسم الفريق */
-    .team-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 40px;
       margin-top: 30px;
+      justify-items: center;
     }
     .team-member {
       text-align: center;
-      width: 200px;
+      overflow: hidden;
+      border-radius: 15px;
     }
     .team-member img {
       width: 100%;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s;
+      transition: transform 0.4s;
     }
     .team-member img:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
     .team-member h3 {
       margin-top: 12px;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: #333;
     }
     .team-member p {
@@ -157,14 +158,6 @@
       }
       nav ul {
         flex-direction: column;
-      }
-      .team-member {
-        width: 45%;
-      }
-    }
-    @media (max-width: 480px) {
-      .team-member {
-        width: 90%;
       }
     }
   </style>
@@ -196,7 +189,7 @@
 
     <!-- قسم فريق العمل -->
     <h2 style="margin-top: 50px;">فريقنا</h2>
-    <div class="team-container">
+    <div class="team-grid">
       <div class="team-member">
         <img src="team1.jpg" alt="أحمد علي">
         <h3>أحمد علي</h3>
@@ -231,5 +224,4 @@
 
 </body>
 </html>
-
 
