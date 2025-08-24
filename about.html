@@ -92,7 +92,7 @@
     /* صندوق المحتوى */
     main {
       max-width: 1100px;
-      margin: 40px auto 40px; /* تم زيادة المسافة */
+      margin: 40px auto 40px; 
       background: white;
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
@@ -115,25 +115,29 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 30px;
-      margin-top: 20px;
+      gap: 40px;
+      margin-top: 30px;
     }
     .team-member {
       text-align: center;
-      width: 180px;
+      width: 200px;
     }
     .team-member img {
       width: 100%;
       border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    .team-member img:hover {
+      transform: scale(1.05);
     }
     .team-member h3 {
-      margin-top: 10px;
-      font-size: 1.1rem;
+      margin-top: 12px;
+      font-size: 1.2rem;
       color: #333;
     }
     .team-member p {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: #555;
     }
     /* الفوتر */
@@ -153,6 +157,14 @@
       }
       nav ul {
         flex-direction: column;
+      }
+      .team-member {
+        width: 45%;
+      }
+    }
+    @media (max-width: 480px) {
+      .team-member {
+        width: 90%;
       }
     }
   </style>
@@ -185,31 +197,31 @@
     <!-- قسم فريق العمل -->
     <h2 style="margin-top: 50px;">فريقنا</h2>
     <div class="team-container">
-      
       <div class="team-member">
         <img src="team1.jpg" alt="أحمد علي">
         <h3>أحمد علي</h3>
         <p>خبير التداول والاستثمار</p>
       </div>
-
       <div class="team-member">
         <img src="team2.jpg" alt="سارة محمد">
         <h3>سارة محمد</h3>
         <p>مدربة تطوير مهارات</p>
       </div>
-
       <div class="team-member">
         <img src="team3.jpg" alt="محمد حسن">
         <h3>محمد حسن</h3>
         <p>محلل الأسواق المالية</p>
       </div>
-
       <div class="team-member">
         <img src="team4.jpg" alt="ليلى أحمد">
         <h3>ليلى أحمد</h3>
         <p>مصممة المحتوى التعليمي</p>
       </div>
-
+      <div class="team-member">
+        <img src="team5.jpg" alt="يوسف سعيد">
+        <h3>يوسف سعيد</h3>
+        <p>مدير المحتوى الرقمي</p>
+      </div>
     </div>
   </main>
 
@@ -219,6 +231,5 @@
 
 </body>
 </html>
-
 
 
