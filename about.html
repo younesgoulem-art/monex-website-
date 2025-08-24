@@ -18,8 +18,6 @@
       line-height: 1.6;
       scroll-behavior: smooth;
     }
-
-    /* ------------------- الهيدر ------------------- */
     header {
       position: relative;
       background: url('swing-trading-patterns.jpg') center/cover no-repeat;
@@ -66,23 +64,14 @@
       font-size: 2.8rem;
       margin-bottom: 12px;
       text-shadow: 0 3px 10px rgba(0,0,0,0.7);
-      transition: transform 0.5s, color 0.5s;
-    }
-    header h1:hover {
-      color: #ffcc00;
-      transform: translateY(-5px);
     }
     header p {
       font-size: 1.2rem;
-      opacity: 0.95;
     }
-
     @keyframes fadeInDown {
       0% {opacity: 0; transform: translateY(-30px);}
       100% {opacity: 1; transform: translateY(0);}
     }
-
-    /* ------------------- شريط التنقل ------------------- */
     nav {
       background: white;
       box-shadow: 0 4px 20px rgba(0,0,0,0.05);
@@ -107,26 +96,10 @@
       border-radius: 8px;
       transition: 0.3s;
       position: relative;
-      overflow: hidden;
-    }
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      bottom: 0;
-      left: -100%;
-      background-color: #ffcc00;
-      transition: 0.4s;
-    }
-    nav a:hover::after {
-      left: 0;
     }
     nav a:hover {
       color: #ffcc00;
     }
-
-    /* ------------------- المحتوى الرئيسي ------------------- */
     main {
       max-width: 1200px;
       margin: 60px auto;
@@ -137,7 +110,6 @@
       margin-bottom: 20px;
       color: #333;
       font-size: 2rem;
-      position: relative;
     }
     main h2::after {
       content: '';
@@ -155,53 +127,48 @@
       margin: 0 auto 40px auto;
       color: #555;
     }
-
-    /* ------------------- قسم الفريق بشكل عمودي ------------------- */
     .team-grid {
       display: flex;
       flex-direction: column;
-      gap: 50px;
+      gap: 60px;
       align-items: center;
       margin-top: 50px;
     }
-
     .team-member {
       background: white;
       border-radius: 25px;
       overflow: hidden;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       transition: transform 0.4s, box-shadow 0.4s;
-      width: 80%;
-      max-width: 600px;
-      border: 4px solid gold; /* إطار ذهبي */
+      width: 90%;
+      max-width: 700px;
+      border: 5px solid gold;
     }
     .team-member:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      transform: translateY(-12px) scale(1.04);
+      box-shadow: 0 15px 45px rgba(0,0,0,0.3);
     }
     .team-member img {
       width: 100%;
-      height: 400px;
+      height: 450px;
       object-fit: cover;
       transition: transform 0.4s;
-      border-bottom: 4px solid gold; /* خط ذهبي */
+      border-bottom: 5px solid gold;
     }
     .team-member img:hover {
-      transform: scale(1.05);
+      transform: scale(1.06);
     }
     .team-member h3 {
       margin-top: 15px;
-      font-size: 1.6rem;
-      color: #333;
+      font-size: 1.8rem;
+      color: #222;
     }
     .team-member p {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: #666;
       margin-bottom: 20px;
     }
-
-    /* ------------------- الفوتر ------------------- */
     footer {
       background: #222;
       color: white;
@@ -209,47 +176,16 @@
       padding: 25px 15px;
       margin-top: 60px;
       font-size: 0.95rem;
-      transition: background 0.3s;
     }
-    footer:hover {
-      background: #111;
-    }
-
-    /* ------------------- Media Queries ------------------- */
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      header p {
-        font-size: 1rem;
-      }
-      header .logo {
-        max-height: 60px;
-      }
-      nav ul {
-        flex-direction: column;
-        gap: 12px;
-      }
-      .team-member img {
-        height: 300px;
-      }
+      .team-member img { height: 320px; }
     }
-
     @media (max-width: 480px) {
-      main h2 {
-        font-size: 1.7rem;
-      }
-      main p {
-        font-size: 1rem;
-      }
-      .team-member img {
-        height: 240px;
-      }
+      .team-member img { height: 250px; }
     }
   </style>
 </head>
 <body>
-
   <header>
     <img src="524295278_1909982526403223_6740863275995580947_n.jpg" alt="لوغو أكاديمية مونكس" class="logo" loading="lazy">
     <div class="content">
@@ -257,7 +193,6 @@
       <p>في أكاديمية مونكس نقدم محتوى تعليمي احترافي في التداول وتنمية المهارات، مع التركيز على الجودة والإبداع.</p>
     </div>
   </header>
-
   <nav aria-label="القائمة الرئيسية">
     <ul>
       <li><a href="index.html">الرئيسية</a></li>
@@ -265,14 +200,12 @@
       <li><a href="contact.html">اتصل بنا</a></li>
     </ul>
   </nav>
-
   <main>
     <h2>رسالتنا</h2>
     <p>
       نحن نطمح لتقديم أفضل المحتويات التعليمية في مجالات التداول وتنمية المهارات الشخصية والمهنية.
       هدفنا تمكين المتعلمين من اتخاذ قرارات مستنيرة تحقق لهم النجاح المالي والمعرفي بثقة واحترافية.
     </p>
-
     <h2>فريقنا</h2>
     <div class="team-grid">
       <div class="team-member">
@@ -302,11 +235,10 @@
       </div>
     </div>
   </main>
-
   <footer>
     جميع الحقوق محفوظة © 2025 - Monex Academy
   </footer>
-
 </body>
 </html>
+
 
