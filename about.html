@@ -127,48 +127,62 @@
       margin: 0 auto 40px auto;
       color: #555;
     }
+
+    /* ===== قسم الفريق الجديد ===== */
     .team-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 60px;
-      align-items: center;
-      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
     }
     .team-member {
       background: white;
-      border-radius: 25px;
-      overflow: hidden;
+      border-radius: 20px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      transition: transform 0.4s, box-shadow 0.4s;
-      width: 90%;
-      max-width: 700px;
-      border: 5px solid gold;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .team-member:hover {
-      transform: translateY(-12px) scale(1.04);
-      box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
     }
     .team-member img {
-      width: 100%;
-      height: 450px;
+      width: 160px;
+      height: 160px;
       object-fit: cover;
-      transition: transform 0.4s;
-      border-bottom: 5px solid gold;
+      border-radius: 50%;
+      border: 4px solid gold;
+      margin-bottom: 15px;
+      transition: transform 0.3s;
     }
     .team-member img:hover {
-      transform: scale(1.06);
+      transform: scale(1.05);
     }
     .team-member h3 {
-      margin-top: 15px;
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       color: #222;
+      margin-bottom: 8px;
     }
     .team-member p {
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: #666;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+    .social-links a img {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s;
+    }
+    .social-links a img:hover {
+      transform: scale(1.2);
+    }
+
     footer {
       background: #222;
       color: white;
@@ -176,12 +190,6 @@
       padding: 25px 15px;
       margin-top: 60px;
       font-size: 0.95rem;
-    }
-    @media (max-width: 768px) {
-      .team-member img { height: 320px; }
-    }
-    @media (max-width: 480px) {
-      .team-member img { height: 250px; }
     }
   </style>
 </head>
@@ -206,32 +214,53 @@
       نحن نطمح لتقديم أفضل المحتويات التعليمية في مجالات التداول وتنمية المهارات الشخصية والمهنية.
       هدفنا تمكين المتعلمين من اتخاذ قرارات مستنيرة تحقق لهم النجاح المالي والمعرفي بثقة واحترافية.
     </p>
+
     <h2>فريقنا</h2>
     <div class="team-grid">
       <div class="team-member">
         <img src="team1.jpg" alt="أحمد علي - خبير التداول والاستثمار" loading="lazy">
         <h3>أحمد علي</h3>
         <p>خبير التداول والاستثمار</p>
+        <div class="social-links">
+          <a href="#"><img src="icon-linkedin.svg" alt="LinkedIn"></a>
+          <a href="#"><img src="icon-twitter.svg" alt="Twitter"></a>
+        </div>
       </div>
       <div class="team-member">
         <img src="team2.jpg" alt="سارة محمد - مدربة تطوير مهارات" loading="lazy">
         <h3>سارة محمد</h3>
         <p>مدربة تطوير مهارات</p>
+        <div class="social-links">
+          <a href="#"><img src="icon-linkedin.svg" alt="LinkedIn"></a>
+          <a href="#"><img src="icon-twitter.svg" alt="Twitter"></a>
+        </div>
       </div>
       <div class="team-member">
         <img src="team3.jpg" alt="محمد حسن - محلل الأسواق المالية" loading="lazy">
         <h3>محمد حسن</h3>
         <p>محلل الأسواق المالية</p>
+        <div class="social-links">
+          <a href="#"><img src="icon-linkedin.svg" alt="LinkedIn"></a>
+          <a href="#"><img src="icon-twitter.svg" alt="Twitter"></a>
+        </div>
       </div>
       <div class="team-member">
         <img src="team4.jpg" alt="ليلى أحمد - مصممة المحتوى التعليمي" loading="lazy">
         <h3>ليلى أحمد</h3>
         <p>مصممة المحتوى التعليمي</p>
+        <div class="social-links">
+          <a href="#"><img src="icon-linkedin.svg" alt="LinkedIn"></a>
+          <a href="#"><img src="icon-twitter.svg" alt="Twitter"></a>
+        </div>
       </div>
       <div class="team-member">
         <img src="team5.jpg" alt="يوسف سعيد - مدير المحتوى الرقمي" loading="lazy">
         <h3>يوسف سعيد</h3>
         <p>مدير المحتوى الرقمي</p>
+        <div class="social-links">
+          <a href="#"><img src="icon-linkedin.svg" alt="LinkedIn"></a>
+          <a href="#"><img src="icon-twitter.svg" alt="Twitter"></a>
+        </div>
       </div>
     </div>
   </main>
@@ -240,5 +269,6 @@
   </footer>
 </body>
 </html>
+
 
 
