@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بطاقتي | MONEX</title>
+  <style>
+    body {
+      font-family: "Cairo", sans-serif;
+      background: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .card-container {
+      background: linear-gradient(145deg, #000, #1a1a1a);
+      border: 2px solid #FFD700;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      width: 360px;
+      box-shadow: 0 4px 25px rgba(255, 215, 0, 0.4);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .card-logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+    .card-subtext {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-bottom: 20px;
+    }
+    .card-info {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+    .level {
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 8px;
+    }
+    .expiry {
+      font-size: 0.9rem;
+      color: #f8f8f8;
+      margin-top: 5px;
+    }
+    .qr-code {
+      margin-top: 15px;
+    }
+    .logout-btn {
+      margin-top: 20px;
+      background: #FFD700;
+      color: #000;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+    }
+    /* ألوان المستويات */
+    .vip { border-color: #FFD700; box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4); }
+    .vip .card-logo { color: #FFD700; }
+    .vip .level { background: #FFD700; color: #000; }
+
+    .basic { border-color: #1E90FF; box-shadow: 0 4px 20px rgba(30, 144, 255, 0.4); }
+    .basic .card-logo { color: #1E90FF; }
+    .basic .level { background: #1E90FF; color: #fff; }
+
+    .expired { border-color: #666; box-shadow: 0 4px 20px rgba(128, 128, 128, 0.4); }
+    .expired .card-logo { color: #aaa; }
+    .expired .level { background: #555; color: #fff; }
+  </style>
+</head>
+<body>
+
+<div class="card-container" id="cardContainer">
+  <div class="card-logo">MONEX</div>
+  <div class="card-subtext">TRADING ACADEMY</div>
+  <div class="card-info">تحميل بيانات العضو...</div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
+    authDomain: "monex-academ.firebaseapp.com",
+    projectId: "monex-academ",
+    storageBucket: "monex-academ.firebasestorage.app",
+    messagingSenderId: "739982923559",
+    appId: "1:739982923559:web:47ebe50822acba14d3fb02",
+    measurementId: "G-D7CGRPRKQE"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  onAuthStateChanged(auth, async (user) => {
+    const container = document.getElementById("cardContainer");
+    if (!user) {
+      window.location.href = "login.html";
+      return;
+    }
+
+    const userDocRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userDocRef);
+
+    let membershipLevel = "غير محدد";
+    let expiryDate = "غير متاح";
+    let cardClass = "";
+
+    if (userDoc.exists()) {
+      const data = userDoc.data();
+      membershipLevel = data.membershipLevel || membershipLevel;
+      expiryDate = data.expiryDate || expiryDate;
+
+      // تغيير اللون حسب مستوى الاشتراك
+      if (membershipLevel.toLowerCase() === "vip") {
+        cardClass = "vip";
+      } else if (membershipLevel.toLowerCase() === "basic") {
+        cardClass = "basic";
+      }
+
+      // تحقق من انتهاء الاشتراك
+      if (expiryDate && new Date(expiryDate) < new Date()) {
+        membershipLevel = "انتهى الاشتراك";
+        cardClass = "expired";
+      }
+    }
+
+    const memberId = user.uid.slice(0, 6).toUpperCase();
+
+    container.classList.add(cardClass);
+    container.innerHTML = `
+      <div class="card-logo">MONEX</div>
+      <div class="card-subtext">TRADING ACADEMY</div>
+
+      <div class="card-info"><strong>👤 الاسم:</strong> ${user.displayName || "عضو"}</div>
+      <div class="card-info"><strong>📧 البريد:</strong> ${user.email}</div>
+      <div class="card-info"><strong>🏷 رقم العضوية:</strong> ${memberId}</div>
+      <div class="level">مستوى: ${membershipLevel}</div>
+      <div class="expiry">انتهاء الاشتراك: ${expiryDate}</div>
+
+      <div class="qr-code">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(user.email)}&size=150x150" alt="QR">
+      </div>
+
+      <a class="logout-btn" onclick="signOut(auth)">تسجيل الخروج</a>
+    `;
+  });
+</script>
+
+</body>
+</html>
