@@ -8,92 +8,92 @@
   <style>
     body {
       font-family: "Cairo", sans-serif;
-      background: radial-gradient(circle at top, #0d0d0d, #000);
-      color: #fff;
+      background: #0d0d0d;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      height: 100vh;
       margin: 0;
     }
 
     .card-container {
-      background: linear-gradient(145deg, #111, #1c1c1c);
+      background: linear-gradient(160deg, #111, #000);
       border: 2px solid #FFD700;
-      border-radius: 24px;
+      border-radius: 20px;
       padding: 25px;
       text-align: center;
-      width: 400px;
-      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.35);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card-container:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(255, 215, 0, 0.45);
+      width: 360px;
+      color: #FFD700;
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.25);
     }
 
-    .card-header {
-      margin-bottom: 15px;
-    }
     .card-logo {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 700;
+      margin-bottom: 5px;
       color: #FFD700;
-      letter-spacing: 3px;
     }
+
     .card-subtext {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: #aaa;
-      margin-top: -5px;
     }
 
     .divider {
-      width: 60%;
+      width: 70%;
       height: 2px;
       background: #FFD700;
-      margin: 15px auto;
-      border-radius: 3px;
+      margin: 20px auto;
     }
 
     .card-info {
-      background: rgba(255, 255, 255, 0.06);
-      padding: 12px;
-      border-radius: 12px;
-      margin: 8px 0;
+      margin: 10px 0;
       font-size: 1rem;
-      text-align: right;
+      color: #fff;
       display: flex;
       justify-content: space-between;
-      align-items: center;
     }
+
     .card-info strong {
       color: #FFD700;
     }
 
     .level {
-      font-weight: 700;
-      padding: 8px 14px;
+      background: #FFD700;
+      color: #000;
+      font-weight: bold;
+      padding: 8px;
       border-radius: 10px;
-      display: inline-block;
-      margin-top: 12px;
-      font-size: 1.1rem;
+      margin-top: 15px;
+      font-size: 1.2rem;
     }
+
     .expiry {
-      font-size: 0.9rem;
-      margin-top: 5px;
-      color: #ddd;
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    .qr-wrapper {
+      margin-top: 25px;
     }
 
     .qr-code {
-      margin-top: 20px;
-      padding: 12px;
+      padding: 10px;
       background: #fff;
-      border-radius: 16px;
       display: inline-block;
+      border: 3px solid #FFD700;
+      border-radius: 12px;
+    }
+
+    .site-link {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #FFD700;
     }
 
     .logout-btn {
-      margin-top: 25px;
+      margin-top: 20px;
       background: #FFD700;
       color: #000;
       padding: 12px 18px;
@@ -108,27 +108,12 @@
     .logout-btn:hover {
       background: #e6c200;
     }
-
-    /* ألوان المستويات */
-    .vip { border-color: #FFD700; }
-    .vip .level { background: #FFD700; color: #000; }
-
-    .basic { border-color: #1E90FF; }
-    .basic .level { background: #1E90FF; color: #fff; }
-
-    .expired { border-color: #555; }
-    .expired .level { background: #555; color: #fff; }
   </style>
 </head>
 <body>
 
 <div class="card-container" id="cardContainer">
-  <div class="card-header">
-    <div class="card-logo">MONEX</div>
-    <div class="card-subtext">TRADING ACADEMY</div>
-  </div>
-  <div class="divider"></div>
-  <div class="card-info">تحميل بيانات العضو...</div>
+  تحميل بيانات العضو...
 </div>
 
 <!-- مكتبة QRCode.js -->
@@ -165,55 +150,39 @@
 
     let membershipLevel = "غير محدد";
     let expiryDate = "غير متاح";
-    let cardClass = "";
 
     if (userDoc.exists()) {
       const data = userDoc.data();
       membershipLevel = data.membershipLevel || membershipLevel;
       expiryDate = data.expiryDate || expiryDate;
-
-      if (membershipLevel.toLowerCase() === "vip") cardClass = "vip";
-      else if (membershipLevel.toLowerCase() === "basic") cardClass = "basic";
-
-      if (expiryDate && new Date(expiryDate) < new Date()) {
-        membershipLevel = "انتهى الاشتراك";
-        cardClass = "expired";
-      }
     }
 
     const memberId = user.uid.slice(0, 6).toUpperCase();
 
-    const memberData = {
-      name: user.displayName || "عضو",
-      email: user.email,
-      memberId: memberId,
-      level: membershipLevel,
-      expiry: expiryDate
-    };
-
-    container.classList.add(cardClass);
     container.innerHTML = `
-      <div class="card-header">
-        <div class="card-logo">MONEX</div>
-        <div class="card-subtext">TRADING ACADEMY</div>
-      </div>
+      <div class="card-logo">MONEX</div>
+      <div class="card-subtext">TRADING ACADEMY</div>
       <div class="divider"></div>
 
       <div class="card-info"><strong>👤 الاسم:</strong> <span>${user.displayName || "عضو"}</span></div>
       <div class="card-info"><strong>📧 البريد:</strong> <span>${user.email}</span></div>
       <div class="card-info"><strong>🏷 رقم العضوية:</strong> <span>${memberId}</span></div>
 
-      <div class="level">مستوى: ${membershipLevel}</div>
+      <div class="level">${membershipLevel}</div>
       <div class="expiry">انتهاء الاشتراك: ${expiryDate}</div>
 
-      <div class="qr-code" id="qrcode"></div>
+      <div class="qr-wrapper">
+        <div class="qr-code" id="qrcode"></div>
+        <div class="site-link">www.monextrading.com</div>
+      </div>
 
       <a class="logout-btn" id="logoutBtn">تسجيل الخروج</a>
     `;
 
-    // توليد QR داخلي
+    // توليد QR برابط مباشر
+    const qrLink = `https://www.monextrading.com/member?id=${memberId}`;
     new QRCode(document.getElementById("qrcode"), {
-      text: JSON.stringify(memberData),
+      text: qrLink,
       width: 140,
       height: 140,
       colorDark : "#000",
