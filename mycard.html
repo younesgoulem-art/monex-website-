@@ -1,107 +1,190 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بطاقة العضوية | MONEX</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-body { font-family:"Cairo",sans-serif; background:linear-gradient(135deg,#0a0a0a,#1a1a1a); display:flex; justify-content:center; align-items:center; height:100vh; margin:0; }
-.card-container { background:linear-gradient(160deg,#111,#000); border:2px solid #FFD700; border-radius:30px; padding:35px 25px; width:400px; max-width:90%; color:#FFD700; box-shadow:0 15px 35px rgba(255,215,0,0.4); text-align:center; transition: transform 0.3s, box-shadow 0.3s; }
-.card-container:hover { transform: scale(1.04); box-shadow:0 20px 50px rgba(255,215,0,0.5); }
-.logo img { width:130px; height:130px; border-radius:50%; border:4px solid #FFD700; object-fit:cover; margin:0 auto 20px auto; display:block; box-shadow:0 8px 20px rgba(255,215,0,0.5); transition: transform 0.3s; }
-.logo img:hover { transform: scale(1.05); }
-.card-subtext { font-size:1.1rem; color:#ccc; margin-bottom:15px; letter-spacing:1px; }
-.divider { width:75%; height:2px; background:#FFD700; margin:20px auto; }
-.card-info { margin:12px 0; font-size:1rem; display:flex; justify-content:space-between; padding:0 10px; }
-.card-info strong { color:#FFD700; }
-.card-info span { color:#fff; font-weight:500; }
-.level { background:#FFD700; color:#000; font-weight:bold; padding:10px 20px; border-radius:14px; margin-top:15px; font-size:1.25rem; display:inline-block; }
-.expiry { margin-top:10px; font-size:1rem; color:#ccc; }
-.qr-wrapper { margin-top:25px; }
-.qr-code { padding:12px; background:#fff; display:inline-block; border:4px solid #FFD700; border-radius:16px; }
-.site-link { margin-top:10px; font-size:0.95rem; color:#FFD700; letter-spacing:0.5px; }
-.logout-btn { margin-top:25px; background:#FFD700; color:#000; padding:14px 20px; border-radius:16px; font-weight:700; font-size:1rem; cursor:pointer; display:inline-block; text-decoration:none; transition: background 0.3s; }
-.logout-btn:hover { background:#e6c200; }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>بطاقة VIP - MONEX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#000;
+      overflow:hidden;
+      font-family:'Cairo', sans-serif;
+    }
+
+    /* نجوم بالخلفية */
+    body::before{
+      content:"";
+      position:absolute;
+      width:200%;
+      height:200%;
+      background:radial-gradient(2px 2px at 20% 30%,#fff,transparent),
+                 radial-gradient(1.5px 1.5px at 70% 80%,#fff,transparent),
+                 radial-gradient(2px 2px at 90% 50%,#fff,transparent),
+                 radial-gradient(1.5px 1.5px at 40% 70%,#fff,transparent);
+      animation:stars 40s linear infinite;
+      opacity:0.4;
+    }
+    @keyframes stars{
+      from{transform:translateY(0);}
+      to{transform:translateY(-100px);}
+    }
+
+    .card{
+      width:460px;
+      border-radius:24px;
+      padding:30px;
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+      background:rgba(15,15,15,0.85);
+      backdrop-filter:blur(6px);
+      box-shadow:0 20px 60px rgba(0,0,0,0.9);
+      z-index:2;
+    }
+
+    /* إطار ذهبي متوهج */
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:24px;
+      padding:2px;
+      background:linear-gradient(120deg,#d4ab3d,#fff4c2,#d4ab3d);
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+              mask-composite:exclude;
+      animation:borderGlow 6s linear infinite;
+      pointer-events:none;
+    }
+    @keyframes borderGlow{
+      0%{filter:hue-rotate(0deg);}
+      100%{filter:hue-rotate(360deg);}
+    }
+
+    /* avatar + logo */
+    .top{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:12px;
+      position:relative;
+      z-index:3;
+    }
+    .avatar{
+      width:80px;height:80px;border-radius:50%;overflow:hidden;
+      border:3px solid #d4ab3d;flex-shrink:0;
+      box-shadow:0 0 25px rgba(212,171,61,0.95);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .logo h1{margin:0;color:#f0c96a;font-size:30px;letter-spacing:2px;text-shadow:0 0 12px rgba(240,201,106,0.8);}
+    .logo p{margin:0;font-size:14px;color:#ccc;letter-spacing:1px}
+
+    /* name and id */
+    .name{font-size:28px;font-weight:bold;margin:14px 0 6px;color:#fff;z-index:3;position:relative}
+    .id{font-size:16px;color:#bbb;margin-bottom:18px;z-index:3;position:relative}
+
+    /* VIP مع تاج */
+    .vip{
+      font-size:52px;
+      font-weight:bold;
+      background:linear-gradient(90deg,#d4ab3d,#fff4c2,#d4ab3d);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-size:200% auto;
+      animation:shineText 3s linear infinite;
+      margin-bottom:22px;
+      text-shadow:0 0 15px rgba(240,201,106,0.9);
+      z-index:3;position:relative;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .vip::before{
+      content:"👑";
+      font-size:36px;
+      color:#f0c96a;
+      filter:drop-shadow(0 0 6px rgba(240,201,106,0.8));
+    }
+    @keyframes shineText{
+      to{background-position:200% center}
+    }
+
+    /* progress bar */
+    .progress-wrap{display:flex;align-items:center;gap:12px;margin-bottom:24px;z-index:3;position:relative}
+    .bar{flex:1;height:18px;background:#333;border-radius:10px;overflow:hidden;box-shadow:inset 0 0 8px #000}
+    .fill{
+      height:100%;
+      width:0;
+      background:linear-gradient(90deg,#d4ab3d,#f0c96a);
+      animation:loadBar 2s forwards;
+      box-shadow:0 0 10px rgba(240,201,106,0.6);
+    }
+    @keyframes loadBar{to{width:70%}}
+    .pct{font-size:16px;color:#f0c96a;font-weight:bold;text-shadow:0 0 6px rgba(240,201,106,0.7)}
+
+    /* QR and dates */
+    .bottom{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:26px;
+      z-index:3;position:relative;
+    }
+    .qr{
+      width:125px;height:125px;background:#fff;border-radius:14px;overflow:hidden;flex-shrink:0;
+      box-shadow:0 0 15px rgba(212,171,61,0.8);
+    }
+    .qr img{width:100%;height:100%;object-fit:cover}
+    .dates{flex:1;color:#ddd;font-size:16px;display:flex;flex-direction:column;gap:12px}
+
+    /* slogan */
+    .slogan{
+      text-align:center;
+      color:#f0c96a;
+      font-size:22px;
+      font-weight:bold;
+      text-shadow:0 0 14px rgba(240,201,106,0.9);
+      z-index:3;position:relative;
+    }
+  </style>
 </head>
 <body>
-
-<div class="card-container" id="cardContainer">تحميل بيانات العضو...</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
-  authDomain: "monex-academ.firebaseapp.com",
-  projectId: "monex-academ",
-  storageBucket: "monex-academ.firebasestorage.app",
-  messagingSenderId: "739982923559",
-  appId: "1:739982923559:web:47ebe50822acba14d3fb02",
-  measurementId: "G-D7CGRPRKQE"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-onAuthStateChanged(auth, async (user) => {
-  const container = document.getElementById("cardContainer");
-  if (!user) { window.location.href = "login.html"; return; }
-
-  const userDocRef = doc(db, "users", user.uid);
-  const userDoc = await getDoc(userDocRef);
-
-  let membershipLevel = "غير محدد";
-  let expiryDate = "غير متاح";
-  let photoURL = "https://via.placeholder.com/130";
-
-  if (userDoc.exists()) {
-    const data = userDoc.data();
-    membershipLevel = data.membershipLevel || membershipLevel;
-    expiryDate = data.expiryDate || expiryDate;
-    photoURL = data.photoURL || photoURL;
-  }
-
-  const memberId = user.uid.slice(0, 6).toUpperCase();
-
-  container.innerHTML = `
-    <div class="logo">
-      <img src="${photoURL}" alt="Logo">
-    </div>
-    <div class="card-subtext">TRADING ACADEMY</div>
-    <div class="divider"></div>
-
-    <div class="card-info"><strong>👤 الاسم:</strong> <span>${user.displayName || "عضو"}</span></div>
-    <div class="card-info"><strong>📧 البريد:</strong> <span>${user.email}</span></div>
-    <div class="card-info"><strong>🏷 رقم العضوية:</strong> <span>${memberId}</span></div>
-
-    <div class="level">${membershipLevel}</div>
-    <div class="expiry">انتهاء الاشتراك: ${expiryDate}</div>
-
-    <div class="qr-wrapper">
-      <div class="qr-code" id="qrcode"></div>
-      <div class="site-link">www.monextrading.com</div>
+  <div class="card">
+    <div class="top">
+      <div class="avatar"><img src="profile.jpg" alt="avatar"></div>
+      <div class="logo">
+        <h1>MONEX</h1>
+        <p>TRADING ACADEMY</p>
+      </div>
     </div>
 
-    <a class="logout-btn" id="logoutBtn">تسجيل الخروج</a>
-  `;
+    <div class="name">Younes Ben</div>
+    <div class="id">#MONEX-00231</div>
 
-  // QR Code يذهب لصفحة membre.html
-  const qrData = `membre.html?id=${user.uid}`;
-  new QRCode(document.getElementById("qrcode"), { text: qrData, width: 150, height: 150, colorDark:"#000", colorLight:"#fff" });
+    <div class="vip">VIP</div>
 
-  document.getElementById("logoutBtn").addEventListener("click", () => {
-    signOut(auth).then(() => { window.location.href = "login.html"; });
-  });
-});
-</script>
+    <div class="progress-wrap">
+      <div class="bar"><div class="fill"></div></div>
+      <div class="pct">70%</div>
+    </div>
 
+    <div class="bottom">
+      <div class="qr"><img src="qr.png" alt="qr"></div>
+      <div class="dates">
+        <div>01/01/2025</div>
+        <div>12/31/2025</div>
+      </div>
+    </div>
+
+    <div class="slogan">Knowledge is Power</div>
+  </div>
 </body>
 </html>
-
