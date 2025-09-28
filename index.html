@@ -611,23 +611,89 @@
         </div>
       </div>
 
-      <!-- Mobile menu -->
-      <div class="mobile-menu" id="mobileMenu" aria-label="قائمة التنقل للجوال" style="display:none;">
-        <a href="index.html" class="active">الرئيسية</a>
-        <a href="about.html">حولنا</a>
-        <a href="contact.html">اتصل بنا</a>
-        <a href="mycard.html">بطاقتي</a>
-        <div class="dropdown-mobile">
-          <button type="button" aria-expanded="false" id="servicesToggle">خدماتنا ▾</button>
-          <div class="submenu" id="servicesSubmenu">
-            <a href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener">إنستغرام</a>
-          </div>
-        </div>
-        <button class="btn-primary" onclick="location.href='courses.html'">تصفح الدورات</button>
-      </div>
-    </div>
-  </nav>
+   <!-- زر فتح القائمة -->
+<button class="menu-toggle" aria-controls="mobileMenu" aria-expanded="false">
+  ☰
+</button>
 
+<!-- القائمة الجوال -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="قائمة التنقل للجوال">
+  <a href="index.html" class="active">الرئيسية</a>
+  <a href="about.html">حولنا</a>
+  <a href="contact.html">اتصل بنا</a>
+
+  <div class="dropdown-mobile">
+    <button type="button" aria-expanded="false" id="servicesToggle">
+      خدماتنا <span>▾</span>
+    </button>
+    <div class="submenu" id="servicesSubmenu" hidden>
+      <a href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener">إنستغرام</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: #111;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease-in-out;
+}
+
+.mobile-menu.show {
+  display: flex;
+  transform: translateY(0);
+}
+
+.mobile-menu a {
+  padding: 0.8rem;
+  text-decoration: none;
+  color: #eee;
+  transition: color 0.2s;
+}
+.mobile-menu a:hover {
+  color: #ffd700;
+}
+
+.dropdown-mobile button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+.submenu {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+}
+</style>
+
+<script>
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const servicesToggle = document.getElementById('servicesToggle');
+const servicesSubmenu = document.getElementById('servicesSubmenu');
+
+// إظهار/إخفاء القائمة
+menuToggle.addEventListener('click', () => {
+  const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+  menuToggle.setAttribute('aria-expanded', !expanded);
+  mobileMenu.classList.toggle('show');
+});
+
+// إظهار/إخفاء القائمة الفرعية
+servicesToggle.addEventListener('click', () => {
+  const expanded = servicesToggle.getAttribute('aria-expanded') === 'true';
+  servicesToggle.setAttribute('aria-expanded', !expanded);
+  servicesSubmenu.hidden = expanded;
+});
+</script>
   <header class="hero" aria-label="قسم ترحيبي">
     <div class="container hero-content">
       <h1>مرحبًا بكم في أكاديمية مونكس</h1>
