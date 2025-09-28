@@ -595,7 +595,6 @@
         <a href="index.html" role="menuitem" class="active">الرئيسية</a>
         <a href="about.html" role="menuitem">حولنا</a>
         <a href="contact.html" role="menuitem">اتصل بنا</a>
-        <a href="mycard.html" role="menuitem">بطافتي</a>
         <div class="dropdown" aria-haspopup="true">
           <button class="dropbtn" aria-expanded="false">خدماتنا ▾</button>
           <div class="dropdown-content" role="menu">
@@ -611,89 +610,22 @@
         </div>
       </div>
 
-   <!-- زر فتح القائمة -->
-<button class="menu-toggle" aria-controls="mobileMenu" aria-expanded="false">
-  ☰
-</button>
-
-<!-- القائمة الجوال -->
-<nav class="mobile-menu" id="mobileMenu" aria-label="قائمة التنقل للجوال">
-  <a href="index.html" class="active">الرئيسية</a>
-  <a href="about.html">حولنا</a>
-  <a href="contact.html">اتصل بنا</a>
-
-  <div class="dropdown-mobile">
-    <button type="button" aria-expanded="false" id="servicesToggle">
-      خدماتنا <span>▾</span>
-    </button>
-    <div class="submenu" id="servicesSubmenu" hidden>
-      <a href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener">إنستغرام</a>
+      <!-- Mobile menu -->
+      <div class="mobile-menu" id="mobileMenu" aria-label="قائمة التنقل للجوال" style="display:none;">
+        <a href="index.html" class="active">الرئيسية</a>
+        <a href="about.html">حولنا</a>
+        <a href="contact.html">اتصل بنا</a>
+        <div class="dropdown-mobile">
+          <button type="button" aria-expanded="false" id="servicesToggle">خدماتنا ▾</button>
+          <div class="submenu" id="servicesSubmenu">
+            <a href="https://www.instagram.com/monex_academy/" target="_blank" rel="noopener">إنستغرام</a>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="location.href='courses.html'">تصفح الدورات</button>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<style>
-.mobile-menu {
-  display: none;
-  flex-direction: column;
-  background: #111;
-  color: #fff;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-  transition: transform 0.3s ease-in-out;
-}
-
-.mobile-menu.show {
-  display: flex;
-  transform: translateY(0);
-}
-
-.mobile-menu a {
-  padding: 0.8rem;
-  text-decoration: none;
-  color: #eee;
-  transition: color 0.2s;
-}
-.mobile-menu a:hover {
-  color: #ffd700;
-}
-
-.dropdown-mobile button {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1rem;
-  margin-top: 0.5rem;
-  cursor: pointer;
-}
-
-.submenu {
-  margin-top: 0.5rem;
-  padding-left: 1rem;
-}
-</style>
-
-<script>
-const menuToggle = document.querySelector('.menu-toggle');
-const mobileMenu = document.getElementById('mobileMenu');
-const servicesToggle = document.getElementById('servicesToggle');
-const servicesSubmenu = document.getElementById('servicesSubmenu');
-
-// إظهار/إخفاء القائمة
-menuToggle.addEventListener('click', () => {
-  const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-  menuToggle.setAttribute('aria-expanded', !expanded);
-  mobileMenu.classList.toggle('show');
-});
-
-// إظهار/إخفاء القائمة الفرعية
-servicesToggle.addEventListener('click', () => {
-  const expanded = servicesToggle.getAttribute('aria-expanded') === 'true';
-  servicesToggle.setAttribute('aria-expanded', !expanded);
-  servicesSubmenu.hidden = expanded;
-});
-</script>
   <header class="hero" aria-label="قسم ترحيبي">
     <div class="container hero-content">
       <h1>مرحبًا بكم في أكاديمية مونكس</h1>
@@ -745,7 +677,7 @@ servicesToggle.addEventListener('click', () => {
         <div class="course-grid">
           <div class="course-card">
             <div class="course-thumb">
-              <img src="https://via.placeholder.com/400x180" alt="دورة التداول" loading="lazy" />
+              <img src="swing-trading-indicators (1).webp" alt="دورة التداول" loading="lazy" />
             </div>
             <div class="course-content">
               <div class="badge">شائع</div>
@@ -763,7 +695,7 @@ servicesToggle.addEventListener('click', () => {
 
           <div class="course-card">
             <div class="course-thumb">
-              <img src="https://via.placeholder.com/400x180" alt="VIP FOREX" loading="lazy" />
+              <img src="Forex-Trading.webp" alt="VIP FOREX" loading="lazy" />
             </div>
             <div class="course-content">
               <div class="badge">جديد</div>
@@ -781,7 +713,7 @@ servicesToggle.addEventListener('click', () => {
 
           <div class="course-card">
             <div class="course-thumb">
-              <img src="https://via.placeholder.com/400x180" alt="VIP BINARY OPTIONS" loading="lazy" />
+              <img src="khong-ban-duoc-co-phieu+(2).jpg" alt="VIP BINARY OPTIONS" loading="lazy" />
             </div>
             <div class="course-content">
               <div class="badge">مميز</div>
@@ -792,7 +724,7 @@ servicesToggle.addEventListener('click', () => {
                 <span>مدة: 8 أسابيع</span>
               </div>
               <div style="margin-top:8px;">
-                <button class="btn-primary" style="padding:8px 16px; font-size:13px;" onclick="location.href='course-3.html'">عرض الدورة</button>
+                <button class="btn-primary" style="padding:8px 16px; font-size:13px;" onclick="location.href='course33.html'">عرض الدورة</button>
               </div>
             </div>
           </div>
