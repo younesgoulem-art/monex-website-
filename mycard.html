@@ -6,159 +6,34 @@
   <title>بطاقة VIP - MONEX</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      margin: 0;
-      height: 100%;
-      overflow: hidden; /* يمنع السحب للأعلى والأسفل */
-    }
-
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #000;
-      font-family: 'Cairo', sans-serif;
-      position: relative;
-    }
-
-    /* نجوم بالخلفية */
-    body::before {
-      content: "";
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(2px 2px at 20% 30%, #fff, transparent),
-                 radial-gradient(1.5px 1.5px at 70% 80%, #fff, transparent),
-                 radial-gradient(2px 2px at 90% 50%, #fff, transparent),
-                 radial-gradient(1.5px 1.5px at 40% 70%, #fff, transparent);
-      animation: stars 40s linear infinite;
-      opacity: 0.4;
-    }
-    @keyframes stars {
-      from { transform: translateY(0); }
-      to { transform: translateY(-100px); }
-    }
-
-    .card {
-      width: 90%;
-      max-width: 460px;
-      border-radius: 24px;
-      padding: 30px;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-      background: rgba(15,15,15,0.85);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.9);
-      z-index: 2;
-    }
-
-    /* إطار ذهبي متوهج */
-    .card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 24px;
-      padding: 2px;
-      background: linear-gradient(120deg, #d4ab3d, #fff4c2, #d4ab3d);
-      -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      animation: borderGlow 6s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes borderGlow {
-      0% { filter: hue-rotate(0deg); }
-      100% { filter: hue-rotate(360deg); }
-    }
-
-    /* avatar + logo */
-    .top {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 12px;
-      position: relative;
-      z-index: 3;
-    }
-    .avatar {
-      width: 80px; height: 80px; border-radius: 50%; overflow: hidden;
-      border: 3px solid #d4ab3d; flex-shrink: 0;
-      box-shadow: 0 0 25px rgba(212,171,61,0.95);
-    }
-    .avatar img { width: 100%; height: 100%; object-fit: cover }
-    .logo h1 { margin: 0; color: #f0c96a; font-size: 30px; letter-spacing: 2px; text-shadow: 0 0 12px rgba(240,201,106,0.8); }
-    .logo p { margin: 0; font-size: 14px; color: #ccc; letter-spacing: 1px }
-
-    /* name and id */
-    .name { font-size: 28px; font-weight: bold; margin: 14px 0 6px; color: #fff; z-index: 3; position: relative }
-    .id { font-size: 16px; color: #bbb; margin-bottom: 18px; z-index: 3; position: relative }
-
-    /* VIP مع تاج */
-    .vip {
-      font-size: 52px;
-      font-weight: bold;
-      background: linear-gradient(90deg, #d4ab3d, #fff4c2, #d4ab3d);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-size: 200% auto;
-      animation: shineText 3s linear infinite;
-      margin-bottom: 22px;
-      text-shadow: 0 0 15px rgba(240,201,106,0.9);
-      z-index: 3; position: relative;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .vip::before {
-      content: "👑";
-      font-size: 36px;
-      color: #f0c96a;
-      filter: drop-shadow(0 0 6px rgba(240,201,106,0.8));
-    }
-    @keyframes shineText {
-      to { background-position: 200% center }
-    }
-
-    /* progress bar */
-    .progress-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; z-index: 3; position: relative }
-    .bar { flex: 1; height: 18px; background: #333; border-radius: 10px; overflow: hidden; box-shadow: inset 0 0 8px #000 }
-    .fill {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, #d4ab3d, #f0c96a);
-      animation: loadBar 2s forwards;
-      box-shadow: 0 0 10px rgba(240,201,106,0.6);
-    }
-    @keyframes loadBar { to { width: 70% } }
-    .pct { font-size: 16px; color: #f0c96a; font-weight: bold; text-shadow: 0 0 6px rgba(240,201,106,0.7) }
-
-    /* QR and dates */
-    .bottom {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      margin-bottom: 26px;
-      z-index: 3; position: relative;
-    }
-    .qr {
-      width: 125px; height: 125px; background: #fff; border-radius: 14px; overflow: hidden; flex-shrink: 0;
-      box-shadow: 0 0 15px rgba(212,171,61,0.8);
-    }
-    .qr img { width: 100%; height: 100%; object-fit: cover }
-    .dates { flex: 1; color: #ddd; font-size: 16px; display: flex; flex-direction: column; gap: 12px }
-
-    /* slogan */
-    .slogan {
-      text-align: center;
-      color: #f0c96a;
-      font-size: 22px;
-      font-weight: bold;
-      text-shadow: 0 0 14px rgba(240,201,106,0.9);
-      z-index: 3; position: relative;
-    }
+    /* نفس CSS اللي عندك بالضبط */
+    html, body {margin:0;height:100%;overflow:hidden;}
+    body {display:flex;align-items:center;justify-content:center;background:#000;font-family:'Cairo',sans-serif;position:relative;}
+    body::before{content:"";position:absolute;width:200%;height:200%;background:radial-gradient(2px 2px at 20% 30%,#fff,transparent),radial-gradient(1.5px 1.5px at 70% 80%,#fff,transparent),radial-gradient(2px 2px at 90% 50%,#fff,transparent),radial-gradient(1.5px 1.5px at 40% 70%,#fff,transparent);animation:stars 40s linear infinite;opacity:.4;}
+    @keyframes stars{from{transform:translateY(0);}to{transform:translateY(-100px);}}
+    .card{width:90%;max-width:460px;border-radius:24px;padding:30px;color:#fff;position:relative;overflow:hidden;background:rgba(15,15,15,0.85);backdrop-filter:blur(6px);box-shadow:0 20px 60px rgba(0,0,0,0.9);z-index:2;}
+    .card::after{content:"";position:absolute;inset:0;border-radius:24px;padding:2px;background:linear-gradient(120deg,#d4ab3d,#fff4c2,#d4ab3d);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:borderGlow 6s linear infinite;pointer-events:none;}
+    @keyframes borderGlow{0%{filter:hue-rotate(0deg);}100%{filter:hue-rotate(360deg);}}
+    .top{display:flex;align-items:center;gap:16px;margin-bottom:12px;position:relative;z-index:3;}
+    .avatar{width:80px;height:80px;border-radius:50%;overflow:hidden;border:3px solid #d4ab3d;flex-shrink:0;box-shadow:0 0 25px rgba(212,171,61,0.95);}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .logo h1{margin:0;color:#f0c96a;font-size:30px;letter-spacing:2px;text-shadow:0 0 12px rgba(240,201,106,0.8);}
+    .logo p{margin:0;font-size:14px;color:#ccc;letter-spacing:1px}
+    .name{font-size:28px;font-weight:bold;margin:14px 0 6px;color:#fff;z-index:3;position:relative}
+    .id{font-size:16px;color:#bbb;margin-bottom:18px;z-index:3;position:relative}
+    .vip{font-size:52px;font-weight:bold;background:linear-gradient(90deg,#d4ab3d,#fff4c2,#d4ab3d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% auto;animation:shineText 3s linear infinite;margin-bottom:22px;text-shadow:0 0 15px rgba(240,201,106,0.9);z-index:3;position:relative;display:flex;align-items:center;gap:12px;}
+    .vip::before{content:"👑";font-size:36px;color:#f0c96a;filter:drop-shadow(0 0 6px rgba(240,201,106,0.8));}
+    @keyframes shineText{to{background-position:200% center}}
+    .progress-wrap{display:flex;align-items:center;gap:12px;margin-bottom:24px;z-index:3;position:relative}
+    .bar{flex:1;height:18px;background:#333;border-radius:10px;overflow:hidden;box-shadow:inset 0 0 8px #000}
+    .fill{height:100%;width:0;background:linear-gradient(90deg,#d4ab3d,#f0c96a);animation:loadBar 2s forwards;box-shadow:0 0 10px rgba(240,201,106,0.6);}
+    @keyframes loadBar{to{width:70%}}
+    .pct{font-size:16px;color:#f0c96a;font-weight:bold;text-shadow:0 0 6px rgba(240,201,106,0.7)}
+    .bottom{display:flex;gap:16px;align-items:center;margin-bottom:26px;z-index:3;position:relative}
+    .qr{width:125px;height:125px;background:#fff;border-radius:14px;overflow:hidden;flex-shrink:0;box-shadow:0 0 15px rgba(212,171,61,0.8);}
+    .qr img{width:100%;height:100%;object-fit:cover}
+    .dates{flex:1;color:#ddd;font-size:16px;display:flex;flex-direction:column;gap:12px}
+    .slogan{text-align:center;color:#f0c96a;font-size:22px;font-weight:bold;text-shadow:0 0 14px rgba(240,201,106,0.9);z-index:3;position:relative}
   </style>
 </head>
 <body>
@@ -171,26 +46,84 @@
       </div>
     </div>
 
-    <div class="name">Younes Ben</div>
-    <div class="id">#MONEX-00231</div>
+    <div class="name" id="userName">جار التحميل...</div>
+    <div class="id" id="userId">#... </div>
 
     <div class="vip">VIP</div>
 
     <div class="progress-wrap">
-      <div class="bar"><div class="fill"></div></div>
-      <div class="pct">70%</div>
+      <div class="bar"><div class="fill" id="progressFill"></div></div>
+      <div class="pct" id="progressPct">0%</div>
     </div>
 
     <div class="bottom">
       <div class="qr"><img src="qr.png" alt="qr"></div>
       <div class="dates">
-        <div>01/01/2025</div>
-        <div>12/31/2025</div>
+        <div id="startDate">---</div>
+        <div id="endDate">---</div>
       </div>
     </div>
 
     <div class="slogan">Knowledge is Power</div>
   </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    // Import Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // إعداد Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCoyCAdEmG9nSWmYhDTYtzkarNml2LOl5o",
+      authDomain: "monex-academ.firebaseapp.com",
+      projectId: "monex-academ",
+      storageBucket: "monex-academ.firebasestorage.app",
+      messagingSenderId: "739982923559",
+      appId: "1:739982923559:web:47ebe50822acba14d3fb02",
+      measurementId: "G-D7CGRPRKQE"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // جلب مستخدم معيّن (بدّل ID باللي في Firestore عندك)
+    const userId = "IhpUxRmvXHX9SAPCIM9y8mpKbXJ2"; 
+    const docRef = doc(db, "users", userId);
+
+    async function loadUser() {
+      const snap = await getDoc(docRef);
+      if (snap.exists()) {
+        const data = snap.data();
+
+        document.getElementById("userName").textContent = data.name || "بدون اسم";
+        document.getElementById("userId").textContent = data.email || "No Email";
+
+        // التواريخ
+        if (data.startDate?.toDate) {
+          document.getElementById("startDate").textContent = data.startDate.toDate().toLocaleDateString();
+        }
+        if (data.endDate?.toDate) {
+          document.getElementById("endDate").textContent = data.endDate.toDate().toLocaleDateString();
+
+          // حساب نسبة بقاء الاشتراك
+          const start = data.startDate.toDate();
+          const end = data.endDate.toDate();
+          const today = new Date();
+
+          const total = end - start;
+          const used = today - start;
+          let pct = Math.min(Math.max((used / total) * 100, 0), 100);
+          document.getElementById("progressFill").style.width = pct + "%";
+          document.getElementById("progressPct").textContent = Math.floor(pct) + "%";
+        }
+      } else {
+        document.getElementById("userName").textContent = "المستخدم غير موجود";
+      }
+    }
+
+    loadUser();
+  </script>
 </body>
 </html>
 
