@@ -19,8 +19,8 @@
     }
     body::before{
       content:"";
-      position:fixed; /* ← ثابتة بدل absolute */
-      top:0; left:0;  /* ← تبدأ من الزاوية العليا */
+      position:fixed;
+      top:0; left:0;
       width:200%;
       height:200%;
       background:radial-gradient(2px 2px at 20% 30%,#fff,transparent),
@@ -32,7 +32,6 @@
       pointer-events:none;
     }
     @keyframes stars{from{transform:translateY(0);}to{transform:translateY(-100px);}}
-
 
     .card{
       width:460px;
@@ -61,7 +60,6 @@
     }
     @keyframes borderGlow{0%{filter:hue-rotate(0deg);}100%{filter:hue-rotate(360deg);}}
 
-
     .top{display:flex;align-items:center;gap:16px;margin-bottom:12px;position:relative;z-index:3;}
     .avatar{width:80px;height:80px;border-radius:50%;overflow:hidden;border:3px solid #d4ab3d;flex-shrink:0;box-shadow:0 0 25px rgba(212,171,61,0.95);}
     .avatar img{width:100%;height:100%;object-fit:cover}
@@ -72,20 +70,29 @@
       position: absolute;
       top: 20px;
       left: 20px;
-      background: #d4ab3d;
-      color: #000;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
       border: none;
-      border-radius: 20px;
-      padding: 8px 16px;
-      font-weight: bold;
+      background: linear-gradient(145deg, #d4ab3d, #f0c96a);
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 18px rgba(212,171,61,0.9);
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(212,171,61,0.8);
-      transition: all 0.3s ease;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
       z-index: 4;
     }
     .logout-btn:hover {
-      background: #f0c96a;
-      box-shadow: 0 0 15px rgba(240,201,106,1);
+      transform: scale(1.08);
+      box-shadow: 0 0 25px rgba(240,201,106,1);
+    }
+    .logout-btn:active {
+      transform: scale(0.96);
+    }
+    .logout-btn svg {
+      stroke: #000;
     }
 
     .name{font-size:28px;font-weight:bold;margin:14px 0 6px;color:#fff;z-index:3;position:relative}
@@ -116,7 +123,13 @@
   </style>
 </head>
 <body>
-  <button class="logout-btn" id="logoutBtn">تسجيل الخروج</button>
+  <button class="logout-btn" id="logoutBtn" aria-label="تسجيل الخروج" title="تسجيل الخروج">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+      <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M13 19H7a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
 
   <div class="card">
     <div class="top">
@@ -148,7 +161,6 @@
     <div class="slogan">Knowledge is Power</div>
   </div>
 
-  <!-- Firebase -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
@@ -167,7 +179,6 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // التحقق من تسجيل الدخول
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         const userRef = doc(db, "users", user.uid);
@@ -187,7 +198,6 @@
       }
     });
 
-    // تسجيل الخروج
     document.getElementById("logoutBtn").addEventListener("click", async () => {
       await signOut(auth);
       window.location.href = "login.html";
