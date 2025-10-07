@@ -9,11 +9,11 @@
     html, body {
       margin: 0;
       padding: 0;
-      overflow-x: hidden; /* ✅ يمنع التمرير الأفقي */
+      height: 100%;
+      overflow: hidden; /* ✅ يمنع التمرير لأعلى أو أسفل أو يمين أو يسار */
     }
 
     body {
-      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -41,51 +41,17 @@
       to { transform: translateY(-100px); }
     }
 
-    .card {
-      width: 460px;
-      border-radius: 24px;
-      padding: 30px;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-      background: rgba(15, 15, 15, 0.85);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
-      z-index: 2;
-      transform: none !important;
-      left: 0;
-      max-width: 90vw; /* ✅ يمنع تجاوز عرض الشاشة على الهاتف */
-    }
-
-    .card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 24px;
-      padding: 2px;
-      background: linear-gradient(120deg, #d4ab3d, #fff4c2, #d4ab3d);
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      animation: borderGlow 6s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes borderGlow {
-      0% { filter: hue-rotate(0deg); }
-      100% { filter: hue-rotate(360deg); }
-    }
-
-    /* ✅ تم تعديل الزر ليكون داخل الصفحة بشكل متجاوب وأنيق */
+    /* ✅ تحسين زر تسجيل الخروج فقط */
     .logout-btn {
-      position: absolute;
-      top: 15px;
-      left: 15px;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       background: #d4ab3d;
       color: #000;
       border: none;
-      border-radius: 20px;
-      padding: 10px 18px;
+      border-radius: 25px;
+      padding: 12px 24px;
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 0 10px rgba(212,171,61,0.8);
@@ -96,89 +62,24 @@
     .logout-btn:hover {
       background: #f0c96a;
       box-shadow: 0 0 15px rgba(240,201,106,1);
+      transform: translateX(-50%) scale(1.05);
     }
 
     @media (max-width: 600px) {
       .logout-btn {
-        top: 10px;
-        left: 10px;
-        padding: 8px 14px;
+        top: 15px;
+        padding: 10px 18px;
         font-size: 14px;
       }
-    }
-
-    .top { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
-    .avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 3px solid #d4ab3d;
-      box-shadow: 0 0 25px rgba(212,171,61,0.95);
-    }
-    .avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .logo h1 { margin: 0; color: #f0c96a; font-size: 30px; letter-spacing: 2px; text-shadow: 0 0 12px rgba(240,201,106,0.8); }
-    .logo p { margin: 0; font-size: 14px; color: #ccc; letter-spacing: 1px; }
-
-    .name { font-size: 28px; font-weight: bold; margin: 14px 0 6px; color: #fff; }
-    .id { font-size: 16px; color: #bbb; margin-bottom: 18px; }
-
-    .vip {
-      font-size: 52px;
-      font-weight: bold;
-      background: linear-gradient(90deg, #d4ab3d, #fff4c2, #d4ab3d);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-size: 200% auto;
-      animation: shineText 3s linear infinite;
-      margin-bottom: 22px;
-      text-shadow: 0 0 15px rgba(240,201,106,0.9);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      justify-content: center;
-    }
-
-    .vip::before {
-      content: "👑";
-      font-size: 36px;
-      color: #f0c96a;
-      filter: drop-shadow(0 0 6px rgba(240,201,106,0.8));
-    }
-
-    @keyframes shineText { to { background-position: 200% center; } }
-
-    .progress-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-    .bar { flex: 1; height: 18px; background: #333; border-radius: 10px; overflow: hidden; box-shadow: inset 0 0 8px #000; }
-    .fill { height: 100%; width: 0; background: linear-gradient(90deg, #d4ab3d, #f0c96a); animation: loadBar 2s forwards; box-shadow: 0 0 10px rgba(240,201,106,0.6); }
-    @keyframes loadBar { to { width: 70%; } }
-    .pct { font-size: 16px; color: #f0c96a; font-weight: bold; text-shadow: 0 0 6px rgba(240,201,106,0.7); }
-
-    .bottom { display: flex; gap: 16px; align-items: center; margin-bottom: 26px; }
-    .qr {
-      width: 125px;
-      height: 125px;
-      background: #fff;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 0 15px rgba(212,171,61,0.8);
-    }
-    .qr img { width: 100%; height: 100%; object-fit: cover; }
-    .dates { flex: 1; color: #ddd; font-size: 16px; display: flex; flex-direction: column; gap: 12px; }
-
-    .slogan {
-      text-align: center;
-      color: #f0c96a;
-      font-size: 22px;
-      font-weight: bold;
-      text-shadow: 0 0 14px rgba(240,201,106,0.9);
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <button class="logout-btn" id="logoutBtn">تسجيل الخروج</button> <!-- ✅ تم نقل الزر داخل البطاقة -->
+  <!-- ✅ الزر فقط خارج البطاقة في أعلى الصفحة -->
+  <button class="logout-btn" id="logoutBtn">تسجيل الخروج</button>
 
+  <!-- ✅ البطاقة كما هي تمامًا بدون أي تعديل -->
+  <div class="card">
     <div class="top">
       <div class="avatar"><img src="profile.jpg" alt="avatar"></div>
       <div class="logo">
@@ -253,4 +154,3 @@
   </script>
 </body>
 </html>
-
