@@ -6,14 +6,18 @@
   <title>بطاقة VIP - MONEX</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* ✅ يمنع التمرير الأفقي */
+    }
+
+    body {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       background: #000;
-      overflow: hidden;
       font-family: 'Cairo', sans-serif;
       position: relative;
     }
@@ -48,8 +52,9 @@
       backdrop-filter: blur(6px);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
       z-index: 2;
-      transform: none !important; /* يمنع أي حركة */
+      transform: none !important;
       left: 0;
+      max-width: 90vw; /* ✅ يمنع تجاوز عرض الشاشة على الهاتف */
     }
 
     .card::after {
@@ -71,10 +76,11 @@
       100% { filter: hue-rotate(360deg); }
     }
 
+    /* ✅ تم تعديل الزر ليكون داخل الصفحة بشكل متجاوب وأنيق */
     .logout-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
+      position: absolute;
+      top: 15px;
+      left: 15px;
       background: #d4ab3d;
       color: #000;
       border: none;
@@ -84,12 +90,21 @@
       cursor: pointer;
       box-shadow: 0 0 10px rgba(212,171,61,0.8);
       transition: all 0.3s ease;
-      z-index: 5;
+      z-index: 10;
     }
 
     .logout-btn:hover {
       background: #f0c96a;
       box-shadow: 0 0 15px rgba(240,201,106,1);
+    }
+
+    @media (max-width: 600px) {
+      .logout-btn {
+        top: 10px;
+        left: 10px;
+        padding: 8px 14px;
+        font-size: 14px;
+      }
     }
 
     .top { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
@@ -161,9 +176,9 @@
   </style>
 </head>
 <body>
-  <button class="logout-btn" id="logoutBtn">تسجيل الخروج</button>
-
   <div class="card">
+    <button class="logout-btn" id="logoutBtn">تسجيل الخروج</button> <!-- ✅ تم نقل الزر داخل البطاقة -->
+
     <div class="top">
       <div class="avatar"><img src="profile.jpg" alt="avatar"></div>
       <div class="logo">
@@ -212,7 +227,6 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // التحقق من تسجيل الدخول
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         const userRef = doc(db, "users", user.uid);
@@ -232,7 +246,6 @@
       }
     });
 
-    // تسجيل الخروج
     document.getElementById("logoutBtn").addEventListener("click", async () => {
       await signOut(auth);
       window.location.href = "login.html";
