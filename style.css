@@ -1,3 +1,4 @@
+/* ====== تنسيق عام ====== */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -34,6 +35,8 @@ footer {
   width: 100%;
   bottom: 0;
 }
+
+/* ====== تنسيق القائمة العادية ====== */
 nav {
   margin-bottom: 20px;
   font-size: 18px;
@@ -47,5 +50,89 @@ nav a {
 
 nav a:hover {
   text-decoration: underline;
+}
+
+/* ====== القائمة الجانبية للهاتف ====== */
+
+/* زر الهمبرغر */
+.mobile-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #007BFF;
+  font-size: 28px;
+  z-index: 1001;
+  position: relative;
+}
+
+/* القائمة الجانبية */
+.nav-links {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 70%;
+  max-width: 280px;
+  height: 100vh;
+  background-color: #222;
+  box-shadow: -3px 0 15px rgba(0, 0, 0, 0.4);
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 100px;
+  gap: 15px;
+}
+
+/* عند فتح القائمة */
+.nav-links.show {
+  transform: translateX(0);
+}
+
+/* روابط القائمة */
+.nav-links a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 25px;
+  width: 100%;
+  transition: background 0.2s;
+}
+
+.nav-links a:hover {
+  background-color: #ffc107;
+  color: #000;
+}
+
+/* ====== إخفاء القائمة في الشاشات الكبيرة ====== */
+@media (min-width: 768px) {
+  .nav-links {
+    position: static;
+    transform: none;
+    height: auto;
+    flex-direction: row;
+    background: none;
+    box-shadow: none;
+    padding-top: 0;
+  }
+
+  .mobile-toggle {
+    display: none;
+  }
+}
+
+/* ====== تأثير التعتيم عند فتح القائمة ====== */
+body.menu-open::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 999;
 }
 
