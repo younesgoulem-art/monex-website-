@@ -874,20 +874,18 @@
   const menu = document.querySelector('.nav-links');
   const toggleBtn = document.getElementById('hamburger');
 
-  // فتح وإغلاق القائمة عند الضغط على الزر
   toggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // حتى لا يغلقها فورا
+    e.stopPropagation();
     menu.classList.toggle('show');
-    toggleBtn.setAttribute('aria-expanded', menu.classList.contains('show'));
+    document.body.classList.toggle('menu-open', menu.classList.contains('show'));
   });
 
-  // إغلاق القائمة عند الضغط خارجها
   document.addEventListener('click', (e) => {
-    const clickedInsideMenu = menu.contains(e.target);
-    const clickedToggle = toggleBtn.contains(e.target);
-    if (!clickedInsideMenu && !clickedToggle) {
+    const insideMenu = menu.contains(e.target);
+    const insideBtn = toggleBtn.contains(e.target);
+    if (!insideMenu && !insideBtn) {
       menu.classList.remove('show');
-      toggleBtn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
     }
   });
 </script>
