@@ -585,7 +585,7 @@
         </a>
       </div>
 
-      <button class="mobile-toggle" aria-label="فتح القائمة" aria-expanded="false" id="hamburger">
+    <button class="mobile-toggle" aria-label="فتح القائمة" aria-expanded="false" id="hamburger">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -645,6 +645,63 @@
       <h2 id="why-title">لماذا تختار أكاديمية مونكس؟</h2>
       <p class="lead">نقدم محتوى تعليمي عالي الجودة، مدعوم بخبراء في مجال التداول والاستثمار، مع دعم مستمر وخطة تعليمية واضحة تناسب جميع المستويات. نركز على التطبيق العملي، إدارة المخاطر، وتطوير عقلية المستثمر الاحترافي.</p>
     </section>
+
+    <style>
+      /* 🔹 تحسين مظهر القائمة في الهاتف + أنيميشن */
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        background-color: #111;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        padding: 15px;
+        animation: slideDown 0.4s ease forwards;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        z-index: 999;
+      }
+
+      .mobile-menu.show {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes slideDown {
+        from {opacity: 0; transform: translateY(-20px);}
+        to {opacity: 1; transform: translateY(0);}
+      }
+
+      .mobile-menu a,
+      .mobile-menu button {
+        color: white;
+        background: none;
+        border: none;
+        text-align: right;
+        padding: 10px 0;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .mobile-menu a:hover {
+        color: #00aaff;
+      }
+    </style>
+
+    <script>
+      // 🔹 كود تشغيل القائمة في الهاتف بانسيابية
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !expanded);
+        mobileMenu.classList.toggle('show');
+      });
+    </script>
 
     <!-- ميزات -->
     <section class="features" aria-labelledby="features-title">
