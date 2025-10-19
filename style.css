@@ -1,3 +1,4 @@
+/* ===== القواعد العامة ===== */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -50,67 +51,103 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* ========================================================= */
-/* 🔹 تصميم القائمة الجوالية (Mobile Menu) احترافي */
-/* ========================================================= */
+/* ===== القائمة الجوالية ===== */
+#hamburger {
+  background: none;
+  border: none;
+  color: #111;
+  cursor: pointer;
+  font-size: 28px;
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+}
 
+/* القائمة العادية */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+/* القائمة الجوالية (مخفية في البداية) */
 .mobile-menu {
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   width: 100%;
-  height: 100vh; /* تغطي كامل الشاشة */
-  background: rgba(0, 0, 0, 0.95); /* خلفية داكنة شفافة */
-  display: none; /* مخفية افتراضيًا */
+  height: 100vh;
+  background: rgba(17, 24, 39, 0.97);
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  z-index: 9999;
-  transition: opacity 0.3s ease;
+  gap: 25px;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-30px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
+/* الحالة النشطة عند الفتح */
+.mobile-menu.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+/* الروابط داخل القائمة الجوالية */
 .mobile-menu a,
 .mobile-menu button {
   color: #fff;
-  font-size: 18px;
-  font-weight: 600;
-  background: none;
-  border: none;
-  padding: 10px 20px;
+  font-size: 22px;
+  text-decoration: none;
+  padding: 12px 20px;
   border-radius: 8px;
-  transition: background 0.2s ease;
+  background: rgba(255, 255, 255, 0.1);
+  width: 70%;
+  text-align: center;
+  transition: background 0.3s ease;
+  border: none;
 }
 
 .mobile-menu a:hover,
 .mobile-menu button:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.25);
 }
 
+/* القائمة الفرعية */
 .mobile-menu .submenu {
   display: none;
   flex-direction: column;
   gap: 6px;
 }
 
-.mobile-menu .submenu a {
-  font-size: 16px;
-  padding-left: 10px;
+.mobile-menu .dropdown-mobile button {
+  background: #fbbf24; /* لون أصفر جميل */
+  color: #111;
+  font-weight: 600;
 }
 
-/* 🔸 أنيميشن ظهور القائمة */
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
+/* زر تصفح الدورات */
+.mobile-menu .btn-primary {
+  background: #007BFF;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* ===== إظهار زر الهامبرغر على الشاشات الصغيرة ===== */
+@media (max-width: 768px) {
+  #hamburger {
+    display: block;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .nav-links {
+    display: none;
   }
 }
 
-.mobile-menu.show {
-  display: flex;
-  animation: slideIn 0.3s ease forwards;
-}
