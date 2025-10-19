@@ -6,6 +6,7 @@ body {
   text-align: center;
   background-color: #f4f4f4;
   direction: rtl;
+  overflow-x: hidden;
 }
 
 header {
@@ -39,6 +40,8 @@ footer {
 nav {
   margin-bottom: 20px;
   font-size: 18px;
+  position: relative;
+  z-index: 2000;
 }
 
 nav a {
@@ -51,7 +54,7 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* ===== القائمة الجوالية ===== */
+/* ===== زر القائمة (همبرغر) ===== */
 #hamburger {
   background: none;
   border: none;
@@ -61,8 +64,8 @@ nav a:hover {
   display: none;
   position: absolute;
   top: 20px;
-  left: 20px;
-  z-index: 1001;
+  right: 20px;
+  z-index: 3001;
 }
 
 /* القائمة العادية */
@@ -73,34 +76,34 @@ nav a:hover {
   gap: 15px;
 }
 
-/* القائمة الجوالية (مخفية في البداية) */
+/* ===== القائمة الجوالية ===== */
 .mobile-menu {
   position: fixed;
   top: 0;
   right: 0;
   width: 100%;
-  height: 100vh;
-  background: rgba(17, 24, 39, 0.97);
+  height: 100vh; /* تغطي كامل الشاشة */
+  background: rgba(17, 24, 39, 0.98);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 25px;
-  z-index: 1000;
+  z-index: 3000;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-30px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: translateY(-20px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-/* الحالة النشطة عند الفتح */
+/* عند الفتح */
 .mobile-menu.active {
   opacity: 1;
   pointer-events: all;
   transform: translateY(0);
 }
 
-/* الروابط داخل القائمة الجوالية */
+/* الروابط داخل القائمة */
 .mobile-menu a,
 .mobile-menu button {
   color: #fff;
@@ -109,7 +112,7 @@ nav a:hover {
   padding: 12px 20px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
-  width: 70%;
+  width: 80%;
   text-align: center;
   transition: background 0.3s ease;
   border: none;
@@ -128,7 +131,7 @@ nav a:hover {
 }
 
 .mobile-menu .dropdown-mobile button {
-  background: #fbbf24; /* لون أصفر جميل */
+  background: #fbbf24;
   color: #111;
   font-weight: 600;
 }
@@ -140,7 +143,7 @@ nav a:hover {
   font-weight: bold;
 }
 
-/* ===== إظهار زر الهامبرغر على الشاشات الصغيرة ===== */
+/* ===== تصميم للجوال ===== */
 @media (max-width: 768px) {
   #hamburger {
     display: block;
