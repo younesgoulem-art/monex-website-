@@ -871,20 +871,11 @@
     });
   };
 </script>
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const menuLinks = mobileMenu.querySelectorAll('a, button');
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-  // عند الضغط على زر الهامبرغر
-  hamburger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
-  });
-
-  // إغلاق تلقائي عند الضغط على أي عنصر داخل القائمة
-  menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('active');
-    });
+  hamburger.addEventListener("click", () => {
+    mobileMenu.classList.toggle("active");
   });
 </script>
 </body>
