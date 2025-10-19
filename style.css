@@ -79,10 +79,10 @@ nav a:hover {
 /* ===== القائمة الجوالية ===== */
 .mobile-menu {
   position: fixed;
-  inset: 0; /* يغطي كل الشاشة من كل الجهات */
+  inset: 0;
   width: 100%;
-  height: 100dvh; /* أكثر دقة من 100vh على الجوال */
-  background: rgba(17, 24, 39, 0.98);
+  height: 100dvh;
+  background: rgba(17, 24, 39, 0.97);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,8 +91,8 @@ nav a:hover {
   z-index: 9999;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-20px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transform: translateY(-15px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 /* عند الفتح */
@@ -102,18 +102,18 @@ nav a:hover {
   transform: translateY(0);
 }
 
-/* الروابط داخل القائمة */
+/* الروابط */
 .mobile-menu a,
 .mobile-menu button {
   color: #fff;
-  font-size: 22px;
+  font-size: 20px;
   text-decoration: none;
   padding: 12px 20px;
-  border-radius: 8px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.1);
   width: 80%;
   text-align: center;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
   border: none;
 }
 
@@ -142,7 +142,7 @@ nav a:hover {
   font-weight: bold;
 }
 
-/* ===== تصميم للجوال ===== */
+/* ===== للجوال ===== */
 @media (max-width: 768px) {
   #hamburger {
     display: block;
@@ -151,6 +151,21 @@ nav a:hover {
   .nav-links {
     display: none;
   }
+}
+
+/* ===== إغلاق احترافي بالنقر على الخلفية ===== */
+.mobile-menu::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu.active::before {
+  opacity: 1;
 }
 
 /* ===== إصلاح أي تعارض محتمل ===== */
