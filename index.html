@@ -633,7 +633,7 @@
       <h1>مرحبًا بكم في أكاديمية مونكس</h1>
       <p>أفضل الدورات التعليمية لتنمية مهاراتك وتحقيق طموحاتك المالية بثقة واحترافية.</p>
       <div class="actions">
-        <button class="btn-primary" aria-label="تصفح الدورات" onclick="location.href='courses.html'">تصفح الدورات</button>
+      <button onclick="scrollToCourses()" class="btn-scroll">تصفح الدورات</button>
         <a href="contact.html" class="btn-primary" style="background:#fff; color: var(--dark-bg);">تواصل معنا</a>
       </div>
     </div>
@@ -871,5 +871,10 @@
     });
   };
 </script>
+  function scrollToCourses() {
+  const section = document.getElementById('courses-title');
+  section.scrollIntoView({ behavior: 'smooth' });
+}
+ </script> 
 </body>
 </html>
